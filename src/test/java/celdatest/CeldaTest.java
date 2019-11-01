@@ -26,6 +26,20 @@ public class CeldaTest extends TestCase {
         assertFalse(celda.estaVacia());
     }
 
+
+    public void testCeldaEstaVaciaDespuesDeQuitarLaUnidad(){
+        Celda celda = new Celda();
+
+        Unidad unidad = new UnidadMock();
+
+        celda.colocarUnidad(unidad);
+
+        celda.quitarUnidad();
+
+        assertFalse(celda.estaOcupada());
+        assertTrue(celda.estaVacia());
+    }
+
     private class UnidadMock extends Unidad{
     }
 }
