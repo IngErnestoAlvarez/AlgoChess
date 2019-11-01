@@ -11,7 +11,7 @@ public class TableroTest extends TestCase {
 
 	public void test00SeCreaTableroYLaReferenciaNoEsVacia(){
 		Tablero nuevoTablero = new Tablero( 20,20 );
-		Assert.assertNotNull( "" ,nuevoTablero );
+		Assert.assertNotNull( nuevoTablero );
 	}
 
 }
