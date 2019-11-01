@@ -76,6 +76,17 @@ public class CeldaTest extends TestCase {
         catch (CeldaYaTieneUnidad e){
         }
     }
+
+    public void testCeldaOcupadaGuardaBienLaUnidadQueSeLeColoca() throws CeldaYaTieneUnidad {
+        Celda celda = new Celda();
+
+        Unidad unidad = new UnidadMock();
+        celda.colocarUnidad(unidad);
+
+        assertEquals(unidad, celda.verUnidad());
+    }
+
+    
     private class UnidadMock extends Unidad{
     }
 }
