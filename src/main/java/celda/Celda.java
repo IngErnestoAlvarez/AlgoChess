@@ -1,6 +1,7 @@
 package celda;
 
 import Unidad.Unidad;
+import ErroresYExcepciones.CeldaNoTieneUnidad;
 
 public class Celda {
 
@@ -10,6 +11,7 @@ public class Celda {
 
     public Celda(){
         vacia = true;
+        unidad = null;
     }
 
 
@@ -24,5 +26,15 @@ public class Celda {
     public void colocarUnidad(Unidad unidad) {
         this.unidad = unidad;
         this.vacia = false;
+    }
+
+    public Unidad quitarUnidad() throws CeldaNoTieneUnidad {
+        if(this.estaVacia()) {
+            throw new CeldaNoTieneUnidad();
+        }
+        Unidad unidadAux = this.unidad;
+        this.unidad = null;
+        this.vacia = true;
+        return unidadAux;
     }
 }

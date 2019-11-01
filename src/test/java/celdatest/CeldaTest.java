@@ -1,5 +1,6 @@
 package celdatest;
 
+import ErroresYExcepciones.CeldaNoTieneUnidad;
 import Unidad.Unidad;
 import celda.Celda;
 import junit.framework.TestCase;
@@ -27,7 +28,7 @@ public class CeldaTest extends TestCase {
     }
 
 
-    public void testCeldaEstaVaciaDespuesDeQuitarLaUnidad(){
+    public void testCeldaEstaVaciaDespuesDeQuitarLaUnidad() throws CeldaNoTieneUnidad {
         Celda celda = new Celda();
 
         Unidad unidad = new UnidadMock();
