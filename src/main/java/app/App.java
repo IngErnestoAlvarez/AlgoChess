@@ -1,4 +1,4 @@
-package AlgoChess.src.main.java;
+package app;
 
 /**
  * Hello world!
