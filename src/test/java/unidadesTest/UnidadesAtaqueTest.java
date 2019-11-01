@@ -7,7 +7,7 @@ import static junit.framework.Assert.assertEquals;
 class UnidadesAtaqueTest {
 
     @Test
-    void soldadoAtacaAUnidadCercanaYLeQuitaLaVidaCorrecta() {
+    public void test00soldadoAtacaAUnidadCercanaYLeQuitaLaVidaCorrecta() {
 
         Soldado soldado = new Soldado();
         Jinete jinete = new Jinete();
@@ -19,7 +19,7 @@ class UnidadesAtaqueTest {
     }
 
     @Test
-    void soldadoAtacaAUnidadLejanaYNoLeHaceDanio(){
+    public void test01soldadoAtacaAUnidadLejanaYNoLeHaceDanio(){
 
 
         Soldado soldado = new Soldado();
@@ -31,7 +31,7 @@ class UnidadesAtaqueTest {
     }
 
     @Test
-    void JineteAtacaUnidadCercanaYLeHaceElDanioCorrecto(){
+    public void test02JineteAtacaUnidadCercanaYLeHaceElDanioCorrecto(){
 
         Soldado soldado = new Soldado();
         Jinete jinete = new Jinete();
@@ -43,7 +43,7 @@ class UnidadesAtaqueTest {
     }
 
     @Test
-    void JineteAtacaUnidadLejanaYLeHaceElDanioCorrecto(){
+    public void test03JineteAtacaUnidadLejanaYLeHaceElDanioCorrecto(){
 
         Soldado soldado = new Soldado();
         Jinete jinete = new Jinete();
@@ -55,7 +55,7 @@ class UnidadesAtaqueTest {
     }
 
     @Test
-    void curanderoCuraSusUnidadesYLesAumentaLaVidaCorrectamente(){
+    public void test04curanderoCuraSusUnidadesYLesAumentaLaVidaCorrectamente(){
 
         Soldado soldado = new Soldado();
         Jinete jinete = new Jinete();
@@ -68,7 +68,7 @@ class UnidadesAtaqueTest {
     }
 
     @Test
-    void catapultaAtacaUnidadLejanaYLeHaceElDanioCorrecto(){
+    public void test05catapultaAtacaUnidadLejanaYLeHaceElDanioCorrecto(){
 
         Soldado soldado = new Soldado();
         Catapulta catapulta = new Catapulta();
