@@ -1,12 +1,12 @@
-package unidades;
+package unidadesTest;
 
-import org.junit.jupiter.api.Test;
 
-import static junit.framework.Assert.assertEquals;
+import junit.framework.TestCase;
+import unidades.*;
 
-class UnidadesAtaqueTest {
+public class UnidadesAtaqueTest extends TestCase {
 
-    @Test
+
     public void test00soldadoAtacaAUnidadCercanaYLeQuitaLaVidaCorrecta() {
 
         Soldado soldado = new Soldado();
@@ -18,7 +18,7 @@ class UnidadesAtaqueTest {
 
     }
 
-    @Test
+
     public void test01soldadoAtacaAUnidadLejanaYNoLeHaceDanio(){
 
 
@@ -30,7 +30,7 @@ class UnidadesAtaqueTest {
         assertEquals(100, jinete.getVida());
     }
 
-    @Test
+
     public void test02JineteAtacaUnidadCercanaYLeHaceElDanioCorrecto(){
 
         Soldado soldado = new Soldado();
@@ -42,7 +42,7 @@ class UnidadesAtaqueTest {
 
     }
 
-    @Test
+
     public void test03JineteAtacaUnidadLejanaYLeHaceElDanioCorrecto(){
 
         Soldado soldado = new Soldado();
@@ -54,7 +54,7 @@ class UnidadesAtaqueTest {
 
     }
 
-    @Test
+
     public void test04curanderoCuraSusUnidadesYLesAumentaLaVidaCorrectamente(){
 
         Soldado soldado = new Soldado();
@@ -67,7 +67,7 @@ class UnidadesAtaqueTest {
         assertEquals(100, soldado.getVida());
     }
 
-    @Test
+
     public void test05catapultaAtacaUnidadLejanaYLeHaceElDanioCorrecto(){
 
         Soldado soldado = new Soldado();
