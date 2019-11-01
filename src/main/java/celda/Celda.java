@@ -1,5 +1,6 @@
 package celda;
 
+import ErroresYExcepciones.CeldaYaTieneUnidad;
 import Unidad.Unidad;
 import ErroresYExcepciones.CeldaNoTieneUnidad;
 
@@ -23,7 +24,10 @@ public class Celda {
         return !this.estaVacia();
     }
 
-    public void colocarUnidad(Unidad unidad) {
+    public void colocarUnidad(Unidad unidad) throws CeldaYaTieneUnidad {
+        if(this.estaOcupada()){
+            throw new CeldaYaTieneUnidad();
+        }
         this.unidad = unidad;
         this.vacia = false;
     }
