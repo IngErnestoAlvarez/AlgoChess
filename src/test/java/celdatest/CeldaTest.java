@@ -1,6 +1,7 @@
 package celdatest;
 
 import ErroresYExcepciones.CeldaNoTieneUnidad;
+import ErroresYExcepciones.CeldaYaTieneUnidad;
 import Unidad.Unidad;
 import celda.Celda;
 import junit.framework.TestCase;
@@ -53,7 +54,23 @@ public class CeldaTest extends TestCase {
             fail("No se lanzo la excepcion");
         }catch (CeldaNoTieneUnidad e){}
 
+    }
 
+    public void testCeldaOcupadaTiraExcepcionSiIntentoColocarOtraUnaUnidad(){
+        Celda celda = new Celda();
+
+        Unidad unidad1 = new UnidadMock();
+
+        celda.colocarUnidad(unidad1);
+
+        Unidad unidad2 = new UnidadMock();
+
+        try{
+            celda.colocarUnidad(unidad2);
+            fail("Se colocaron 2 unidades en una celda. No tiro excepcion");
+        }
+        catch (CeldaYaTieneUnidad e){
+        }
     }
     private class UnidadMock extends Unidad{
     }
