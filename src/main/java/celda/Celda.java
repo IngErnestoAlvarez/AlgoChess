@@ -41,4 +41,12 @@ public class Celda {
         this.vacia = true;
         return unidadAux;
     }
+
+    public Unidad verUnidad() throws CeldaNoTieneUnidad{
+        if(this.estaVacia()){
+            throw new CeldaNoTieneUnidad();
+        }
+
+        return this.unidad;
+    }
 }
