@@ -1,5 +1,7 @@
 package unidades;
 
+import ErroresYExcepciones.SoldadoNoPuedeAtacarDeLejos;
+
 public class Soldado extends Unidad {
 
     public Soldado(){
@@ -15,7 +17,7 @@ public class Soldado extends Unidad {
 
     }
 
-    public void ataqueLejano(Unidad unidad) {
+    public void ataqueLejano(Unidad unidad) throws SoldadoNoPuedeAtacarDeLejos {
 
         unidad.recibirDanio(0);
     }

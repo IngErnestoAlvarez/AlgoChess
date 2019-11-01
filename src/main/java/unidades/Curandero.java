@@ -1,5 +1,8 @@
 package unidades;
 
+import ErroresYExcepciones.CuranderoNoPuedeCurarDeLejos;
+import ErroresYExcepciones.CuranderoNoPuedeCurarUnaCatapulta;
+
 public class Curandero extends Unidad {
 
     public Curandero(){
@@ -7,8 +10,12 @@ public class Curandero extends Unidad {
     }
 
 
-    public void curar(Unidad unidad) {
+    public void curarCercano(Unidad unidad) throws CuranderoNoPuedeCurarUnaCatapulta {
 
         unidad.recibirCuracion(15);
+    }
+
+    public void curarLejano(Unidad unidad) throws CuranderoNoPuedeCurarDeLejos{
+        throw new CuranderoNoPuedeCurarDeLejos();
     }
 }

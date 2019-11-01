@@ -1,5 +1,9 @@
 package unidades;
 
+
+import ErroresYExcepciones.CatapultaNoPuedeAtacarDeCerca;
+import ErroresYExcepciones.CuranderoNoPuedeCurarUnaCatapulta;
+
 public class Catapulta extends Unidad {
 
     public Catapulta(){
@@ -8,8 +12,8 @@ public class Catapulta extends Unidad {
 
 
     @Override
-    public void recibirCuracion(int vidaCurada){
-        vida += 0;
+    public void recibirCuracion(int vidaCurada) throws CuranderoNoPuedeCurarUnaCatapulta{
+        throw new CuranderoNoPuedeCurarUnaCatapulta();
     }
 
 
@@ -17,5 +21,9 @@ public class Catapulta extends Unidad {
 
         unidad.recibirDanio(20);
 
+    }
+
+    public void ataqueCercano(Unidad unidad) throws CatapultaNoPuedeAtacarDeCerca {
+        throw new CatapultaNoPuedeAtacarDeCerca();
     }
 }

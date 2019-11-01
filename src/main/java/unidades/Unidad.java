@@ -1,15 +1,18 @@
 package unidades;
 
+
+import ErroresYExcepciones.CatapultaNoPuedeAtacarDeCerca;
+import ErroresYExcepciones.CuranderoNoPuedeCurarUnaCatapulta;
+
 public abstract class Unidad {
 
     protected int vida;
-    protected Accion accionUnidad;
 
     public int getVida(){
         return vida;
     }
 
-    void recibirCuracion(int vidaCurada) {
+    void recibirCuracion(int vidaCurada) throws CuranderoNoPuedeCurarUnaCatapulta {
 
         vida += vidaCurada;
     }
