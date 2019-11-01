@@ -28,19 +28,33 @@ public class CeldaTest extends TestCase {
     }
 
 
-    public void testCeldaEstaVaciaDespuesDeQuitarLaUnidad() throws CeldaNoTieneUnidad {
-        Celda celda = new Celda();
+    public void testCeldaEstaVaciaDespuesDeQuitarLaUnidad(){
+        try {
+            Celda celda = new Celda();
 
-        Unidad unidad = new UnidadMock();
+            Unidad unidad = new UnidadMock();
 
-        celda.colocarUnidad(unidad);
+            celda.colocarUnidad(unidad);
 
-        celda.quitarUnidad();
+            celda.quitarUnidad();
 
-        assertFalse(celda.estaOcupada());
-        assertTrue(celda.estaVacia());
+            assertFalse(celda.estaOcupada());
+            assertTrue(celda.estaVacia());
+        }
+        catch (CeldaNoTieneUnidad e){
+            fail("Lanzada la excepcion: CeldaNoTieneUnidad");
+        }
     }
 
+    public void testCeldaTiraExcepcionSiQuitoUnidadCuandoNoTiene(){
+        Celda celda = new Celda();
+        try{
+            celda.quitarUnidad();
+            fail("No se lanzo la excepcion");
+        }catch (CeldaNoTieneUnidad e){}
+
+
+    }
     private class UnidadMock extends Unidad{
     }
 }
