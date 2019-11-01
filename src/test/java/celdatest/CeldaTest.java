@@ -83,7 +83,12 @@ public class CeldaTest extends TestCase {
         Unidad unidad = new UnidadMock();
         celda.colocarUnidad(unidad);
 
-        assertEquals(unidad, celda.verUnidad());
+        try {
+            assertEquals(unidad, celda.verUnidad());
+        }
+        catch(CeldaNoTieneUnidad e){
+            fail("Se lanzo la expcecion: CeldaNoTieneUnidad");
+        }
     }
 
     
