@@ -23,7 +23,7 @@ public class CeldaTest extends TestCase {
         celda.colocarUnidad(unidad);
 
         assertTrue(celda.estaOcupada());
-        assertFalse(celda.EstaVacia());
+        assertFalse(celda.estaVacia());
     }
 
     private class UnidadMock extends Unidad{
