@@ -15,6 +15,10 @@ public class Celda {
         unidad = null;
     }
 
+    public Celda(int x, int y){
+        vacia = true;
+        unidad = null;
+    }
 
     public boolean estaVacia() {
         return this.vacia;

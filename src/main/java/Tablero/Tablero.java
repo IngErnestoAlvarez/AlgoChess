@@ -1,6 +1,6 @@
 package Tablero;
 
-import Celda.Celda;
+import celda.Celda;
 
 import java.util.ArrayList;
 import java.util.List;
