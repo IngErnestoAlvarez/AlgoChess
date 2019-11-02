@@ -1,5 +1,6 @@
 package tablerotest;
 
+import ErroresYExcepciones.TableroSectorInvalido;
 import equipo.Equipo;
 import Unidad.Unidad;
 import celda.Celda;
@@ -28,7 +29,7 @@ public class TableroTest extends TestCase {
 		Unidad unSoldado = new Soldado();
 		Celda unaCelda = new Celda(0,0);
 		try{
-			nuevoTablero.colocarUnidad( unSoldado, celda ); // empieza poniendo el equipo de abajo.
+			nuevoTablero.colocarUnidad( unSoldado, unaCelda ); // empieza poniendo el equipo de abajo.
 			fail("No se lanzo la excepcion de sector invalido");
 		}catch (TableroSectorInvalido excepcion){}
 	}
