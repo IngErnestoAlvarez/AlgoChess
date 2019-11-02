@@ -8,16 +8,19 @@ public class Celda {
 
     private boolean vacia;
     private Unidad unidad;
+    private Posicion posicion;
 
 
     public Celda(){
         vacia = true;
         unidad = null;
+        posicion = new Posicion();
     }
 
     public Celda(int x, int y){
         vacia = true;
         unidad = null;
+        posicion = new Posicion(x , y);
     }
 
     public boolean estaVacia() {
@@ -52,5 +55,13 @@ public class Celda {
         }
 
         return this.unidad;
+    }
+
+    public int medirDistacia(Celda celdaAComparar) {
+        return this.posicion.medirDistancia(celdaAComparar.verPosicion());
+    }
+
+    private Posicion verPosicion() {
+        return this.posicion;
     }
 }
