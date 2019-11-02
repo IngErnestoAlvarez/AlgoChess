@@ -22,6 +22,8 @@ public class Tablero {
     public Tablero(int largo, int alto, Equipo equipoDeAbajo, Equipo equipoDeArriba) {
         this.equipoDeAbajo = equipoDeAbajo;
         this.equipoDeArriba = equipoDeArriba;
+        this.sectorDeAbajo = new ArrayList<Celda>();
+        this.sectorDeArriba = new ArrayList<Celda>();
         this.celdas = new ArrayList<Celda>();
         for (int i = 0; i < largo; i++ ){
             for ( int j = 0; j < alto; j++ ){
