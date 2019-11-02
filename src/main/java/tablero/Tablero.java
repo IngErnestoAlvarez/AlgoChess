@@ -1,4 +1,4 @@
-package Tablero;
+package tablero;
 
 import celda.Celda;
 

@@ -1,6 +1,6 @@
-package TableroTest;
+package tablerotest;
 
-import Tablero.Tablero;
+import tablero.Tablero;
 import junit.framework.Assert;
 import junit.framework.Test;
 import junit.framework.TestCase;
