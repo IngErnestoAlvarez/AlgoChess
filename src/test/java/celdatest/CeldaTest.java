@@ -91,6 +91,12 @@ public class CeldaTest extends TestCase {
         }
     }
 
+    public void testCeldaEstaADistanciaUnoDeOtraCelda(){
+        Celda celda1 = new Celda( 1, 1);
+        Celda celda2 = new Celda( 1, 2);
+
+        assertEquals(1, celda1.medirDistacia(celda2));
+    }
     
     private class UnidadMock extends Unidad{
     }
