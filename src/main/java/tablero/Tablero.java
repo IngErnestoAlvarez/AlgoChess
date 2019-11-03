@@ -7,6 +7,7 @@ import celda.Celda;
 import equipo.Equipo;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -35,27 +36,38 @@ public class Tablero {
         }
     }
 
-    public void colocarUnidad(Unidad unaUnidad, Celda unaCelda) throws TableroSectorInvalido {
-        if(this.quienPone){
-            if(this.sectorDeAbajo.contains(unaCelda)){
-                try {
-                    unaCelda.colocarUnidad(unaUnidad); // capaz hace falta un metodo que busque unidades en el tablero ya que la celda que se pasa por parametro DEBE SER una que esta dentro del tablero
-                } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
-                    celdaYaTieneUnidad.printStackTrace();
-                }
-            } else {
-                throw new TableroSectorInvalido();
-            }
-        } else {
-            if(this.sectorDeArriba.contains(unaCelda)){
-                try {
-                    unaCelda.colocarUnidad(unaUnidad);
-                } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
-                    celdaYaTieneUnidad.printStackTrace();
-                }
-            } else {
-                throw new TableroSectorInvalido();
+    public boolean colocarUnidad(Unidad unaUnidad,int posicionHorizontal,int  posicionVertical) throws TableroSectorInvalido {
+        Celda miCelda = this.BuscarCeldaConPosicion(posicionHorizontal, posicionVertical);
+
+        if(this.sectorDeAbajo.contains(miCelda) && this.quienPone) {
+            try {
+                miCelda.colocarUnidad(unaUnidad);
+                return true;
+            } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
+                celdaYaTieneUnidad.printStackTrace();
             }
         }
+
+        if(this.sectorDeArriba.contains(miCelda) && !this.quienPone){
+            try {
+                miCelda.colocarUnidad(unaUnidad);
+                return true;
+            } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
+                celdaYaTieneUnidad.printStackTrace();
+            }
+        }
+
+        throw new TableroSectorInvalido();
+    }
+
+    private Celda BuscarCeldaConPosicion(int posicionHorizontal, int posicionVertical) {
+        Iterator iter = this.celdas.iterator();
+        Celda celdaQueQuieroEncontrar = new Celda(posicionHorizontal,posicionVertical);
+        Celda celdaActual = null;
+        while(iter.hasNext()){
+            celdaActual = (Celda) iter.next();
+            if(celdaQueQuieroEncontrar.calcularDistanciaCon(celdaActual) == 0) return celdaActual;
+        }
+        return null;
     }
 }
