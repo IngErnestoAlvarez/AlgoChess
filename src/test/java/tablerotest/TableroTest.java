@@ -22,27 +22,15 @@ public class TableroTest extends TestCase {
 		Assert.assertNotNull(nuevoTablero);
 	}
 
-	public void test01SoloSePuedeColocarUnaUnidadEnElTableroAliado(){
+	public void test01SoloSePuedeColocarUnaUnidadEnElTableroAliado() {
 		Equipo equipoDeJorge = new Equipo("Jorge", 20); //nombre,puntos;
 		Equipo equipoDeRaul = new Equipo("Raul", 20);
-		Tablero nuevoTablero = new Tablero( 20,20, equipoDeJorge, equipoDeRaul );
+		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = new Soldado();
-		try{
-			nuevoTablero.colocarUnidad( unSoldado, 0, 0 ); // empieza poniendo el equipo de abajo.
-			fail("No se lanzo la excepcion de sector invalido");
-		}catch (TableroSectorInvalido excepcion){}
-	}
-
-	public void test02Pruebita(){
-		Equipo equipoDeJorge = new Equipo("Jorge", 20); //nombre,puntos;
-		Equipo equipoDeRaul = new Equipo("Raul", 20);
-		Tablero nuevoTablero = new Tablero( 20,20, equipoDeJorge, equipoDeRaul );
-		Unidad unSoldado = new Soldado();
-		Celda unaCelda = new Celda(20,20);
 		try {
-			Assert.assertTrue(nuevoTablero.colocarUnidad( unSoldado, 0, 0 ));
-		} catch (TableroSectorInvalido tableroSectorInvalido) {
-			tableroSectorInvalido.printStackTrace();
+			nuevoTablero.colocarUnidad(unSoldado, 0, 0); // empieza poniendo el equipo de abajo.
+			fail("No se lanzo la excepcion de sector invalido");
+		} catch (TableroSectorInvalido excepcion) {
 		}
 	}
 

@@ -36,13 +36,12 @@ public class Tablero {
         }
     }
 
-    public boolean colocarUnidad(Unidad unaUnidad,int posicionHorizontal,int  posicionVertical) throws TableroSectorInvalido {
+    public void colocarUnidad(Unidad unaUnidad,int posicionHorizontal,int  posicionVertical) throws TableroSectorInvalido {
         Celda miCelda = this.BuscarCeldaConPosicion(posicionHorizontal, posicionVertical);
 
         if(this.sectorDeAbajo.contains(miCelda) && this.quienPone) {
             try {
                 miCelda.colocarUnidad(unaUnidad);
-                return true;
             } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
                 celdaYaTieneUnidad.printStackTrace();
             }
@@ -51,7 +50,6 @@ public class Tablero {
         if(this.sectorDeArriba.contains(miCelda) && !this.quienPone){
             try {
                 miCelda.colocarUnidad(unaUnidad);
-                return true;
             } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
                 celdaYaTieneUnidad.printStackTrace();
             }
