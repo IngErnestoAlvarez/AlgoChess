@@ -71,6 +71,7 @@ public class Tablero {
             if(celdaQueQuieroEncontrar.medirDistacia(celdaActual) == 0) return celdaActual;
         }
         return null;
+        // !!!Actuar en caso de null (interfaz)
     }
 
     public Unidad verUnidad(int posicionHorizontal, int posicionVertical){
@@ -80,6 +81,7 @@ public class Tablero {
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
             celdaNoTieneUnidad.printStackTrace();
             return null;
+            // !!!Actuar en caso de null (interfaz)
         }
     }
 
