@@ -64,4 +64,7 @@ public class Celda {
     private Posicion verPosicion() {
         return this.posicion;
     }
+
 }
+
+
