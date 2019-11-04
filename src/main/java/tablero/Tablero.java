@@ -64,7 +64,7 @@ public class Tablero {
         Celda celdaActual = null;
         while(iter.hasNext()){
             celdaActual = (Celda) iter.next();
-            if(celdaQueQuieroEncontrar.calcularDistanciaCon(celdaActual) == 0) return celdaActual;
+            if(celdaQueQuieroEncontrar.medirDistancia(celdaActual) == 0) return celdaActual;
         }
         return null;
     }
