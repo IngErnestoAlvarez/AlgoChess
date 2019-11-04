@@ -4,11 +4,6 @@ import ErroresYExcepciones.CeldaYaTieneUnidad;
 import Unidad.Unidad;
 import ErroresYExcepciones.CeldaNoTieneUnidad;
 
-import ErroresYExcepciones.CeldaYaTieneUnidad;
-import Unidad.Unidad;
-import ErroresYExcepciones.CeldaNoTieneUnidad;
-import posicion.Posicion;
-
 public class Celda {
 
     private boolean vacia;
