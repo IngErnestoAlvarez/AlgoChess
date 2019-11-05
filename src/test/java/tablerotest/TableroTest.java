@@ -2,11 +2,11 @@ package tablerotest;
 
 import ErroresYExcepciones.*;
 import equipo.Equipo;
-import Unidad.Unidad;
+import unidad.Unidad;
 import celda.Celda;
 import equipo.Equipo;
 import tablero.Tablero;
-import Unidad.Soldado;
+import unidad.Soldado;
 import junit.framework.Assert;
 import junit.framework.Test;
 import junit.framework.TestCase;

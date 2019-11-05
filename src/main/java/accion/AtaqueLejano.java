@@ -1,6 +1,6 @@
 package accion;
 
-import unidades.Unidad;
+import unidad.Unidad;
 
 public class AtaqueLejano extends Accion {
 

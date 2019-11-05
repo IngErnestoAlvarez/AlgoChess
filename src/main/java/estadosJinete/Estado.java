@@ -1,7 +1,7 @@
 package estadosJinete;
 
 import accion.Accion;
-import unidades.Unidad;
+import unidad.Unidad;
 
 public abstract class Estado {
 

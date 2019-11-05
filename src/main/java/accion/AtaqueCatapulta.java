@@ -1,9 +1,6 @@
 package accion;
 
-import unidades.Unidad;
-
-
-import java.util.ArrayList;
+import unidad.Unidad;
 
 public class AtaqueCatapulta extends Accion{
 

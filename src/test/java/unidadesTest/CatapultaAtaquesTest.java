@@ -2,9 +2,7 @@
 package unidadesTest;
 
 import junit.framework.TestCase;
-import unidades.*;
-
-import java.util.ArrayList;
+import unidad.*;
 
 public class CatapultaAtaquesTest extends TestCase {
 

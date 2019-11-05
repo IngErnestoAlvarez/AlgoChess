@@ -1,4 +1,4 @@
-package unidades;
+package unidad;
 
 import estadosJinete.*;
 

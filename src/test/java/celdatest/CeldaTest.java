@@ -2,7 +2,7 @@ package celdatest;
 
 import ErroresYExcepciones.CeldaNoTieneUnidad;
 import ErroresYExcepciones.CeldaYaTieneUnidad;
-import Unidad.Unidad;
+import unidad.Unidad;
 import celda.Celda;
 import junit.framework.TestCase;
 

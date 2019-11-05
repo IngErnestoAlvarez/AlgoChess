@@ -2,7 +2,7 @@ package tablero;
 
 import ErroresYExcepciones.CeldaNoEstaEnMiSector;
 import ErroresYExcepciones.CeldaYaTieneUnidad;
-import Unidad.Unidad;
+import unidad.Unidad;
 import celda.Celda;
 
 import java.util.ArrayList;

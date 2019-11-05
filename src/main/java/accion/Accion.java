@@ -1,8 +1,6 @@
 package accion;
 
-import unidades.*;
-
-import java.util.ArrayList;
+import unidad.*;
 
 public abstract class Accion {
 

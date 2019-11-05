@@ -1,10 +1,7 @@
-package unidades;
+package unidad;
 
 
 import accion.*;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class Catapulta extends Unidad {
 

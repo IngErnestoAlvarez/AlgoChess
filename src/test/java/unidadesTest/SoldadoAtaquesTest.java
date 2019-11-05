@@ -1,7 +1,7 @@
 package unidadesTest;
 
 import junit.framework.TestCase;
-import unidades.*;
+import unidad.*;
 
 public class SoldadoAtaquesTest extends TestCase {
 

@@ -1,7 +1,7 @@
 package tablero;
 
 import ErroresYExcepciones.*;
-import Unidad.Unidad;
+import unidad.Unidad;
 import celda.Celda;
 import equipo.Equipo;
 
