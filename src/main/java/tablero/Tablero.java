@@ -28,7 +28,7 @@ public class Tablero {
         this.sectorActual = sectorDeAbajo;
 
         this.celdas = new ArrayList<Celda>();
-        this.LlenarTablero(largo, alto);
+        this.llenarTablero(largo, alto);
     }
 
     public void colocarUnidad(Unidad unaUnidad,int posicionHorizontal,int  posicionVertical) throws TableroSectorInvalido, CeldaNoEstaEnElTablero {
@@ -36,7 +36,7 @@ public class Tablero {
         Celda miCelda = null;
 
         try{
-            miCelda = this.BuscarCeldaConPosicion(posicionHorizontal, posicionVertical);
+            miCelda = this.buscarCeldaConPosicion(posicionHorizontal, posicionVertical);
         }catch(NoSeEncontroLaCelda excepcionCelda) {
             throw new CeldaNoEstaEnElTablero();
         }
@@ -62,24 +62,37 @@ public class Tablero {
         }
     }
 
-    public Unidad verUnidad(int posicionHorizontal, int posicionVertical) throws CeldaNoEstaEnElTablero {
+    public Unidad verUnidad(int posicionHorizontal, int posicionVertical) throws CeldaNoEstaEnElTablero, CeldaNoTieneUnidad {
         Celda celdaIndicada = null;
         try {
-            celdaIndicada = this.BuscarCeldaConPosicion(posicionHorizontal,posicionVertical);
+            celdaIndicada = this.buscarCeldaConPosicion(posicionHorizontal,posicionVertical);
         } catch (NoSeEncontroLaCelda noSeEncontroLaCelda) {
             throw new CeldaNoEstaEnElTablero();
         }
 
-        try {
-            return celdaIndicada.verUnidad();
-        } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
-            celdaNoTieneUnidad.printStackTrace();
-            return null;
-            // !!!Actuar en caso de null (interfaz)
-        }
+        return celdaIndicada.verUnidad();
+
     }
 
-    private void LlenarTablero(int largo,int alto){
+    public void moverUnidad(int posicionHorizantalOrigen, int posicionVerticalOrigen, int posicionHorizontalDestino, int posicionVerticalDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, CeldaYaTieneUnidad {
+            Celda celdaOrigen = this.buscarCeldaConPosicion(posicionHorizantalOrigen, posicionVerticalOrigen);
+            Celda celdaDestino = this.buscarCeldaConPosicion(posicionHorizontalDestino, posicionVerticalDestino);
+
+            if(celdaOrigen.estaVacia()){
+                throw new CeldaNoTieneUnidad();
+            }
+
+            if(celdaDestino.estaOcupada()){
+                throw new CeldaYaTieneUnidad();
+            }
+
+            Unidad unidadAMover = celdaOrigen.quitarUnidad();
+
+            celdaDestino.colocarUnidad(unidadAMover);
+    }
+
+
+    private void llenarTablero(int largo,int alto){
 
         for (int fila = 0; fila < largo; fila++ ){
 
@@ -98,7 +111,7 @@ public class Tablero {
 
     }
 
-    private Celda BuscarCeldaConPosicion(int posicionHorizontal, int posicionVertical) throws NoSeEncontroLaCelda {
+    private Celda buscarCeldaConPosicion(int posicionHorizontal, int posicionVertical) throws NoSeEncontroLaCelda {
         Iterator iter = this.celdas.iterator();
         Celda celdaQueQuieroEncontrar = new Celda(posicionHorizontal,posicionVertical);
         Celda celdaActual = null;
