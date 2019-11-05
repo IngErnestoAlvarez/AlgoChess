@@ -8,7 +8,7 @@ import unidades.*;
 
 public class CuranderoCuracionesTest extends TestCase {
 
-    public void testCuranderoNoPuedeCurarUnaCatapulta(){
+    public void test01CuranderoNoPuedeCurarUnaCatapulta(){
 
         Curandero curandero = new Curandero();
         Catapulta catapulta = new Catapulta();
@@ -26,7 +26,7 @@ public class CuranderoCuracionesTest extends TestCase {
         assertEquals(40, catapulta.getVida());
         }
 
-        public void testCuranderoNoPuedeCurarDeLejos(){
+        public void test02CuranderoNoPuedeCurarDeLejos(){
 
                 Curandero curandero = new Curandero();
                 Soldado soldado = new Soldado();
@@ -41,7 +41,7 @@ public class CuranderoCuracionesTest extends TestCase {
         }
 
 
-    public void testCuranderoCuraSoldadoLaVidaCorrecta(){
+    public void test03CuranderoCuraSoldadoLaVidaCorrecta(){
 
         try {
             Curandero curandero = new Curandero();
@@ -59,7 +59,7 @@ public class CuranderoCuracionesTest extends TestCase {
 
     }
 
-    public void testCuranderoCuraJineteLaVidaCorrecta(){
+    public void test04CuranderoCuraJineteLaVidaCorrecta(){
         try {
             Curandero curandero = new Curandero();
             Jinete jinete= new Jinete();
@@ -74,7 +74,7 @@ public class CuranderoCuracionesTest extends TestCase {
         catch(CuranderoNoPuedeCurarUnaCatapulta e){}
     }
 
-    public void testCuranderoCuraCuranderoLaVidaCorrecta(){
+    public void test05CuranderoCuraCuranderoLaVidaCorrecta(){
 
         try {
             Curandero curandero1 = new Curandero();

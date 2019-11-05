@@ -6,7 +6,7 @@ import unidades.*;
 
 public class CatapultaAtaquesTest extends TestCase {
 
-    public void testCatapultaAtacaAUnidadCercanaYSeLanzaUnaExcepcion() {
+    public void test01CatapultaAtacaAUnidadCercanaYSeLanzaUnaExcepcion() {
 
 
         Catapulta catapulta = new Catapulta();
@@ -22,7 +22,7 @@ public class CatapultaAtaquesTest extends TestCase {
     }
 
 
-    public void testCatapultaAtacaAJineteLejanoYLeQuitaLaVidaCorrecta() {
+    public void test02CatapultaAtacaAJineteLejanoYLeQuitaLaVidaCorrecta() {
 
 
         Catapulta catapulta = new Catapulta();
@@ -33,7 +33,7 @@ public class CatapultaAtaquesTest extends TestCase {
         assertEquals(80, jinete.getVida());
     }
 
-    public void testCatapultaAtacaACatapultaLejanaYLeQuitaLaVidaCorrecta() {
+    public void test03CatapultaAtacaACatapultaLejanaYLeQuitaLaVidaCorrecta() {
 
         Catapulta catapulta1 = new Catapulta();
         Catapulta catapulta2 = new Catapulta();
@@ -44,7 +44,7 @@ public class CatapultaAtaquesTest extends TestCase {
 
     }
 
-    public void testCatapultaAtacaASoldadoLejanoYLeQuitaLaVidaCorrecta() {
+    public void test04CatapultaAtacaASoldadoLejanoYLeQuitaLaVidaCorrecta() {
 
         Catapulta catapulta = new Catapulta();
         Soldado soldado = new Soldado();
@@ -55,7 +55,7 @@ public class CatapultaAtaquesTest extends TestCase {
 
     }
 
-    public void testCatapultaAtacaACuranderoLejanoYLeQuitaLaVidaCorrecta() {
+    public void test05CatapultaAtacaACuranderoLejanoYLeQuitaLaVidaCorrecta() {
 
         Catapulta catapulta = new Catapulta();
         Curandero curandero = new Curandero();
@@ -65,6 +65,7 @@ public class CatapultaAtaquesTest extends TestCase {
         assertEquals(55, curandero.getVida());
 
     }
+
 }
 
 

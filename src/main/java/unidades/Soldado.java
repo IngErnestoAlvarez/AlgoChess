@@ -19,7 +19,7 @@ public class Soldado extends Unidad {
 
     public void ataqueLejano(Unidad unidad) throws SoldadoNoPuedeAtacarDeLejos {
 
-        unidad.recibirDanio(0);
+        throw new SoldadoNoPuedeAtacarDeLejos();
     }
 
 }

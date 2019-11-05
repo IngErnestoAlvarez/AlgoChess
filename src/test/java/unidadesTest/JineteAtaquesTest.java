@@ -5,7 +5,7 @@ import unidades.*;
 
 public class JineteAtaquesTest extends TestCase {
 
-    public void testJineteAtacaAJineteCercanoYLeQuitaLaVidaCorrecta() {
+    public void test01JineteAtacaAJineteCercanoYLeQuitaLaVidaCorrecta() {
 
         Jinete jinete1 = new Jinete();
         Jinete jinete2 = new Jinete();
@@ -17,7 +17,7 @@ public class JineteAtaquesTest extends TestCase {
     }
 
 
-    public void testJineteAtacaAJineteLejanoYLeQuitaLaVidaCorrecta(){
+    public void test02JineteAtacaAJineteLejanoYLeQuitaLaVidaCorrecta(){
 
 
         Jinete jinete1 = new Jinete();
@@ -28,7 +28,7 @@ public class JineteAtaquesTest extends TestCase {
         assertEquals(85, jinete2.getVida());
     }
 
-    public void testJineteAtacaACatapultaCercanaYLeQuitaLaVidaCorrecta() {
+    public void test03JineteAtacaACatapultaCercanaYLeQuitaLaVidaCorrecta() {
 
         Jinete jinete = new Jinete();
         Catapulta catapulta = new Catapulta();
@@ -39,7 +39,7 @@ public class JineteAtaquesTest extends TestCase {
 
     }
 
-    public void testJineteAtacaACatapultaLejanaYLeQuitaLaVidaCorrecta() {
+    public void test04JineteAtacaACatapultaLejanaYLeQuitaLaVidaCorrecta() {
 
         Jinete jinete = new Jinete();
         Catapulta catapulta = new Catapulta();
@@ -50,7 +50,7 @@ public class JineteAtaquesTest extends TestCase {
 
     }
 
-    public void testJineteAtacaACuranderoCercanoYLeQuitaLaVidaCorrecta() {
+    public void test05JineteAtacaACuranderoCercanoYLeQuitaLaVidaCorrecta() {
 
         Jinete jinete = new Jinete();
         Curandero curandero = new Curandero();
@@ -61,7 +61,7 @@ public class JineteAtaquesTest extends TestCase {
 
     }
 
-    public void testJineteAtacaACuranderoLejanoYLeQuitaLaVidaCorrecta() {
+    public void test06JineteAtacaACuranderoLejanoYLeQuitaLaVidaCorrecta() {
 
         Jinete jinete = new Jinete();
         Curandero curandero = new Curandero();
