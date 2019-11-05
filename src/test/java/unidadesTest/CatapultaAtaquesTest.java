@@ -1,26 +1,12 @@
+
 package unidadesTest;
 
-import ErroresYExcepciones.CatapultaNoPuedeAtacarDeCerca;
 import junit.framework.TestCase;
 import unidades.*;
 
+import java.util.ArrayList;
+
 public class CatapultaAtaquesTest extends TestCase {
-
-    public void test01CatapultaAtacaAUnidadCercanaYSeLanzaUnaExcepcion() {
-
-
-        Catapulta catapulta = new Catapulta();
-        Jinete jinete = new Jinete();
-
-        try {
-            catapulta.ataqueCercano(jinete);
-        } catch (CatapultaNoPuedeAtacarDeCerca e) {
-        }
-
-        assertEquals(100, jinete.getVida());
-
-    }
-
 
     public void test02CatapultaAtacaAJineteLejanoYLeQuitaLaVidaCorrecta() {
 
@@ -28,7 +14,7 @@ public class CatapultaAtaquesTest extends TestCase {
         Catapulta catapulta = new Catapulta();
         Jinete jinete = new Jinete();
 
-        catapulta.ataqueLejano(jinete);
+        catapulta.interactuar(jinete);
 
         assertEquals(80, jinete.getVida());
     }
@@ -38,7 +24,7 @@ public class CatapultaAtaquesTest extends TestCase {
         Catapulta catapulta1 = new Catapulta();
         Catapulta catapulta2 = new Catapulta();
 
-        catapulta1.ataqueLejano(catapulta2);
+        catapulta1.interactuar(catapulta2);
 
         assertEquals(30, catapulta2.getVida());
 
@@ -49,7 +35,7 @@ public class CatapultaAtaquesTest extends TestCase {
         Catapulta catapulta = new Catapulta();
         Soldado soldado = new Soldado();
 
-        catapulta.ataqueLejano(soldado);
+        catapulta.interactuar(soldado);
 
         assertEquals(80, soldado.getVida());
 
@@ -60,13 +46,10 @@ public class CatapultaAtaquesTest extends TestCase {
         Catapulta catapulta = new Catapulta();
         Curandero curandero = new Curandero();
 
-        catapulta.ataqueLejano(curandero);
+        catapulta.interactuar(curandero);
 
         assertEquals(55, curandero.getVida());
 
     }
 
 }
-
-
-

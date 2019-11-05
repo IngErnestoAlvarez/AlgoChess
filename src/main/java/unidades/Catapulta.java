@@ -1,8 +1,10 @@
 package unidades;
 
 
-import ErroresYExcepciones.CatapultaNoPuedeAtacarDeCerca;
-import ErroresYExcepciones.CuranderoNoPuedeCurarUnaCatapulta;
+import accion.*;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class Catapulta extends Unidad {
 
@@ -10,22 +12,12 @@ public class Catapulta extends Unidad {
 
     public Catapulta(){
         vida = 50;
+        accion = new AtaqueCatapulta(20);
     }
-
 
     @Override
-    public void recibirCuracion(int vidaCurada) throws CuranderoNoPuedeCurarUnaCatapulta{
-        throw new CuranderoNoPuedeCurarUnaCatapulta();
+    public void recibirCuracion(int puntosVida){
+        vida += 0;
     }
 
-
-    public void ataqueLejano(Unidad unidad) {
-
-        unidad.recibirDanio(20);
-
-    }
-
-    public void ataqueCercano(Unidad unidad) throws CatapultaNoPuedeAtacarDeCerca {
-        throw new CatapultaNoPuedeAtacarDeCerca();
-    }
 }

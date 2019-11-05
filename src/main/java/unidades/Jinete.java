@@ -1,24 +1,24 @@
 package unidades;
 
+import estadosJinete.*;
+
 public class Jinete extends Unidad {
 
     public static int precio = 3;
+    private Estado estadoAtaque;
 
     public Jinete(){
         vida = 100;
-
+        estadoAtaque = new EstadoAtaqueCercano();
     }
 
-
-    public void ataqueCercano(Unidad unidad) {
-
-        unidad.recibirDanio(5);
+    public void cambiarAtaque(){
+        estadoAtaque = estadoAtaque.cambiarEstado();
     }
 
-    public void ataqueLejano(Unidad unidad){
-
-        unidad.recibirDanio(15);
-
+    @Override
+    public void interactuar(Unidad unidad){
+        estadoAtaque.atacar(unidad);
     }
 }
 

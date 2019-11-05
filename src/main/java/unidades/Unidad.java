@@ -1,23 +1,26 @@
 package unidades;
 
-import ErroresYExcepciones.*;
+import accion.*;
 
 public abstract class Unidad {
 
     int vida;
     static int precio;
+    Accion accion;
 
     public int getVida(){
         return vida;
     }
 
-    void recibirCuracion(int vidaCurada) throws CuranderoNoPuedeCurarUnaCatapulta {
+    public void interactuar(Unidad unidad){
+        accion.interactuar(unidad);
+    }
 
+    public void recibirCuracion(int vidaCurada){
         vida += vidaCurada;
     }
 
-    void recibirDanio(int danio){
-
+    public void recibirDanio(int danio){
         vida -= danio;
     }
 

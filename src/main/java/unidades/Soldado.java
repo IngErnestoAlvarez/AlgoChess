@@ -1,6 +1,6 @@
 package unidades;
 
-import ErroresYExcepciones.SoldadoNoPuedeAtacarDeLejos;
+import accion.*;
 
 public class Soldado extends Unidad {
 
@@ -8,18 +8,7 @@ public class Soldado extends Unidad {
 
     public Soldado(){
         vida = 100;
-    }
-
-    public void ataqueCercano(Unidad unidad) {
-
-        unidad.recibirDanio(10);
-
-
-    }
-
-    public void ataqueLejano(Unidad unidad) throws SoldadoNoPuedeAtacarDeLejos {
-
-        throw new SoldadoNoPuedeAtacarDeLejos();
+        accion = new AtaqueCercano(10);
     }
 
 }

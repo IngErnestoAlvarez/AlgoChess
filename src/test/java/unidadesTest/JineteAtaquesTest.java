@@ -1,3 +1,4 @@
+
 package unidadesTest;
 
 import junit.framework.TestCase;
@@ -10,7 +11,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete1 = new Jinete();
         Jinete jinete2 = new Jinete();
 
-        jinete1.ataqueCercano(jinete2);
+        jinete1.interactuar(jinete2);
 
         assertEquals(95, jinete2.getVida());
 
@@ -23,7 +24,9 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete1 = new Jinete();
         Jinete jinete2 = new Jinete();
 
-        jinete1.ataqueLejano(jinete2);
+        jinete1.cambiarAtaque();
+
+        jinete1.interactuar(jinete2);
 
         assertEquals(85, jinete2.getVida());
     }
@@ -33,7 +36,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete();
         Catapulta catapulta = new Catapulta();
 
-        jinete.ataqueCercano(catapulta);
+        jinete.interactuar(catapulta);
 
         assertEquals(45, catapulta.getVida());
 
@@ -44,7 +47,9 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete();
         Catapulta catapulta = new Catapulta();
 
-        jinete.ataqueLejano(catapulta);
+        jinete.cambiarAtaque();
+
+        jinete.interactuar(catapulta);
 
         assertEquals(35, catapulta.getVida());
 
@@ -55,7 +60,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete();
         Curandero curandero = new Curandero();
 
-        jinete.ataqueCercano(curandero);
+        jinete.interactuar(curandero);
 
         assertEquals(70, curandero.getVida());
 
@@ -66,7 +71,9 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete();
         Curandero curandero = new Curandero();
 
-        jinete.ataqueLejano(curandero);
+        jinete.cambiarAtaque();
+
+        jinete.interactuar(curandero);
 
         assertEquals(60, curandero.getVida());
 
@@ -77,7 +84,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete();
         Soldado soldado = new Soldado();
 
-        jinete.ataqueCercano(soldado);
+        jinete.interactuar(soldado);
 
         assertEquals(95, soldado.getVida());
 
@@ -88,10 +95,11 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete();
         Soldado soldado = new Soldado();
 
-        jinete.ataqueLejano(soldado);
+        jinete.cambiarAtaque();
+
+        jinete.interactuar(soldado);
 
         assertEquals(85, soldado.getVida());
 
     }
 }
-
