@@ -1,8 +1,6 @@
 package tablero;
 
-import ErroresYExcepciones.CeldaNoTieneUnidad;
-import ErroresYExcepciones.CeldaYaTieneUnidad;
-import ErroresYExcepciones.TableroSectorInvalido;
+import ErroresYExcepciones.*;
 import Unidad.Unidad;
 import celda.Celda;
 import equipo.Equipo;
@@ -17,65 +15,61 @@ public class Tablero {
     private List <Celda> celdas;
     private Equipo equipoDeAbajo;
     private Equipo equipoDeArriba;
-    private List <Celda> sectorDeArriba;
-    private List <Celda> sectorDeAbajo;
-    private boolean poneElEquipoDeAbajo;
+    private Sector sectorDeAbajo;
+    private Sector sectorDeArriba;
+    private Sector sectorActual;
 
     public Tablero(int largo, int alto, Equipo equipoDeAbajo, Equipo equipoDeArriba) {
         this.equipoDeAbajo = equipoDeAbajo;
         this.equipoDeArriba = equipoDeArriba;
-        this.sectorDeAbajo = new ArrayList<Celda>();
-        this.sectorDeArriba = new ArrayList<Celda>();
-        this.poneElEquipoDeAbajo = true;
+
+        this.sectorDeAbajo = new Sector();
+        this.sectorDeArriba = new Sector();
+        this.sectorActual = sectorDeAbajo;
+
         this.celdas = new ArrayList<Celda>();
-        for (int i = 0; i < largo; i++ ){
-            for ( int j = 0; j < alto; j++ ){
-                Celda celda = new Celda(i,j);
-                this.celdas.add(celda);
-                if( i <= 10 ) this.sectorDeArriba.add(celda);
-                else this.sectorDeAbajo.add(celda);
-            }
+        this.LlenarTablero(largo, alto);
+    }
+
+    public void colocarUnidad(Unidad unaUnidad,int posicionHorizontal,int  posicionVertical) throws TableroSectorInvalido, CeldaNoEstaEnElTablero {
+
+        Celda miCelda = null;
+
+        try{
+            miCelda = this.BuscarCeldaConPosicion(posicionHorizontal, posicionVertical);
+        }catch(NoSeEncontroLaCelda excepcionCelda) {
+            throw new CeldaNoEstaEnElTablero();
+        }
+
+
+        try {
+            sectorActual.colocarUnidad(miCelda, unaUnidad);
+        } catch(CeldaNoEstaEnMiSector celdaNoEstaEnElSector){
+            throw new TableroSectorInvalido();
+        } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
+            celdaYaTieneUnidad.printStackTrace();
+            // !!!Actuar en caso de excepcion (interfaz)
+        }
+
+    }
+
+
+    public void cambiarSector(){
+        if(this.sectorActual == this.sectorDeAbajo){
+            this.sectorActual = this.sectorDeArriba;
+        }else {
+            this.sectorActual = this.sectorDeAbajo;
         }
     }
 
-    public void colocarUnidad(Unidad unaUnidad,int posicionHorizontal,int  posicionVertical) throws TableroSectorInvalido {
-        Celda miCelda = this.BuscarCeldaConPosicion(posicionHorizontal, posicionVertical);
-
-        if(this.sectorDeAbajo.contains(miCelda) && this.poneElEquipoDeAbajo) {
-            try {
-                miCelda.colocarUnidad(unaUnidad);
-                return;
-            } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
-                celdaYaTieneUnidad.printStackTrace();
-            }
+    public Unidad verUnidad(int posicionHorizontal, int posicionVertical) throws CeldaNoEstaEnElTablero {
+        Celda celdaIndicada = null;
+        try {
+            celdaIndicada = this.BuscarCeldaConPosicion(posicionHorizontal,posicionVertical);
+        } catch (NoSeEncontroLaCelda noSeEncontroLaCelda) {
+            throw new CeldaNoEstaEnElTablero();
         }
 
-        if(this.sectorDeArriba.contains(miCelda) && !this.poneElEquipoDeAbajo){
-            try {
-                miCelda.colocarUnidad(unaUnidad);
-                return;
-            } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
-                celdaYaTieneUnidad.printStackTrace();
-            }
-        }
-
-        throw new TableroSectorInvalido();
-    }
-
-    private Celda BuscarCeldaConPosicion(int posicionHorizontal, int posicionVertical) {
-        Iterator iter = this.celdas.iterator();
-        Celda celdaQueQuieroEncontrar = new Celda(posicionHorizontal,posicionVertical);
-        Celda celdaActual = null;
-        while(iter.hasNext()){
-            celdaActual = (Celda) iter.next();
-            if(celdaQueQuieroEncontrar.medirDistacia(celdaActual) == 0) return celdaActual;
-        }
-        return null;
-        // !!!Actuar en caso de null (interfaz)
-    }
-
-    public Unidad verUnidad(int posicionHorizontal, int posicionVertical){
-        Celda celdaIndicada = this.BuscarCeldaConPosicion(posicionHorizontal,posicionVertical);
         try {
             return celdaIndicada.verUnidad();
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
@@ -85,7 +79,34 @@ public class Tablero {
         }
     }
 
-    public void cambiarSector(){
-        this.poneElEquipoDeAbajo = !this.poneElEquipoDeAbajo;
+    private void LlenarTablero(int largo,int alto){
+
+        for (int fila = 0; fila < largo; fila++ ){
+
+            for ( int columna = 0; columna < alto; columna++ ){
+
+                Celda celda = new Celda( fila , columna );
+
+                this.celdas.add(celda);
+
+                if( fila <= largo/2 ) this.sectorDeArriba.agregar(celda);
+                else this.sectorDeAbajo.agregar(celda);
+
+            }
+
+        }
+
+    }
+
+    private Celda BuscarCeldaConPosicion(int posicionHorizontal, int posicionVertical) throws NoSeEncontroLaCelda {
+        Iterator iter = this.celdas.iterator();
+        Celda celdaQueQuieroEncontrar = new Celda(posicionHorizontal,posicionVertical);
+        Celda celdaActual = null;
+        while(iter.hasNext()){
+            celdaActual = (Celda) iter.next();
+            if(celdaQueQuieroEncontrar.medirDistacia(celdaActual) == 0) return celdaActual;
+        }
+        throw new NoSeEncontroLaCelda();
+        // !!!Actuar en caso de excepcion (interfaz)
     }
 }

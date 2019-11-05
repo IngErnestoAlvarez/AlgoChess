@@ -1,5 +1,6 @@
 package tablerotest;
 
+import ErroresYExcepciones.CeldaNoEstaEnElTablero;
 import ErroresYExcepciones.TableroSectorInvalido;
 import equipo.Equipo;
 import Unidad.Unidad;
@@ -15,14 +16,14 @@ import junit.framework.TestSuite;
 
 public class TableroTest extends TestCase {
 
-	public void test00SeCreaTableroYLaReferenciaNoEsVacia() {
+	public void test00SeTableroCreaTableroYLaReferenciaNoEsVacia() {
 		Equipo equipoDeEugenio = new Equipo("Eugenio", 20);
 		Equipo equipoDePepe = new Equipo("Pepe", 20);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDePepe, equipoDeEugenio);
 		Assert.assertNotNull(nuevoTablero);
 	}
 
-	public void test01SoloSePuedeColocarUnaUnidadEnElTableroAliado() {
+	public void test01TableroSoloSePuedeColocarUnaUnidadEnElSectorAliado() throws CeldaNoEstaEnElTablero {
 		Equipo equipoDeJorge = new Equipo("Jorge", 20); //nombre,puntos;
 		Equipo equipoDeRaul = new Equipo("Raul", 20);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
@@ -30,11 +31,10 @@ public class TableroTest extends TestCase {
 		try {
 			nuevoTablero.colocarUnidad(unSoldado, 0, 0); // empieza poniendo el equipo de abajo.
 			fail("No se lanzo la excepcion de sector invalido");
-		} catch (TableroSectorInvalido excepcion) {
-		}
+		} catch (TableroSectorInvalido excepcion) {}
 	}
 
-	public void test02SeColocaUnaUnidadEnElSectorQueCorresponde() {
+	public void test02TableroSeColocaUnaUnidadEnElSectorQueCorresponde() throws CeldaNoEstaEnElTablero {
 		Equipo equipoDeJorge = new Equipo("Jorge", 20); //nombre,puntos;
 		Equipo equipoDeRaul = new Equipo("Raul", 20);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
@@ -44,26 +44,33 @@ public class TableroTest extends TestCase {
 		} catch (TableroSectorInvalido tableroSectorInvalido) {
 			tableroSectorInvalido.printStackTrace();
 		}
-		Assert.assertEquals(nuevoTablero.verUnidad(17,17),unSoldado);
+
+		try {
+			Assert.assertEquals(nuevoTablero.verUnidad(17,17),unSoldado);
+		} catch (CeldaNoEstaEnElTablero celdaNoEstaEnElTablero) {
+			fail("No se coloco la unidad.");
+		}
 	}
 
-	public void test03SePuedeCambiarElSectorQueEstaPoniendoLasFichas(){
+	public void test03TableroSePuedeCambiarElSectorQueEstaPoniendoLasFichas() throws CeldaNoEstaEnElTablero {
 		Equipo equipoDeJorge = new Equipo("Jorge", 20); //nombre,puntos;
 		Equipo equipoDeRaul = new Equipo("Raul", 20);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = new Soldado();
-		boolean ok = true;
+		boolean seCambioDeSector = true;
+
 		try {
 			nuevoTablero.colocarUnidad(unSoldado, 17,17);
 		} catch (TableroSectorInvalido tableroSectorInvalido) {
-			ok = false;
+			seCambioDeSector = false;
 		}
 		nuevoTablero.cambiarSector();
 		try {
 			nuevoTablero.colocarUnidad(unSoldado, 0, 0);
 		} catch (TableroSectorInvalido excepcion) {
-			ok = false;
+			seCambioDeSector = false;
 		}
-		Assert.assertTrue(ok);
+
+		Assert.assertTrue(seCambioDeSector);
 	}
 }
