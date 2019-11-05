@@ -1,7 +1,7 @@
 package celda;
 
 import ErroresYExcepciones.CeldaYaTieneUnidad;
-import Unidad.Unidad;
+import unidad.Unidad;
 import ErroresYExcepciones.CeldaNoTieneUnidad;
 
 public class Celda {

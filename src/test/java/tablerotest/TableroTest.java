@@ -2,15 +2,11 @@ package tablerotest;
 
 import ErroresYExcepciones.TableroSectorInvalido;
 import equipo.Equipo;
-import Unidad.Unidad;
-import celda.Celda;
-import equipo.Equipo;
+import unidad.Unidad;
 import tablero.Tablero;
-import Unidad.Soldado;
+import unidad.Soldado;
 import junit.framework.Assert;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class TableroTest extends TestCase {

@@ -1,14 +1,11 @@
-package Equipo;
+package equipo;
 
-import ErroresYExcepciones.EquipoNoPuedeComprarMasUnidades;
-import Unidad.Unidad;
 import java.util.List;
 import java.util.ArrayList;
-import Equipo.Equipo;
-import Unidad.Soldado;
-import Unidad.Catapulta;
-import Unidad.Jinete;
-import Unidad.Curandero;
+
+import unidad.*;
+import ErroresYExcepciones.*;
+
 
 public class Equipo{
 

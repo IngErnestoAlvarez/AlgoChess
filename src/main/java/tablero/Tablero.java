@@ -3,7 +3,7 @@ package tablero;
 import ErroresYExcepciones.CeldaNoTieneUnidad;
 import ErroresYExcepciones.CeldaYaTieneUnidad;
 import ErroresYExcepciones.TableroSectorInvalido;
-import Unidad.Unidad;
+import unidad.Unidad;
 import celda.Celda;
 import equipo.Equipo;
 
