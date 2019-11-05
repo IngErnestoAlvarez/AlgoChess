@@ -1,6 +1,6 @@
-package estadosJinete;
+package unidad.estadosJinete;
 
-import accion.AtaqueMedio;
+import unidad.accion.AtaqueMedio;
 
 public class EstadoAtaqueMedio extends Estado{
 

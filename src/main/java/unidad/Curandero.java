@@ -1,6 +1,6 @@
 package unidad;
 
-import accion.*;
+import unidad.accion.*;
 
 public class Curandero extends Unidad {
 

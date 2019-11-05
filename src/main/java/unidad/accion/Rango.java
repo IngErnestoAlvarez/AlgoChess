@@ -1,4 +1,4 @@
-package accion;
+package unidad.accion;
 
 public class Rango {
 

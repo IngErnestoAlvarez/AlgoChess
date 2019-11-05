@@ -1,6 +1,6 @@
 package unidad;
 
-import estadosJinete.*;
+import unidad.estadosJinete.*;
 
 public class Jinete extends Unidad {
 

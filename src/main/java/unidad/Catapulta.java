@@ -1,7 +1,7 @@
 package unidad;
 
 
-import accion.*;
+import unidad.accion.*;
 
 public class Catapulta extends Unidad {
 

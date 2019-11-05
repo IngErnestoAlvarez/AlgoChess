@@ -1,12 +1,12 @@
-package accion;
+package unidad.accion;
 
 import unidad.Unidad;
 
-public class AtaqueCatapulta extends Accion{
+public class AtaqueMedio extends Accion {
 
-    public AtaqueCatapulta(int danioInicial){
+    public AtaqueMedio(int danioInicial){
         puntosVida = danioInicial;
-        rango = new Rango(6, 40);
+        rango = new Rango(3, 5);
     }
 
     public void interactuar(Unidad unidad){

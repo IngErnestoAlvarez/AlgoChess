@@ -1,6 +1,6 @@
-package estadosJinete;
+package unidad.estadosJinete;
 
-import accion.Accion;
+import unidad.accion.Accion;
 import unidad.Unidad;
 
 public abstract class Estado {
