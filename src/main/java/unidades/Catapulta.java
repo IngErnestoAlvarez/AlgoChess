@@ -6,6 +6,8 @@ import ErroresYExcepciones.CuranderoNoPuedeCurarUnaCatapulta;
 
 public class Catapulta extends Unidad {
 
+    public static int precio = 5;
+
     public Catapulta(){
         vida = 50;
     }

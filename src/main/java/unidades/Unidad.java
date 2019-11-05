@@ -1,12 +1,11 @@
 package unidades;
 
-
-import ErroresYExcepciones.CatapultaNoPuedeAtacarDeCerca;
-import ErroresYExcepciones.CuranderoNoPuedeCurarUnaCatapulta;
+import ErroresYExcepciones.*;
 
 public abstract class Unidad {
 
-    protected int vida;
+    int vida;
+    static int precio;
 
     public int getVida(){
         return vida;
@@ -21,4 +20,5 @@ public abstract class Unidad {
 
         vida -= danio;
     }
+
 }
