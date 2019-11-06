@@ -25,82 +25,64 @@ public class Equipo{
         this.puntos = puntos;
     }
 
-    public void comprarUnidad(Unidad unidad){
+    public void comprarSoldado() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades{
 
-        if (unidad.verPrecio() <= this.puntos){
-            this.unidades.add(unidad);
-            this.puntos -= unidad.verPrecio();
-        }
-        if(puntos > 0){
-            //throw new EquipoNoTienePuntosSuficientes();
-        }else{
-            //throw new EquipoNoPuedeComprarMasUnidades();
-        }
-    }
-
-
-    public void comprarSoldado(){
-
-        Soldado soldado = new Soldado();
-
-        if(soldado.verPrecio() <= this.puntos) {
+        if(Soldado.precio <= this.puntos) {
+            Soldado soldado = new Soldado();
             this.unidades.add(soldado);
-            this.puntos -= soldado.verPrecio();
-        }
-        if(puntos > 0){
-            //throw new EquipoNoTienePuntosSuficientes();
-        }else{
-            //throw new EquipoNoPuedeComprarMasUnidades();
-        }
-    }
-
-    public void comprarCatapulta(){
-
-        Catapulta catapulta = new Catapulta();
-
-        if(catapulta.verPrecio() <= this.puntos) {
-            this.unidades.add(catapulta);
-            this.puntos -= catapulta.verPrecio();
-        }
-        if(puntos > 0){
-            //throw new EquipoNoTienePuntosSuficientes();
-        }else{
-            //throw new EquipoNoPuedeComprarMasUnidades();
-        }
-    }
-
-    public void comprarJinete(){
-
-        Jinete jinete = new Jinete();
-
-        if(jinete.verPrecio() <= this.puntos) {
-            this.unidades.add(jinete);
-            this.puntos -= jinete.verPrecio();
-        }
-        if(puntos > 0){
-            //throw new EquipoNoTienePuntosSuficientes();
-        }else{
-            //throw new EquipoNoPuedeComprarMasUnidades();
-        }
-    }
-
-    public void comprarCurandero(){
-
-        Curandero curandero = new Curandero();
-
-        if(curandero.verPrecio() <= this.puntos) {
-            this.unidades.add(curandero);
-            this.puntos -= curandero.verPrecio();
+            this.puntos -= Soldado.precio;
         }
         else if(puntos > 0){
-            //throw new EquipoNoTienePuntosSuficientes();
+            throw new EquipoNoTienePuntosSuficientes();
         }else{
-            //throw new EquipoNoPuedeComprarMasUnidades();
+            throw new EquipoNoPuedeComprarMasUnidades();
+        }
+    }
+
+    public void comprarCatapulta() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades{
+
+        if(Catapulta.precio <= this.puntos) {
+            Catapulta catapulta = new Catapulta();
+            this.unidades.add(catapulta);
+            this.puntos -= Catapulta.precio;
+        }
+        else if(puntos > 0){
+            throw new EquipoNoTienePuntosSuficientes();
+        }else{
+            throw new EquipoNoPuedeComprarMasUnidades();
+        }
+    }
+
+    public void comprarJinete() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades{
+
+        if(Jinete.precio <= this.puntos) {
+            Jinete jinete = new Jinete();
+            this.unidades.add(jinete);
+            this.puntos -= Jinete.precio;
+        }
+        else if(puntos > 0){
+            throw new EquipoNoTienePuntosSuficientes();
+        }else{
+            throw new EquipoNoPuedeComprarMasUnidades();
+        }
+    }
+
+    public void comprarCurandero() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades{
+
+        if(Curandero.precio <= this.puntos) {
+            Curandero curandero = new Curandero();
+            this.unidades.add(curandero);
+            this.puntos -= Curandero.precio;
+        }
+        else if(puntos > 0){
+            throw new EquipoNoTienePuntosSuficientes();
+        }else{
+            throw new EquipoNoPuedeComprarMasUnidades();
         }
     }
 
     public boolean tieneUnidades(){
-        return (this.unidades.size()!=0);
+        return ((this.unidades.size())!=0);
     }
 
     public int cantidadUnidades(){
@@ -109,6 +91,28 @@ public class Equipo{
 
     public int verPuntaje(){
         return this.puntos;
+    }
+
+    public Unidad devolverUnaUnidad(){
+        if(tieneUnidades()){
+            return unidades.get(0);
+        }
+        return null;
+    }
+
+    public void eliminarUnidadesMuertas() {
+
+        if (tieneUnidades()) {
+            for (int i = 0; i < cantidadUnidades(); i++) {
+                if (unidades.get(i).verVida() <= 0) {
+                    unidades.remove(unidades.get(i));
+                }
+            }
+        }
+    }
+
+    public boolean esPerdedor(){
+        return !(tieneUnidades());
     }
 }
 
