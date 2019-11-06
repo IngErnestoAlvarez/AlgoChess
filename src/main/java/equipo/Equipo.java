@@ -103,7 +103,7 @@ public class Equipo{
     public void eliminarUnidadesMuertas() {
 
         if (tieneUnidades()) {
-            for (int i = 0; i < cantidadUnidades(); i++) {
+            for (int i = 0; i < get.CantidadUnidades(); i++) {
                 if (unidades.get(i).getVida() <= 0) {
                     unidades.remove(unidades.get(i));
                 }
