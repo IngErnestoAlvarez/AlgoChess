@@ -18,7 +18,7 @@ public class EquipoPierdeTest extends TestCase{
 
         equipo.eliminarUnidadesMuertas();
 
-        assertEquals(1, equipo.cantidadUnidades());
+        assertEquals(1, equipo.getCantidadUnidades());
         assertFalse(equipo.esPerdedor());
     }
 
@@ -35,7 +35,7 @@ public class EquipoPierdeTest extends TestCase{
 
         equipo.eliminarUnidadesMuertas();
 
-        assertEquals(2,equipo.cantidadUnidades());
+        assertEquals(2,equipo.getCantidadUnidades());
         assertFalse(equipo.esPerdedor());
     }
 
@@ -51,14 +51,14 @@ public class EquipoPierdeTest extends TestCase{
 
         equipo.eliminarUnidadesMuertas();
 
-        assertEquals(1,equipo.cantidadUnidades());
+        assertEquals(1,equipo.getCantidadUnidades());
         assertFalse(equipo.esPerdedor());
 
         Unidad otraUnidad = equipo.devolverUnaUnidad();
         otraUnidad.recibirDanio(150);
         equipo.eliminarUnidadesMuertas();
 
-        assertEquals(0,equipo.cantidadUnidades());
+        assertEquals(0,equipo.getCantidadUnidades());
         assertTrue(equipo.esPerdedor());
     }
 }

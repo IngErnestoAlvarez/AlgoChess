@@ -17,7 +17,7 @@ public class ComprarUnidadesTest extends TestCase{
     public void test01EquipoNuevoTieneTodosSusPuntos(){
 
         Equipo equipo = new Equipo();
-        assertEquals (20, equipo.verPuntaje());
+        assertEquals (20, equipo.getPuntaje());
     }
 
     public void test02EquipoCompraUnSoldado() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades {
@@ -26,8 +26,8 @@ public class ComprarUnidadesTest extends TestCase{
         equipo.comprarSoldado();
 
         assertTrue (equipo.tieneUnidades()); //Ver
-        assertEquals (1, equipo.cantidadUnidades());
-        assertEquals ( 19, equipo.verPuntaje());
+        assertEquals (1, equipo.getCantidadUnidades());
+        assertEquals ( 19, equipo.getPuntaje());
     }
 
     public void test03EquipoCompraUnaCatapulta() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades {
@@ -36,8 +36,8 @@ public class ComprarUnidadesTest extends TestCase{
         equipo.comprarCatapulta();
 
         assertTrue (equipo.tieneUnidades()); //Ver
-        assertEquals (1, equipo.cantidadUnidades());
-        assertEquals ( 15, equipo.verPuntaje());
+        assertEquals (1, equipo.getCantidadUnidades());
+        assertEquals ( 15, equipo.getPuntaje());
     }
 
     public void test04EquipoCompraUnJinete() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades {
@@ -46,8 +46,8 @@ public class ComprarUnidadesTest extends TestCase{
         equipo.comprarJinete();
 
         assertTrue (equipo.tieneUnidades());
-        assertEquals (1, equipo.cantidadUnidades());
-        assertEquals ( 17, equipo.verPuntaje());
+        assertEquals (1, equipo.getCantidadUnidades());
+        assertEquals ( 17, equipo.getPuntaje());
     }
 
     public void test05EquipoCompraUnCurandero() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades {
@@ -56,8 +56,8 @@ public class ComprarUnidadesTest extends TestCase{
         equipo.comprarCurandero();
 
         assertTrue (equipo.tieneUnidades());
-        assertEquals (1, equipo.cantidadUnidades());
-        assertEquals ( 18, equipo.verPuntaje());
+        assertEquals (1, equipo.getCantidadUnidades());
+        assertEquals ( 18, equipo.getPuntaje());
     }
 
     public void test06EquipoGastaTodosSusPuntos() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades {
@@ -70,8 +70,8 @@ public class ComprarUnidadesTest extends TestCase{
         equipo.comprarCatapulta();
 
         assertTrue(equipo.tieneUnidades()); //Ver
-        assertEquals(4, equipo.cantidadUnidades());
-        assertEquals(0, equipo.verPuntaje());
+        assertEquals(4, equipo.getCantidadUnidades());
+        assertEquals(0, equipo.getPuntaje());
     }
 
     public void test07ExcepcionEquipoIntentaExcederGastos() throws EquipoNoTienePuntosSuficientes {
