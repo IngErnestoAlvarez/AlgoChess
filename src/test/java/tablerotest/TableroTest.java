@@ -8,9 +8,7 @@ import equipo.Equipo;
 import tablero.Tablero;
 import unidad.Soldado;
 import junit.framework.Assert;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class TableroTest extends TestCase {
