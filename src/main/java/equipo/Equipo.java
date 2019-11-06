@@ -85,11 +85,11 @@ public class Equipo{
         return ((this.unidades.size())!=0);
     }
 
-    public int cantidadUnidades(){
+    public int getCantidadUnidades(){
         return this.unidades.size();
     }
 
-    public int verPuntaje(){
+    public int getPuntaje(){
         return this.puntos;
     }
 
@@ -104,7 +104,7 @@ public class Equipo{
 
         if (tieneUnidades()) {
             for (int i = 0; i < cantidadUnidades(); i++) {
-                if (unidades.get(i).verVida() <= 0) {
+                if (unidades.get(i).getVida() <= 0) {
                     unidades.remove(unidades.get(i));
                 }
             }
