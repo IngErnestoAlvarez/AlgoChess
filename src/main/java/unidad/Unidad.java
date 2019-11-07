@@ -5,7 +5,7 @@ import unidad.accion.*;
 public abstract class Unidad {
 
     int vida;
-    static int precio;
+    int precio;
     Accion accion;
 
     public int getVida(){
