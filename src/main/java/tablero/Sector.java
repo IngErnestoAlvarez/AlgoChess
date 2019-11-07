@@ -22,7 +22,7 @@ public class Sector {
 
     public void colocarUnidad(Celda miCelda, Unidad unaUnidad) throws CeldaNoEstaEnMiSector, CeldaYaTieneUnidad {
 
-        Celda celdaEncontrada = encontrarCelda(miCelda);
+        Celda celdaEncontrada = this.encontrarCelda(miCelda);
         celdaEncontrada.colocarUnidad(unaUnidad);
 
     }

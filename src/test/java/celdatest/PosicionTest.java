@@ -5,14 +5,19 @@ import junit.framework.TestCase;
 
 public class PosicionTest extends TestCase {
 
-    public void testLaDistanciaEntre2PosicionesEnElMismoLugarEsCero(){
+    public void test00SeCreaLaPosicionYNoEsNull(){
+        Posicion posicion = new Posicion();
+
+        assertNotNull(posicion);
+    }
+    public void test01LaDistanciaEntre2PosicionesEnElMismoLugarEsCero(){
         Posicion posicion1 = new Posicion(5,2);
         Posicion posicion2 = new Posicion(5,2);
 
         assertEquals(0, posicion1.medirDistancia(posicion2));
     }
 
-    public void testLaDistanciaEntreDosPosicionesEsLaMismaSinImportarPorCualEmpiezo(){
+    public void test02LaDistanciaEntreDosPosicionesEsLaMismaSinImportarPorCualEmpiezo(){
         Posicion posicion1 = new Posicion(4, 7);
         Posicion posicion2 = new Posicion(2,1);
 
@@ -20,7 +25,7 @@ public class PosicionTest extends TestCase {
         assertEquals(8, posicion2.medirDistancia(posicion1));
     }
 
-    public void testLaDistanciaDeUnaPosicionConsigoMismoEsCero(){
+    public void test03LaDistanciaDeUnaPosicionConsigoMismoEsCero(){
         Posicion posicion = new Posicion(2,10);
 
         assertEquals(0, posicion.medirDistancia(posicion));

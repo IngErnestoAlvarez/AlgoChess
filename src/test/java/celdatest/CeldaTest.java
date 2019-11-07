@@ -6,10 +6,17 @@ import unidad.Unidad;
 import celda.Celda;
 import junit.framework.TestCase;
 
+import static org.mockito.Mockito.mock;
+
 public class CeldaTest extends TestCase {
 
+    public void test00CeldaNoEstaVaciaAlSerCreada(){
+        Celda celda = new Celda();
 
-    public void testCeldaEstaVaciaRecienCreada(){
+        assertNotNull(celda);
+    }
+
+    public void test01CeldaEstaVaciaRecienCreada(){
         Celda celda = new Celda();
 
 
@@ -17,10 +24,10 @@ public class CeldaTest extends TestCase {
         assertFalse(celda.estaOcupada());
     }
 
-    public void testCeldaEstaOcupadaAlInsertarUnaUnidad() throws CeldaYaTieneUnidad {
+    public void test02CeldaEstaOcupadaAlInsertarUnaUnidad() throws CeldaYaTieneUnidad {
         Celda celda = new Celda();
 
-        Unidad unidad = new UnidadMock();
+        Unidad unidad = mock(Unidad.class);
 
         celda.colocarUnidad(unidad);
 
@@ -29,11 +36,11 @@ public class CeldaTest extends TestCase {
     }
 
 
-    public void testCeldaEstaVaciaDespuesDeQuitarLaUnidad() throws CeldaYaTieneUnidad{
+    public void test03CeldaEstaVaciaDespuesDeQuitarLaUnidad() throws CeldaYaTieneUnidad{
         try {
             Celda celda = new Celda();
 
-            Unidad unidad = new UnidadMock();
+            Unidad unidad = mock(Unidad.class);
 
             celda.colocarUnidad(unidad);
 
@@ -47,7 +54,7 @@ public class CeldaTest extends TestCase {
         }
     }
 
-    public void testCeldaTiraExcepcionSiQuitoUnidadCuandoNoTiene(){
+    public void test04CeldaTiraExcepcionSiQuitoUnidadCuandoNoTiene(){
         Celda celda = new Celda();
         try{
             celda.quitarUnidad();
@@ -56,10 +63,10 @@ public class CeldaTest extends TestCase {
 
     }
 
-    public void testCeldaOcupadaTiraExcepcionSiIntentoColocarOtraUnaUnidad(){
+    public void test05CeldaOcupadaTiraExcepcionSiIntentoColocarOtraUnaUnidad(){
         Celda celda = new Celda();
 
-        Unidad unidad1 = new UnidadMock();
+        Unidad unidad1 = mock(Unidad.class);
 
         try {
             celda.colocarUnidad(unidad1);
@@ -67,7 +74,7 @@ public class CeldaTest extends TestCase {
         catch(CeldaYaTieneUnidad e){
             fail("No se pudo colocar la primer unidad");
         }
-        Unidad unidad2 = new UnidadMock();
+        Unidad unidad2 = mock(Unidad.class);
 
         try{
             celda.colocarUnidad(unidad2);
@@ -77,10 +84,10 @@ public class CeldaTest extends TestCase {
         }
     }
 
-    public void testCeldaOcupadaGuardaBienLaUnidadQueSeLeColoca() throws CeldaYaTieneUnidad {
+    public void test06CeldaOcupadaGuardaBienLaUnidadQueSeLeColoca() throws CeldaYaTieneUnidad {
         Celda celda = new Celda();
 
-        Unidad unidad = new UnidadMock();
+        Unidad unidad = mock(Unidad.class);
         celda.colocarUnidad(unidad);
 
         try {
@@ -91,13 +98,12 @@ public class CeldaTest extends TestCase {
         }
     }
 
-    public void testCeldaEstaADistanciaUnoDeOtraCelda(){
+    public void test07CeldaEstaADistanciaUnoDeOtraCelda(){
         Celda celda1 = new Celda( 1, 2);
         Celda celda2 = new Celda( 1, 1);
 
         assertEquals(1, celda1.medirDistacia(celda2));
     }
     
-    private class UnidadMock extends Unidad{
-    }
+
 }
