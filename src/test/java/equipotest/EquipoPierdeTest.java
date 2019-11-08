@@ -9,9 +9,9 @@ import junit.framework.TestCase;
 
 public class EquipoPierdeTest extends TestCase{
 
-    public void test00EquipoUnidadRecibeDanioPeroNoPierde() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades {
+    public void test00EquipoUnidadRecibeDanioPeroNoPierde() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades, EquipoQuiereCrearUnidadInvalida {
         Equipo equipo = new Equipo();
-        equipo.comprarSoldado();
+        equipo.comprarUnidad("soldado");
 
         Unidad unidad = equipo.devolverUnaUnidad();
         unidad.recibirDanio(1);
@@ -22,13 +22,13 @@ public class EquipoPierdeTest extends TestCase{
         assertFalse(equipo.esPerdedor());
     }
 
-    public void test01EquipoConVariasUnidadesPierdeUnaPeroNoPierde() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades {
+    public void test01EquipoConVariasUnidadesPierdeUnaPeroNoPierde() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades, EquipoQuiereCrearUnidadInvalida {
 
         Equipo equipo = new Equipo();
 
-        equipo.comprarSoldado();
-        equipo.comprarCatapulta();
-        equipo.comprarJinete();
+        equipo.comprarUnidad("soldado");
+        equipo.comprarUnidad("catapulTA");
+        equipo.comprarUnidad("JINETE");
 
         Unidad unidad = equipo.devolverUnaUnidad();
         unidad.recibirDanio(100);
@@ -39,12 +39,12 @@ public class EquipoPierdeTest extends TestCase{
         assertFalse(equipo.esPerdedor());
     }
 
-    public void test02EquipoPierdeTodasSusUnidadesYPierde() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades {
+    public void test02EquipoPierdeTodasSusUnidadesYPierde() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades, EquipoQuiereCrearUnidadInvalida {
 
         Equipo equipo = new Equipo();
 
-        equipo.comprarSoldado();
-        equipo.comprarJinete();
+        equipo.comprarUnidad("soldado");
+        equipo.comprarUnidad("Jinete");
 
         Unidad unidad = equipo.devolverUnaUnidad();
         unidad.recibirDanio(100);
@@ -62,6 +62,5 @@ public class EquipoPierdeTest extends TestCase{
         assertTrue(equipo.esPerdedor());
     }
 }
-
 
 
