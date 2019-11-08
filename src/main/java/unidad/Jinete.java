@@ -4,10 +4,10 @@ import unidad.estadosJinete.*;
 
 public class Jinete extends Unidad {
 
-    public static int precio = 3;
     private Estado estadoAtaque;
 
     public Jinete(){
+        precio = 3;
         vida = 100;
         estadoAtaque = new EstadoAtaqueCercano();
     }

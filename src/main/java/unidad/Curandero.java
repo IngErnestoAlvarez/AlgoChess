@@ -4,9 +4,8 @@ import unidad.accion.*;
 
 public class Curandero extends Unidad {
 
-    public static int precio = 2;
-
     public Curandero(){
+        precio = 2;
         vida = 75;
         accion = new Curacion(15);
     }

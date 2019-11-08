@@ -4,9 +4,9 @@ import unidad.accion.*;
 
 public class Soldado extends Unidad {
 
-    public static int precio = 1;
 
     public Soldado(){
+        precio = 1;
         vida = 100;
         accion = new AtaqueCercano(10);
     }

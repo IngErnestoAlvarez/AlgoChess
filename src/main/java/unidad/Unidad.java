@@ -11,6 +11,10 @@ public abstract class Unidad {
     public int getVida(){
         return vida;
     }
+    
+    public getPrecio(){
+        return precio;
+    }
 
     public void interactuar(Unidad unidad){
         accion.interactuar(unidad);

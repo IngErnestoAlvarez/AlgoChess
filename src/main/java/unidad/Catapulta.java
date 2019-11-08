@@ -5,9 +5,8 @@ import unidad.accion.*;
 
 public class Catapulta extends Unidad {
 
-    public static int precio = 5;
-
     public Catapulta(){
+        precio = 5;
         vida = 50;
         accion = new AtaqueCatapulta(20);
     }
