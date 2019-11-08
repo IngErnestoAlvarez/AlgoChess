@@ -12,7 +12,7 @@ public abstract class Unidad {
         return vida;
     }
     
-    public getPrecio(){
+    public int getPrecio(){
         return precio;
     }
 
