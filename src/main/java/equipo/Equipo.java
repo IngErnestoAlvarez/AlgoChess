@@ -25,59 +25,22 @@ public class Equipo{
         this.puntos = puntos;
     }
 
-    public void comprarSoldado() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades{
+    public void comprarUnidad(String claseUnidad) throws EquipoQuiereCrearUnidadInvalida, EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades {
 
-        if(Soldado.precio <= this.puntos) {
-            Soldado soldado = new Soldado();
-            this.unidades.add(soldado);
-            this.puntos -= Soldado.precio;
-        }
-        else if(puntos > 0){
-            throw new EquipoNoTienePuntosSuficientes();
+        FabricaUnidad fabricaUnidad = new FabricaUnidad();
+        Unidad unidadAComprar;
+
+        unidadAComprar = fabricaUnidad.fabricar(claseUnidad);
+
+        if(unidadAComprar.getPrecio() <= this.puntos) {
+            this.unidades.add(unidadAComprar);
+            this.puntos -= unidadAComprar.getPrecio();
         }else{
-            throw new EquipoNoPuedeComprarMasUnidades();
-        }
-    }
-
-    public void comprarCatapulta() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades{
-
-        if(Catapulta.precio <= this.puntos) {
-            Catapulta catapulta = new Catapulta();
-            this.unidades.add(catapulta);
-            this.puntos -= Catapulta.precio;
-        }
-        else if(puntos > 0){
-            throw new EquipoNoTienePuntosSuficientes();
-        }else{
-            throw new EquipoNoPuedeComprarMasUnidades();
-        }
-    }
-
-    public void comprarJinete() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades{
-
-        if(Jinete.precio <= this.puntos) {
-            Jinete jinete = new Jinete();
-            this.unidades.add(jinete);
-            this.puntos -= Jinete.precio;
-        }
-        else if(puntos > 0){
-            throw new EquipoNoTienePuntosSuficientes();
-        }else{
-            throw new EquipoNoPuedeComprarMasUnidades();
-        }
-    }
-
-    public void comprarCurandero() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades{
-
-        if(Curandero.precio <= this.puntos) {
-            Curandero curandero = new Curandero();
-            this.unidades.add(curandero);
-            this.puntos -= Curandero.precio;
-        }
-        else if(puntos > 0){
-            throw new EquipoNoTienePuntosSuficientes();
-        }else{
-            throw new EquipoNoPuedeComprarMasUnidades();
+            if (this.puntos > 0){
+                throw new EquipoNoTienePuntosSuficientes();
+            }else{
+                throw new EquipoNoPuedeComprarMasUnidades();
+            }
         }
     }
 
