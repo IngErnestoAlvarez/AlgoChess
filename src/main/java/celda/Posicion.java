@@ -23,4 +23,18 @@ public class Posicion {
 
         return distancia;
     }
+
+
+    public Posicion derecha(){
+        return new Posicion(fila+1, columna);
+    }
+    public Posicion izquierda(){
+        return new Posicion(fila-1, columna);
+    }
+    public Posicion arriba(){
+        return new Posicion(fila, columna-1);
+    }
+    public Posicion abajo(){
+        return new Posicion(fila, columna+1);
+    }
 }
