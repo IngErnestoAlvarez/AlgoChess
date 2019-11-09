@@ -61,6 +61,12 @@ public class Celda {
         return this.posicion.medirDistancia(celdaAComparar.verPosicion());
     }
 
+    @Override
+    public boolean equals(Object celdaAComparar) {
+        Celda unaCelda = (Celda) celdaAComparar;
+        return this.medirDistacia(unaCelda) == 0;
+    }
+
     private Posicion verPosicion() {
         return this.posicion;
     }

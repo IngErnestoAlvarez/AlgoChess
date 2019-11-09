@@ -112,14 +112,15 @@ public class Tablero {
     }
 
     private Celda buscarCeldaConPosicion(int posicionHorizontal, int posicionVertical) throws NoSeEncontroLaCelda {
-        Iterator iter = this.celdas.iterator();
+
         Celda celdaQueQuieroEncontrar = new Celda(posicionHorizontal,posicionVertical);
-        Celda celdaActual = null;
-        while(iter.hasNext()){
-            celdaActual = (Celda) iter.next();
-            if(celdaQueQuieroEncontrar.medirDistacia(celdaActual) == 0) return celdaActual;
-        }
+
+        int posicion = this.celdas.indexOf(celdaQueQuieroEncontrar);
+
+        if (posicion != -1) return this.celdas.get(posicion);
+
         throw new NoSeEncontroLaCelda();
-        // !!!Actuar en caso de excepcion (interfaz)
+
     }
+
 }
