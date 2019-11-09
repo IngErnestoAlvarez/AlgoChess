@@ -112,8 +112,16 @@ public class Tablero {
     }
 
     private Celda buscarCeldaConPosicion(int posicionHorizontal, int posicionVertical) throws NoSeEncontroLaCelda {
-        Iterator iter = this.celdas.iterator();
+
         Celda celdaQueQuieroEncontrar = new Celda(posicionHorizontal,posicionVertical);
+
+        int posicion = this.celdas.indexOf(celdaQueQuieroEncontrar);
+
+        if (posicion != -1) return this.celdas.get(posicion);
+
+        throw new NoSeEncontroLaCelda();
+/*
+        Iterator iter = this.celdas.iterator();
         Celda celdaActual = null;
         while(iter.hasNext()){
             celdaActual = (Celda) iter.next();
@@ -121,5 +129,7 @@ public class Tablero {
         }
         throw new NoSeEncontroLaCelda();
         // !!!Actuar en caso de excepcion (interfaz)
+    */
     }
+
 }
