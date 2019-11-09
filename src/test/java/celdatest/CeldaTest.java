@@ -20,8 +20,11 @@ public class CeldaTest extends TestCase {
         Celda celda = new Celda();
 
 
-        assertTrue(celda.estaVacia());
-        assertFalse(celda.estaOcupada());
+        try{
+            celda.verUnidad();
+            fail("No se ĺanzó la excepcion que la celda no tiene unidad");
+        } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
+        }
     }
 
     public void test02CeldaEstaOcupadaAlInsertarUnaUnidad() throws CeldaYaTieneUnidad {
@@ -31,8 +34,11 @@ public class CeldaTest extends TestCase {
 
         celda.colocarUnidad(unidad);
 
-        assertTrue(celda.estaOcupada());
-        assertFalse(celda.estaVacia());
+        try{
+            celda.verUnidad();
+        } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
+            fail();
+        }
     }
 
 
@@ -46,8 +52,11 @@ public class CeldaTest extends TestCase {
 
             celda.quitarUnidad();
 
-            assertFalse(celda.estaOcupada());
-            assertTrue(celda.estaVacia());
+            try{
+                celda.verUnidad();
+                fail();
+            } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
+            }
         }
         catch (CeldaNoTieneUnidad  e){
             fail("Lanzada la excepcion: CeldaNoTieneUnidad");

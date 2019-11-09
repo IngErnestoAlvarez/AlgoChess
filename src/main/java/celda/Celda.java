@@ -5,56 +5,30 @@ import unidad.Unidad;
 import ErroresYExcepciones.CeldaNoTieneUnidad;
 
 public class Celda {
-
-    private boolean vacia;
-    private Unidad unidad;
+    EstadoCelda estado;
     private Posicion posicion;
 
 
     public Celda(){
-        vacia = true;
-        unidad = null;
+        estado = new EstadoCeldaVacia();
         posicion = new Posicion();
     }
 
     public Celda(int x, int y){
-        vacia = true;
-        unidad = null;
         posicion = new Posicion(x , y);
-    }
-
-    public boolean estaVacia() {
-        return this.vacia;
-    }
-
-    public boolean estaOcupada(){
-        return !this.estaVacia();
+        estado = new EstadoCeldaVacia();
     }
 
     public void colocarUnidad(Unidad unidad) throws CeldaYaTieneUnidad {
-        if(this.estaOcupada()){
-            throw new CeldaYaTieneUnidad();
-        }
-        this.unidad = unidad;
-        this.vacia = false;
+        estado.colocarUnidad(this, unidad);
     }
 
     public Unidad quitarUnidad() throws CeldaNoTieneUnidad {
-        if(this.estaVacia()) {
-            throw new CeldaNoTieneUnidad();
-        }
-        Unidad unidadAux = this.unidad;
-        this.unidad = null;
-        this.vacia = true;
-        return unidadAux;
+        return estado.quitarUnidad(this);
     }
 
     public Unidad verUnidad() throws CeldaNoTieneUnidad{
-        if(this.estaVacia()){
-            throw new CeldaNoTieneUnidad();
-        }
-
-        return this.unidad;
+        return estado.verUnidad();
     }
 
     public int medirDistacia(Celda celdaAComparar) {

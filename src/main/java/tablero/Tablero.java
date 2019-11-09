@@ -78,13 +78,6 @@ public class Tablero {
             Celda celdaOrigen = this.buscarCeldaConPosicion(posicionHorizantalOrigen, posicionVerticalOrigen);
             Celda celdaDestino = this.buscarCeldaConPosicion(posicionHorizontalDestino, posicionVerticalDestino);
 
-            if(celdaOrigen.estaVacia()){
-                throw new CeldaNoTieneUnidad();
-            }
-
-            if(celdaDestino.estaOcupada()){
-                throw new CeldaYaTieneUnidad();
-            }
 
             Unidad unidadAMover = celdaOrigen.quitarUnidad();
 
