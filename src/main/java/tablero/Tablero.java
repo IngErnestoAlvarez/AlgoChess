@@ -120,16 +120,7 @@ public class Tablero {
         if (posicion != -1) return this.celdas.get(posicion);
 
         throw new NoSeEncontroLaCelda();
-/*
-        Iterator iter = this.celdas.iterator();
-        Celda celdaActual = null;
-        while(iter.hasNext()){
-            celdaActual = (Celda) iter.next();
-            if(celdaQueQuieroEncontrar.medirDistacia(celdaActual) == 0) return celdaActual;
-        }
-        throw new NoSeEncontroLaCelda();
-        // !!!Actuar en caso de excepcion (interfaz)
-    */
+
     }
 
 }
