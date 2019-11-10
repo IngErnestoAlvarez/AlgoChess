@@ -25,7 +25,7 @@ public class Equipo{
         this.puntos = puntos;
     }
 
-    public void comprarUnidad(String claseUnidad) throws EquipoQuiereCrearUnidadInvalida, EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades {
+    public Unidad comprarUnidad(String claseUnidad) throws EquipoQuiereCrearUnidadInvalida, EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades {
 
         FabricaUnidad fabricaUnidad = new FabricaUnidad();
         Unidad unidadAComprar;
@@ -35,6 +35,7 @@ public class Equipo{
         if(unidadAComprar.getPrecio() <= this.puntos) {
             this.unidades.add(unidadAComprar);
             this.puntos -= unidadAComprar.getPrecio();
+            return unidadAComprar;
         }else{
             if (this.puntos > 0){
                 throw new EquipoNoTienePuntosSuficientes();
