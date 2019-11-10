@@ -11,9 +11,8 @@ public class EquipoPierdeTest extends TestCase{
 
     public void test00EquipoUnidadRecibeDanioPeroNoPierde() throws EquipoNoTienePuntosSuficientes, EquipoNoPuedeComprarMasUnidades, EquipoQuiereCrearUnidadInvalida {
         Equipo equipo = new Equipo();
-        equipo.comprarUnidad("soldado");
+        Unidad unidad = equipo.comprarUnidad("soldado");
 
-        Unidad unidad = equipo.devolverUnaUnidad();
         unidad.recibirDanio(1);
 
         equipo.eliminarUnidadesMuertas();
@@ -26,11 +25,10 @@ public class EquipoPierdeTest extends TestCase{
 
         Equipo equipo = new Equipo();
 
-        equipo.comprarUnidad("soldado");
+        Unidad unidad = equipo.comprarUnidad("soldado");
         equipo.comprarUnidad("catapulTA");
         equipo.comprarUnidad("JINETE");
 
-        Unidad unidad = equipo.devolverUnaUnidad();
         unidad.recibirDanio(100);
 
         equipo.eliminarUnidadesMuertas();
@@ -43,10 +41,9 @@ public class EquipoPierdeTest extends TestCase{
 
         Equipo equipo = new Equipo();
 
-        equipo.comprarUnidad("soldado");
-        equipo.comprarUnidad("Jinete");
+        Unidad unidad = equipo.comprarUnidad("soldado");
+        Unidad otraUnidad = equipo.comprarUnidad("Jinete");
 
-        Unidad unidad = equipo.devolverUnaUnidad();
         unidad.recibirDanio(100);
 
         equipo.eliminarUnidadesMuertas();
@@ -54,7 +51,6 @@ public class EquipoPierdeTest extends TestCase{
         assertEquals(1,equipo.getCantidadUnidades());
         assertFalse(equipo.esPerdedor());
 
-        Unidad otraUnidad = equipo.devolverUnaUnidad();
         otraUnidad.recibirDanio(150);
         equipo.eliminarUnidadesMuertas();
 
