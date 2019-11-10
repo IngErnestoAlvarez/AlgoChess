@@ -57,13 +57,6 @@ public class Equipo{
         return this.puntos;
     }
 
-    public Unidad devolverUnaUnidad(){
-        if(tieneUnidades()){
-            return unidades.get(0);
-        }
-        return null;
-    }
-
     public void eliminarUnidadesMuertas() {
 
         if (tieneUnidades()) {
