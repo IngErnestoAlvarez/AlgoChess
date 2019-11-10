@@ -24,6 +24,12 @@ public class Posicion {
         return distancia;
     }
 
+    @Override
+    public boolean equals(Object otraPosicion){
+        Posicion unaPosicion = (Posicion) otraPosicion;
+
+        return this.medirDistancia(unaPosicion)==0;
+    }
 
     public Posicion derecha(){
         return new Posicion(fila+1, columna);
