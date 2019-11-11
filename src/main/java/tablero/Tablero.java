@@ -2,6 +2,9 @@ package tablero;
 
 import ErroresYExcepciones.*;
 import celda.Posicion;
+import javafx.geometry.Pos;
+import unidad.Catapulta;
+import unidad.Soldado;
 import unidad.Unidad;
 import celda.Celda;
 import equipo.*;
@@ -75,14 +78,134 @@ public class Tablero {
 
     }
 
-    public void moverUnidad(Posicion posicionOrigen, Posicion posicionDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, CeldaYaTieneUnidad {
+    public void moverUnidad(Posicion posicionOrigen, Posicion posicionDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido {
             Celda celdaOrigen = this.buscarCeldaConPosicion(posicionOrigen);
             Celda celdaDestino = this.buscarCeldaConPosicion(posicionDestino);
 
+            if(celdaOrigen.medirDistacia(celdaDestino) != 1 || celdaOrigen.verUnidad() instanceof Catapulta) throw new MovimientoInvalido();
+
+            if (celdaOrigen.verUnidad() instanceof Soldado && this.esBatallon(posicionOrigen)){
+                List<Celda> batallon = crearBatallon(posicionOrigen);
+                this.moverBatallon(batallon, posicionDestino);
+                return;
+            }
 
             Unidad unidadAMover = celdaOrigen.quitarUnidad();
 
             celdaDestino.colocarUnidad(unidadAMover);
+    }
+
+    private void moverBatallon(List<Celda> batallon, Posicion posicionDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad {
+        List<Boolean> seMovio = new ArrayList<>();
+        List<Celda> celdasDestinoOrdenadas = crearListaPosicionesDestino(batallon, posicionDestino);
+
+        for (int i = 0; i < 3; i++) {
+            seMovio.add(false);
+        }
+
+        for (int i = 0; i < 3; i++) {
+
+            for (int j = 0; j < 3; j++) {
+
+                if (!(seMovio.get(j))) {
+
+                    Celda origen = batallon.get(j);
+                    Celda destino = celdasDestinoOrdenadas.get(j);
+                    Unidad unaUnidad = origen.verUnidad();
+                    try {
+                        destino.colocarUnidad(unaUnidad);
+                        seMovio.set(j, true);
+                        origen.quitarUnidad();
+                    } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {}
+
+                }
+
+
+            }
+        }
+    }
+
+    private List<Celda> crearListaPosicionesDestino(List<Celda> batallon, Posicion posicionDestino) throws NoSeEncontroLaCelda {
+        List<Celda> celdasDestino = new ArrayList<>();
+
+        Celda celdaCentral = batallon.get(1);
+        Posicion posicionCentral = celdaCentral.verPosicion();
+
+        if ( posicionCentral.derecha().equals(posicionDestino) ){
+            for (int i = 0; i < 3; i++){
+                Celda unaCelda = batallon.get(i);
+                Celda celdaDestino = buscarCeldaConPosicion(unaCelda.verPosicion().derecha());
+                celdasDestino.add(celdaDestino);
+            }
+        } else if(posicionCentral.izquierda().equals(posicionDestino) ){
+            for (int i = 0; i < 3; i++){
+                Celda unaCelda = batallon.get(i);
+                Celda celdaDestino = buscarCeldaConPosicion(unaCelda.verPosicion().izquierda());
+                celdasDestino.add(celdaDestino);
+            }
+        } else if(posicionCentral.arriba().equals(posicionDestino)){
+            for (int i = 0; i < 3; i++){
+                Celda unaCelda = batallon.get(i);
+                Celda celdaDestino = buscarCeldaConPosicion(unaCelda.verPosicion().arriba());
+                celdasDestino.add(celdaDestino);
+            }
+        } else if( posicionCentral.abajo().equals(posicionDestino) ){
+            for (int i = 0; i < 3; i++){
+                Celda unaCelda = batallon.get(i);
+                Celda celdaDestino = buscarCeldaConPosicion(unaCelda.verPosicion().abajo());
+                celdasDestino.add(celdaDestino);
+            }
+        }
+
+        return celdasDestino;
+
+    }
+
+    private List<Celda> crearBatallon(Posicion posicionOrigen) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad {
+
+        List<Celda> batallon = new ArrayList<>();
+
+        Celda celdaCentro = this.buscarCeldaConPosicion(posicionOrigen);
+        Celda unaCelda;
+        Celda otraCelda;
+
+        if (this.esBatallonHorizontal(posicionOrigen)){
+            unaCelda = this.buscarCeldaConPosicion(posicionOrigen.derecha());
+            otraCelda = this.buscarCeldaConPosicion(posicionOrigen.izquierda());
+        }else{
+            unaCelda = this.buscarCeldaConPosicion(posicionOrigen.arriba());
+            otraCelda = this.buscarCeldaConPosicion(posicionOrigen.abajo());
+        }
+
+        batallon.add(unaCelda);
+        batallon.add(celdaCentro);
+        batallon.add(otraCelda);
+
+        return batallon;
+    }
+
+    private boolean esBatallon(Posicion posicionCentro) throws CeldaNoTieneUnidad, NoSeEncontroLaCelda {
+        return (this.esBatallonVertical(posicionCentro) || this.esBatallonHorizontal(posicionCentro));
+    }
+
+    private boolean esBatallonHorizontal(Posicion posicionCentro) throws  NoSeEncontroLaCelda {
+        Celda celdaDerecha = this.buscarCeldaConPosicion(posicionCentro.derecha());
+        Celda celdaIzquierda = this.buscarCeldaConPosicion(posicionCentro.izquierda());
+        try {
+            return (celdaDerecha.verUnidad() instanceof Soldado && celdaIzquierda.verUnidad() instanceof Soldado);
+        } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
+            return false;
+        }
+    }
+
+    private boolean esBatallonVertical(Posicion posicionCentro) throws NoSeEncontroLaCelda {
+        Celda celdaArriba = this.buscarCeldaConPosicion(posicionCentro.arriba());
+        Celda celdaAbajo = this.buscarCeldaConPosicion(posicionCentro.abajo());
+        try {
+            return (celdaArriba.verUnidad() instanceof Soldado && celdaAbajo.verUnidad() instanceof Soldado);
+        } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
+            return false;
+        }
     }
 
 
