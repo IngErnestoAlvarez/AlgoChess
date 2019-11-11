@@ -1,10 +1,10 @@
 package tablerotest;
 
 import ErroresYExcepciones.*;
-import equipo.Equipo;
+import celda.Posicion;
 import unidad.Unidad;
+import equipo.*;
 import celda.Celda;
-import equipo.Equipo;
 import tablero.Tablero;
 import unidad.Soldado;
 import junit.framework.Assert;
@@ -27,8 +27,9 @@ public class TableroTest extends TestCase {
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
+		Posicion unaPosicion = new Posicion(1,1);
 		try {
-			nuevoTablero.colocarUnidad(unSoldado, 1, 1); // empieza poniendo el equipo de abajo.
+			nuevoTablero.colocarUnidad(unSoldado, unaPosicion); // empieza poniendo el equipo de abajo.
 			fail("No se lanzo la excepcion de sector invalido");
 		} catch (TableroSectorInvalido excepcion) {
 		}
@@ -39,16 +40,17 @@ public class TableroTest extends TestCase {
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
+		Posicion posicionDeseada = new Posicion (17,17);
 		try {
 			//Sector Correcto
-			nuevoTablero.colocarUnidad(unSoldado, 17, 17);
+			nuevoTablero.colocarUnidad(unSoldado, posicionDeseada);
 		} catch (TableroSectorInvalido tableroSectorInvalido) {
 			tableroSectorInvalido.printStackTrace();
 			fail("No tendria que lanzar esta excepcion");
 		}
 
 		try {
-			Assert.assertEquals(nuevoTablero.verUnidad(17, 17), unSoldado);
+			Assert.assertEquals(nuevoTablero.verUnidad(posicionDeseada), unSoldado);
 		} catch (CeldaNoEstaEnElTablero celdaNoEstaEnElTablero) {
 			fail("Error al buscar la celda.");
 		}
@@ -60,15 +62,18 @@ public class TableroTest extends TestCase {
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
 		boolean seCambioDeSector = true;
+		Posicion unaPosicion = new Posicion (17, 17);
+		Posicion otraPosicion = new Posicion (1, 1);
+
 
 		try {
-			nuevoTablero.colocarUnidad(unSoldado, 17, 17);
+			nuevoTablero.colocarUnidad(unSoldado, unaPosicion);
 		} catch (TableroSectorInvalido tableroSectorInvalido) {
 			seCambioDeSector = false;
 		}
 		nuevoTablero.cambiarSector();
 		try {
-			nuevoTablero.colocarUnidad(unSoldado, 1, 1);
+			nuevoTablero.colocarUnidad(unSoldado, otraPosicion);
 		} catch (TableroSectorInvalido excepcion) {
 			seCambioDeSector = false;
 		}
@@ -80,14 +85,15 @@ public class TableroTest extends TestCase {
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
+		Posicion posicionDeseada = new Posicion(2, 2);
 
 		nuevoTablero.cambiarSector();
 
-		nuevoTablero.colocarUnidad(unSoldado, 2, 2);
+		nuevoTablero.colocarUnidad(unSoldado, posicionDeseada);
 
-		nuevoTablero.moverUnidad(2, 2, 2, 3);
+		nuevoTablero.moverUnidad(posicionDeseada, posicionDeseada.derecha());
 
-		assertEquals(nuevoTablero.verUnidad(2, 3), unSoldado);
+		assertEquals(nuevoTablero.verUnidad(posicionDeseada.derecha()), unSoldado);
 
 	}
 
@@ -96,15 +102,17 @@ public class TableroTest extends TestCase {
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
+		Posicion posicionDeseada = new Posicion (2, 2);
+
 
 		nuevoTablero.cambiarSector();
 
-		nuevoTablero.colocarUnidad(unSoldado, 2, 2);
+		nuevoTablero.colocarUnidad(unSoldado, posicionDeseada);
 
 
 		try{
-			nuevoTablero.moverUnidad(2, 2, 2, 3);
-			Unidad unidadVacia = nuevoTablero.verUnidad(2 , 2);
+			nuevoTablero.moverUnidad(posicionDeseada, posicionDeseada.derecha());
+			Unidad unidadVacia = nuevoTablero.verUnidad(posicionDeseada);
 			fail("El test no tiro la excepcion CeldaNoTieneUnidad");
 		}catch(CeldaNoTieneUnidad e){
 		}
@@ -115,9 +123,10 @@ public class TableroTest extends TestCase {
 		Equipo equipoDeJorge = mock(Equipo.class); //nombre,puntos;
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
+		Posicion posicionDeseada = new Posicion (1, 1);
 
 		try{
-			nuevoTablero.moverUnidad(1,1,1,2);
+			nuevoTablero.moverUnidad(posicionDeseada, posicionDeseada.derecha());
 			fail("El test no tiro la excepcion CeldaNoTieneUnidad");
 		}catch(CeldaNoTieneUnidad excepcion){
 		}
@@ -130,13 +139,14 @@ public class TableroTest extends TestCase {
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
 		Unidad otroSoldado = mock(Soldado.class);
+		Posicion posicionDeseada = new Posicion (20, 20);
 
-		nuevoTablero.colocarUnidad( unSoldado,20, 20 );
-		nuevoTablero.colocarUnidad( unSoldado,20, 19 );
+		nuevoTablero.colocarUnidad(unSoldado, posicionDeseada);
+		nuevoTablero.colocarUnidad(otroSoldado, posicionDeseada.arriba());
 
 
 		try{
-			nuevoTablero.moverUnidad( 20, 19, 20, 20 );
+			nuevoTablero.moverUnidad( posicionDeseada, posicionDeseada.arriba());
 			fail("El test no tiro la excepcion CeldaYaTieneUnidad");
 		}catch(CeldaYaTieneUnidad otraExcepcion) {
 		}

@@ -14,6 +14,11 @@ public class Celda {
         posicion = new Posicion();
     }
 
+    public Celda(Posicion unaPosicion){
+        estado = new EstadoCeldaVacia();
+        this.posicion = unaPosicion;
+    }
+
     public Celda(int x, int y){
         posicion = new Posicion(x , y);
         estado = new EstadoCeldaVacia();
