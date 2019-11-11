@@ -139,7 +139,7 @@ public class TableroTest extends TestCase {
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
 		Unidad otroSoldado = mock(Soldado.class);
-		Posicion posicionDeseada = new Posicion (20, 20);
+		Posicion posicionDeseada = new Posicion (12, 12);
 
 		nuevoTablero.colocarUnidad(unSoldado, posicionDeseada);
 		nuevoTablero.colocarUnidad(otroSoldado, posicionDeseada.arriba());
