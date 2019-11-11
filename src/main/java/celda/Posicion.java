@@ -15,7 +15,6 @@ public class Posicion {
         this.columna = columna;
     }
 
-
     public int medirDistancia(Posicion aComparar) {
         int distancia = 0;
         distancia += Math.abs(this.fila - aComparar.fila);
@@ -27,20 +26,20 @@ public class Posicion {
     @Override
     public boolean equals(Object otraPosicion){
         Posicion unaPosicion = (Posicion) otraPosicion;
-
-        return this.medirDistancia(unaPosicion)==0;
+        return this.medirDistancia(unaPosicion) == 0;
     }
 
-    public Posicion derecha(){
+    public Posicion abajo(){
         return new Posicion(fila+1, columna);
     }
-    public Posicion izquierda(){
+    public Posicion arriba(){
         return new Posicion(fila-1, columna);
     }
-    public Posicion arriba(){
+    public Posicion izquierda(){
         return new Posicion(fila, columna-1);
     }
-    public Posicion abajo(){
+    public Posicion derecha(){
         return new Posicion(fila, columna+1);
     }
+
 }

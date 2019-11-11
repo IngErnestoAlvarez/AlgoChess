@@ -46,7 +46,7 @@ public class Celda {
         return this.medirDistacia(unaCelda) == 0;
     }
 
-    private Posicion verPosicion() {
+    public Posicion verPosicion() {
         return this.posicion;
     }
 
