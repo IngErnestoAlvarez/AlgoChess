@@ -1,9 +1,10 @@
 package tablero;
 
 import ErroresYExcepciones.*;
+import celda.Posicion;
 import unidad.Unidad;
 import celda.Celda;
-import equipo.Equipo;
+import equipo.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -31,12 +32,12 @@ public class Tablero {
         this.llenarTablero(largo, alto);
     }
 
-    public void colocarUnidad(Unidad unaUnidad,int posicionHorizontal,int  posicionVertical) throws TableroSectorInvalido, CeldaNoEstaEnElTablero {
+    public void colocarUnidad(Unidad unaUnidad, Posicion posicionDeseada) throws TableroSectorInvalido, CeldaNoEstaEnElTablero {
 
         Celda miCelda = null;
 
         try{
-            miCelda = this.buscarCeldaConPosicion(posicionHorizontal, posicionVertical);
+            miCelda = this.buscarCeldaConPosicion(posicionDeseada);
         }catch(NoSeEncontroLaCelda excepcionCelda) {
             throw new CeldaNoEstaEnElTablero();
         }
@@ -62,10 +63,10 @@ public class Tablero {
         }
     }
 
-    public Unidad verUnidad(int posicionHorizontal, int posicionVertical) throws CeldaNoEstaEnElTablero, CeldaNoTieneUnidad {
+    public Unidad verUnidad(Posicion unaPosicion) throws CeldaNoEstaEnElTablero, CeldaNoTieneUnidad {
         Celda celdaIndicada = null;
         try {
-            celdaIndicada = this.buscarCeldaConPosicion(posicionHorizontal,posicionVertical);
+            celdaIndicada = this.buscarCeldaConPosicion(unaPosicion);
         } catch (NoSeEncontroLaCelda noSeEncontroLaCelda) {
             throw new CeldaNoEstaEnElTablero();
         }
@@ -74,9 +75,9 @@ public class Tablero {
 
     }
 
-    public void moverUnidad(int posicionHorizantalOrigen, int posicionVerticalOrigen, int posicionHorizontalDestino, int posicionVerticalDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, CeldaYaTieneUnidad {
-            Celda celdaOrigen = this.buscarCeldaConPosicion(posicionHorizantalOrigen, posicionVerticalOrigen);
-            Celda celdaDestino = this.buscarCeldaConPosicion(posicionHorizontalDestino, posicionVerticalDestino);
+    public void moverUnidad(Posicion posicionOrigen, Posicion posicionDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, CeldaYaTieneUnidad {
+            Celda celdaOrigen = this.buscarCeldaConPosicion(posicionOrigen);
+            Celda celdaDestino = this.buscarCeldaConPosicion(posicionDestino);
 
 
             Unidad unidadAMover = celdaOrigen.quitarUnidad();
@@ -85,7 +86,7 @@ public class Tablero {
     }
 
 
-    private void llenarTablero(int largo,int alto){
+    private void llenarTablero(int largo, int alto){
 
         for (int fila = 1; fila <= largo; fila++ ){
 
@@ -104,13 +105,13 @@ public class Tablero {
 
     }
 
-    private Celda buscarCeldaConPosicion(int posicionHorizontal, int posicionVertical) throws NoSeEncontroLaCelda {
+    private Celda buscarCeldaConPosicion(Posicion laPosicion) throws NoSeEncontroLaCelda {
 
-        Celda celdaQueQuieroEncontrar = new Celda(posicionHorizontal,posicionVertical);
+        Celda celdaQueQuieroEncontrar = new Celda(laPosicion);
 
-        int posicion = this.celdas.indexOf(celdaQueQuieroEncontrar);
+        int indiceDeLaCelda = this.celdas.indexOf(celdaQueQuieroEncontrar);
 
-        if (posicion != -1) return this.celdas.get(posicion);
+        if (indiceDeLaCelda != -1) return this.celdas.get(indiceDeLaCelda);
 
         throw new NoSeEncontroLaCelda();
 
