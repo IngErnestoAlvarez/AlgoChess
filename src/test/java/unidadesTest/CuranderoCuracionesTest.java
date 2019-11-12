@@ -1,14 +1,15 @@
 
 package unidadesTest;
 
-import ErroresYExcepciones.CeldaNoEstaEnRango;
+import ErroresYExcepciones.RangoMuyCercano;
+import ErroresYExcepciones.RangoMuyLejano;
 import junit.framework.TestCase;
 
 import unidad.*;
 
 public class CuranderoCuracionesTest extends TestCase {
 
-    public void test01CuranderoNoPuedeCurarUnaCatapulta() throws CeldaNoEstaEnRango {
+    public void test01CuranderoNoPuedeCurarUnaCatapulta() throws RangoMuyLejano, RangoMuyCercano {
 
         Curandero curandero = new Curandero();
         Catapulta catapulta = new Catapulta();
@@ -22,7 +23,7 @@ public class CuranderoCuracionesTest extends TestCase {
         }
 
 
-    public void test03CuranderoCuraSoldadoLaVidaCorrecta() throws CeldaNoEstaEnRango {
+    public void test03CuranderoCuraSoldadoLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
         Curandero curandero = new Curandero();
         Soldado soldado1 = new Soldado();
         Soldado soldado2 = new Soldado();
@@ -35,7 +36,7 @@ public class CuranderoCuracionesTest extends TestCase {
 
     }
 
-    public void test04CuranderoCuraJineteLaVidaCorrecta() throws CeldaNoEstaEnRango {
+    public void test04CuranderoCuraJineteLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
         Curandero curandero = new Curandero();
         Jinete jinete= new Jinete();
         Soldado soldado = new Soldado();
@@ -48,7 +49,7 @@ public class CuranderoCuracionesTest extends TestCase {
 
     }
 
-    public void test05CuranderoCuraCuranderoLaVidaCorrecta() throws CeldaNoEstaEnRango {
+    public void test05CuranderoCuraCuranderoLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
 
         Curandero curandero1 = new Curandero();
         Soldado soldado = new Soldado();

@@ -1,5 +1,7 @@
 package unidad.accion;
 
+import ErroresYExcepciones.RangoMuyCercano;
+import ErroresYExcepciones.RangoMuyLejano;
 import unidad.Unidad;
 
 public class AtaqueMedio extends Accion {
@@ -10,7 +12,8 @@ public class AtaqueMedio extends Accion {
     }
 
     @Override
-    public void interactuar(Unidad unidad, int distancia){
+    public void interactuar(Unidad unidad, int distancia) throws RangoMuyLejano, RangoMuyCercano {
+        rango.perteneceAlRango(distancia);
         unidad.recibirDanio(puntosVida);
     }
 }

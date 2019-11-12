@@ -1,12 +1,13 @@
 package unidadesTest;
 
-import ErroresYExcepciones.CeldaNoEstaEnRango;
+import ErroresYExcepciones.RangoMuyCercano;
+import ErroresYExcepciones.RangoMuyLejano;
 import junit.framework.TestCase;
 import unidad.*;
 
 public class SoldadoAtaquesTest extends TestCase {
 
-    public void test01SoldadoAtacaAJineteCercanoYLeQuitaLaVidaCorrecta() throws CeldaNoEstaEnRango {
+    public void test01SoldadoAtacaAJineteCercanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
 
         Soldado soldado = new Soldado();
         Jinete jinete = new Jinete();
@@ -18,7 +19,7 @@ public class SoldadoAtaquesTest extends TestCase {
     }
 
 
-    public void test03SoldadoAtacaACatapultaCercanaYLeQuitaLaVidaCorrecta() throws CeldaNoEstaEnRango {
+    public void test03SoldadoAtacaACatapultaCercanaYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
 
         Soldado soldado = new Soldado();
         Catapulta catapulta = new Catapulta();
@@ -29,7 +30,7 @@ public class SoldadoAtaquesTest extends TestCase {
 
     }
 
-    public void test04SoldadoAtacaACuranderoCercanoYLeQuitaLaVidaCorrecta() throws CeldaNoEstaEnRango {
+    public void test04SoldadoAtacaACuranderoCercanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
 
         Soldado soldado = new Soldado();
         Curandero curandero = new Curandero();
@@ -40,7 +41,7 @@ public class SoldadoAtaquesTest extends TestCase {
 
     }
 
-    public void test05SoldadoAtacaASoldadoCercanoYLeQuitaLaVidaCorrecta() throws CeldaNoEstaEnRango {
+    public void test05SoldadoAtacaASoldadoCercanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
 
         Soldado soldado1 = new Soldado();
         Soldado soldado2 = new Soldado();

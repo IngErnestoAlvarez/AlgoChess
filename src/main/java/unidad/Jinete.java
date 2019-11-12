@@ -1,6 +1,7 @@
 package unidad;
 
-import ErroresYExcepciones.CeldaNoEstaEnRango;
+import ErroresYExcepciones.RangoMuyCercano;
+import ErroresYExcepciones.RangoMuyLejano;
 import unidad.estadosJinete.*;
 
 public class Jinete extends Unidad {
@@ -19,7 +20,7 @@ public class Jinete extends Unidad {
     }
 
     @Override
-    public void interactuar(Unidad unidad, int distancia) throws CeldaNoEstaEnRango {
+    public void interactuar(Unidad unidad, int distancia) throws RangoMuyLejano, RangoMuyCercano {
         estadoJineteAtaque.atacar(unidad, distancia);
     }
 }

@@ -1,6 +1,7 @@
 package unidad.accion;
 
-import ErroresYExcepciones.CeldaNoEstaEnRango;
+import ErroresYExcepciones.RangoMuyCercano;
+import ErroresYExcepciones.RangoMuyLejano;
 import unidad.*;
 
 public class AtaqueCercano extends Accion{
@@ -11,12 +12,8 @@ public class AtaqueCercano extends Accion{
     }
 
     @Override
-    public void interactuar(Unidad unidad, int distancia) throws CeldaNoEstaEnRango {
-        if(rango.perteneceAlRango(distancia)){
-            unidad.recibirDanio(puntosVida);
-        }
-        else{
-            throw new CeldaNoEstaEnRango();
-        }
+    public void interactuar(Unidad unidad, int distancia) throws RangoMuyLejano, RangoMuyCercano {
+        rango.perteneceAlRango(distancia);
+        unidad.recibirDanio(puntosVida);
     }
 }

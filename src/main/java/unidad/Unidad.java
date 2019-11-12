@@ -1,6 +1,7 @@
 package unidad;
 
-import ErroresYExcepciones.CeldaNoEstaEnRango;
+import ErroresYExcepciones.RangoMuyCercano;
+import ErroresYExcepciones.RangoMuyLejano;
 import equipo.Equipo;
 import unidad.accion.*;
 
@@ -19,7 +20,7 @@ public abstract class Unidad {
         return precio;
     }
 
-    public void interactuar(Unidad unidad, int distancia) throws CeldaNoEstaEnRango {
+    public void interactuar(Unidad unidad, int distancia) throws RangoMuyLejano, RangoMuyCercano {
         accion.interactuar(unidad, distancia);
     }
 

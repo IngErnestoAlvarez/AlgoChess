@@ -1,6 +1,7 @@
 package unidad.estadosJinete;
 
-import ErroresYExcepciones.CeldaNoEstaEnRango;
+import ErroresYExcepciones.RangoMuyCercano;
+import ErroresYExcepciones.RangoMuyLejano;
 import unidad.accion.Accion;
 import unidad.Unidad;
 
@@ -10,7 +11,7 @@ public abstract class EstadoJinete {
 
     public abstract EstadoJinete cambiarEstado();
 
-    public void atacar(Unidad unidad, int distancia) throws CeldaNoEstaEnRango {
+    public void atacar(Unidad unidad, int distancia) throws RangoMuyLejano, RangoMuyCercano {
 
         accion.interactuar(unidad, distancia);
     }
