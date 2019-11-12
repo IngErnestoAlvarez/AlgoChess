@@ -29,7 +29,7 @@ public class TableroTest extends TestCase {
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
-		Posicion unaPosicion = new Posicion(1,1);
+		Posicion unaPosicion = new Posicion(1, 1);
 		try {
 			nuevoTablero.colocarUnidad(unSoldado, unaPosicion); // empieza poniendo el equipo de abajo.
 			fail("No se lanzo la excepcion de sector invalido");
@@ -44,7 +44,7 @@ public class TableroTest extends TestCase {
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
-		Posicion posicionDeseada = new Posicion (17,17);
+		Posicion posicionDeseada = new Posicion(17, 17);
 		try {
 			//Sector Correcto
 			nuevoTablero.colocarUnidad(unSoldado, posicionDeseada);
@@ -68,8 +68,8 @@ public class TableroTest extends TestCase {
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
 		boolean seCambioDeSector = true;
-		Posicion unaPosicion = new Posicion (17, 17);
-		Posicion otraPosicion = new Posicion (1, 1);
+		Posicion unaPosicion = new Posicion(17, 17);
+		Posicion otraPosicion = new Posicion(1, 1);
 
 
 		try {
@@ -109,7 +109,7 @@ public class TableroTest extends TestCase {
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
-		Posicion posicionDeseada = new Posicion (2, 2);
+		Posicion posicionDeseada = new Posicion(2, 2);
 
 
 		nuevoTablero.cambiarSector();
@@ -117,11 +117,11 @@ public class TableroTest extends TestCase {
 		nuevoTablero.colocarUnidad(unSoldado, posicionDeseada);
 
 
-		try{
+		try {
 			nuevoTablero.moverUnidad(posicionDeseada, posicionDeseada.derecha());
 			Unidad unidadVacia = nuevoTablero.verUnidad(posicionDeseada);
 			fail("El test no tiro la excepcion CeldaNoTieneUnidad");
-		}catch(CeldaNoTieneUnidad e){
+		} catch (CeldaNoTieneUnidad e) {
 		}
 
 	}
@@ -131,12 +131,12 @@ public class TableroTest extends TestCase {
 		Equipo equipoDeJorge = mock(Equipo.class); //nombre,puntos;
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
-		Posicion posicionDeseada = new Posicion (1, 1);
+		Posicion posicionDeseada = new Posicion(1, 1);
 
-		try{
+		try {
 			nuevoTablero.moverUnidad(posicionDeseada, posicionDeseada.derecha());
 			fail("El test no tiro la excepcion CeldaNoTieneUnidad");
-		}catch(CeldaNoTieneUnidad excepcion){
+		} catch (CeldaNoTieneUnidad excepcion) {
 		}
 
 	}
@@ -149,19 +149,20 @@ public class TableroTest extends TestCase {
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Unidad unSoldado = mock(Soldado.class);
 		Unidad otroSoldado = mock(Soldado.class);
-		Posicion posicionDeseada = new Posicion (12, 12);
+		Posicion posicionDeseada = new Posicion(12, 12);
 
 		nuevoTablero.colocarUnidad(unSoldado, posicionDeseada);
 		nuevoTablero.colocarUnidad(otroSoldado, posicionDeseada.arriba());
 
 
-		try{
-			nuevoTablero.moverUnidad( posicionDeseada, posicionDeseada.arriba());
+		try {
+			nuevoTablero.moverUnidad(posicionDeseada, posicionDeseada.arriba());
 			fail("El test no tiro la excepcion CeldaYaTieneUnidad");
-		}catch(CeldaYaTieneUnidad otraExcepcion) {
+		} catch (CeldaYaTieneUnidad otraExcepcion) {
 		}
 
 	}
+
 	public void test08TableroBatallonHorizontalSeMueveVerticalmente() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, MovimientoInvalido {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
@@ -183,7 +184,7 @@ public class TableroTest extends TestCase {
 		Assert.assertEquals(soldadoDeIzquierda, nuevoTablero.verUnidad(posicionCentro.izquierda().arriba()));
 		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro.arriba()));
 
-		nuevoTablero.moverUnidad(posicionCentro.arriba(),posicionCentro);
+		nuevoTablero.moverUnidad(posicionCentro.arriba(), posicionCentro);
 
 		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro));
 		Assert.assertEquals(soldadoDeDerecha, nuevoTablero.verUnidad(posicionCentro.derecha()));
@@ -206,13 +207,13 @@ public class TableroTest extends TestCase {
 		nuevoTablero.colocarUnidad(soldadoDelCentro, posicionCentro);
 		nuevoTablero.colocarUnidad(soldadoDeIzquierda, posicionCentro.izquierda());
 
-		nuevoTablero.moverUnidad(posicionCentro,posicionCentro.derecha());
+		nuevoTablero.moverUnidad(posicionCentro, posicionCentro.derecha());
 
 		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro.derecha()));
 		Assert.assertEquals(soldadoDeDerecha, nuevoTablero.verUnidad(posicionCentro.derecha().derecha()));
 		Assert.assertEquals(soldadoDeIzquierda, nuevoTablero.verUnidad(posicionCentro.izquierda().derecha()));
 
-		nuevoTablero.moverUnidad(posicionCentro.derecha(),posicionCentro);
+		nuevoTablero.moverUnidad(posicionCentro.derecha(), posicionCentro);
 
 
 		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro));
@@ -238,15 +239,15 @@ public class TableroTest extends TestCase {
 
 		nuevoTablero.moverUnidad(posicionCentro, posicionCentro.arriba());
 
-		Assert.assertEquals(soldadoDeArriba,nuevoTablero.verUnidad(posicionCentro.arriba().arriba()));
-		Assert.assertEquals(soldadoDeAbajo,nuevoTablero.verUnidad(posicionCentro.abajo().arriba()));
+		Assert.assertEquals(soldadoDeArriba, nuevoTablero.verUnidad(posicionCentro.arriba().arriba()));
+		Assert.assertEquals(soldadoDeAbajo, nuevoTablero.verUnidad(posicionCentro.abajo().arriba()));
 		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro.arriba()));
 
-		nuevoTablero.moverUnidad(posicionCentro.arriba(),posicionCentro);
+		nuevoTablero.moverUnidad(posicionCentro.arriba(), posicionCentro);
 
-		Assert.assertEquals(soldadoDeArriba,nuevoTablero.verUnidad(posicionCentro.arriba()));
-		Assert.assertEquals(soldadoDeAbajo,nuevoTablero.verUnidad(posicionCentro.abajo()));
-		Assert.assertEquals(soldadoDelCentro,nuevoTablero.verUnidad(posicionCentro));
+		Assert.assertEquals(soldadoDeArriba, nuevoTablero.verUnidad(posicionCentro.arriba()));
+		Assert.assertEquals(soldadoDeAbajo, nuevoTablero.verUnidad(posicionCentro.abajo()));
+		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro));
 	}
 
 	public void test10TableroMoverBatallonVerticalSeMueveHorizontalmente() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, MovimientoInvalido {
@@ -266,15 +267,15 @@ public class TableroTest extends TestCase {
 
 		nuevoTablero.moverUnidad(posicionCentro, posicionCentro.derecha());
 
-		Assert.assertEquals(soldadoDeArriba,nuevoTablero.verUnidad(posicionCentro.arriba().derecha()));
-		Assert.assertEquals(soldadoDeAbajo,nuevoTablero.verUnidad(posicionCentro.abajo().derecha()));
+		Assert.assertEquals(soldadoDeArriba, nuevoTablero.verUnidad(posicionCentro.arriba().derecha()));
+		Assert.assertEquals(soldadoDeAbajo, nuevoTablero.verUnidad(posicionCentro.abajo().derecha()));
 		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro.derecha()));
 
-		nuevoTablero.moverUnidad(posicionCentro.derecha(),posicionCentro);
+		nuevoTablero.moverUnidad(posicionCentro.derecha(), posicionCentro);
 
-		Assert.assertEquals(soldadoDeArriba,nuevoTablero.verUnidad(posicionCentro.arriba()));
-		Assert.assertEquals(soldadoDeAbajo,nuevoTablero.verUnidad(posicionCentro.abajo()));
-		Assert.assertEquals(soldadoDelCentro,nuevoTablero.verUnidad(posicionCentro));
+		Assert.assertEquals(soldadoDeArriba, nuevoTablero.verUnidad(posicionCentro.arriba()));
+		Assert.assertEquals(soldadoDeAbajo, nuevoTablero.verUnidad(posicionCentro.abajo()));
+		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro));
 
 	}
 
@@ -287,8 +288,8 @@ public class TableroTest extends TestCase {
 		Unidad unSoldado = mock(Soldado.class);
 
 		try {
-			nuevoTablero.colocarUnidad( unSoldado, posicionDeUnidad );
-			nuevoTablero.moverUnidad(posicionDeUnidad,posicionDeUnidad.arriba());
+			nuevoTablero.colocarUnidad(unSoldado, posicionDeUnidad);
+			nuevoTablero.moverUnidad(posicionDeUnidad, posicionDeUnidad.arriba());
 		} catch (CeldaNoEstaEnElTablero celdaNoEstaEnElTablero) {
 			fail("No se deberia tirar la celda no esta en el tablero.");
 		}
@@ -314,8 +315,8 @@ public class TableroTest extends TestCase {
 
 		nuevoTablero.moverUnidad(posicionCentro, posicionCentro.derecha());
 
-		Assert.assertEquals(soldadoDeArriba,nuevoTablero.verUnidad(posicionCentro.arriba().derecha()));
-		Assert.assertEquals(soldadoDeAbajo,nuevoTablero.verUnidad(posicionCentro.abajo().derecha()));
+		Assert.assertEquals(soldadoDeArriba, nuevoTablero.verUnidad(posicionCentro.arriba().derecha()));
+		Assert.assertEquals(soldadoDeAbajo, nuevoTablero.verUnidad(posicionCentro.abajo().derecha()));
 		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro));
 
 	}
@@ -331,12 +332,12 @@ public class TableroTest extends TestCase {
 		Unidad soldadoDelCentro = mock(Soldado.class);
 		Unidad soldadoQueSobra = mock(Soldado.class);
 
-		nuevoTablero.colocarUnidad(soldadoDelCentro,posicionDelCentro);
-		nuevoTablero.colocarUnidad(soldadoDeDerecha,posicionDelCentro.derecha());
-		nuevoTablero.colocarUnidad(soldadoDeIzquierda,posicionDelCentro.izquierda());
-		nuevoTablero.colocarUnidad(soldadoQueSobra,posicionDelCentro.derecha().derecha());
+		nuevoTablero.colocarUnidad(soldadoDelCentro, posicionDelCentro);
+		nuevoTablero.colocarUnidad(soldadoDeDerecha, posicionDelCentro.derecha());
+		nuevoTablero.colocarUnidad(soldadoDeIzquierda, posicionDelCentro.izquierda());
+		nuevoTablero.colocarUnidad(soldadoQueSobra, posicionDelCentro.derecha().derecha());
 
-		nuevoTablero.moverUnidad(posicionDelCentro,posicionDelCentro.arriba());
+		nuevoTablero.moverUnidad(posicionDelCentro, posicionDelCentro.arriba());
 
 		Assert.assertEquals(soldadoDeDerecha, nuevoTablero.verUnidad(posicionDelCentro.derecha().arriba()));
 		Assert.assertEquals(soldadoDeIzquierda, nuevoTablero.verUnidad(posicionDelCentro.izquierda().arriba()));
@@ -364,16 +365,53 @@ public class TableroTest extends TestCase {
 
 		nuevoTablero.moverUnidad(posicionCentro, posicionCentro.derecha());
 
-		Assert.assertEquals(soldadoDeArriba,nuevoTablero.verUnidad(posicionCentro.arriba().derecha()));
+		Assert.assertEquals(soldadoDeArriba, nuevoTablero.verUnidad(posicionCentro.arriba().derecha()));
 		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro.derecha()));
-		Assert.assertEquals(soldadoDeAbajo,nuevoTablero.verUnidad(posicionCentro.abajo()));
+		Assert.assertEquals(soldadoDeAbajo, nuevoTablero.verUnidad(posicionCentro.abajo()));
 
-		nuevoTablero.moverUnidad(posicionCentro.derecha(),posicionCentro.derecha().derecha());
+		nuevoTablero.moverUnidad(posicionCentro.derecha(), posicionCentro.derecha().derecha());
 
-		Assert.assertEquals(soldadoDeArriba,nuevoTablero.verUnidad(posicionCentro.arriba().derecha()));
+		Assert.assertEquals(soldadoDeArriba, nuevoTablero.verUnidad(posicionCentro.arriba().derecha()));
 		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro.derecha().derecha()));
-		Assert.assertEquals(soldadoDeAbajo,nuevoTablero.verUnidad(posicionCentro.abajo()));
-		Assert.assertEquals(jineteMolesto,nuevoTablero.verUnidad(posicionCentro.abajo().derecha()));
+		Assert.assertEquals(soldadoDeAbajo, nuevoTablero.verUnidad(posicionCentro.abajo()));
+		Assert.assertEquals(jineteMolesto, nuevoTablero.verUnidad(posicionCentro.abajo().derecha()));
+
+	}
+
+	public void test15TableroTrataDeMoverUnidadMasLejosQueUnCasilleroYLanzaExcepcion() throws NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
+
+		Equipo equipoDeJorge = mock(Equipo.class);
+		Equipo equipoDeRaul = mock(Equipo.class);
+		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
+		Unidad unSoldado = mock(Soldado.class);
+		Posicion unaPosicion = new Posicion(20, 20);
+
+		nuevoTablero.colocarUnidad(unSoldado, unaPosicion);
+
+
+		try {
+			nuevoTablero.moverUnidad(unaPosicion, unaPosicion.arriba().arriba());
+			fail("No se lanzo la excepcion de movimiento invalido.");
+		} catch (MovimientoInvalido movimientoInvalido) {
+		}
+
+	}
+
+	public void test15TableroTrataDeMoverCatapultaYLanzaExcepcion() throws NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
+
+		Equipo equipoDeJorge = mock(Equipo.class);
+		Equipo equipoDeRaul = mock(Equipo.class);
+		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
+		Unidad unaCatapulta = mock(Catapulta.class);
+		Posicion unaPosicion = new Posicion(20, 20);
+
+		nuevoTablero.colocarUnidad(unaCatapulta,unaPosicion);
+
+		try {
+			nuevoTablero.moverUnidad(unaPosicion, unaPosicion.arriba().arriba());
+			fail("No se lanzo la excepcion de movimiento invalido.");
+		} catch (MovimientoInvalido movimientoInvalido) {
+		}
 
 	}
 }
