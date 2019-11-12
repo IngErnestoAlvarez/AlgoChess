@@ -9,7 +9,8 @@ public class AtaqueMedio extends Accion {
         rango = new Rango(3, 5);
     }
 
-    public void interactuar(Unidad unidad){
+    @Override
+    public void interactuar(Unidad unidad, int distancia){
         unidad.recibirDanio(puntosVida);
     }
 }

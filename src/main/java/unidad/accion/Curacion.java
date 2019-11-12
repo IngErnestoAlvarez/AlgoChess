@@ -10,7 +10,8 @@ public class Curacion extends Accion {
         Rango rango = new Rango(0, 1);
     }
 
-    public void interactuar(Unidad unidad){
+    @Override
+    public void interactuar(Unidad unidad, int distancia){
         unidad.recibirCuracion(puntosVida);
     }
 }

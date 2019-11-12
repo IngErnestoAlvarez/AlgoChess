@@ -1,24 +1,26 @@
 package unidad;
 
+import ErroresYExcepciones.CeldaNoEstaEnRango;
 import unidad.estadosJinete.*;
 
 public class Jinete extends Unidad {
 
-    private Estado estadoAtaque;
+    private EstadoJinete estadoJineteAtaque;
 
     public Jinete(){
         precio = 3;
         vida = 100;
-        estadoAtaque = new EstadoAtaqueCercano();
+        estadoJineteAtaque = new EstadoJineteAtaqueCercano();
+
     }
 
     public void cambiarAtaque(){
-        estadoAtaque = estadoAtaque.cambiarEstado();
+        estadoJineteAtaque = estadoJineteAtaque.cambiarEstado();
     }
 
     @Override
-    public void interactuar(Unidad unidad){
-        estadoAtaque.atacar(unidad);
+    public void interactuar(Unidad unidad, int distancia) throws CeldaNoEstaEnRango {
+        estadoJineteAtaque.atacar(unidad, distancia);
     }
 }
 

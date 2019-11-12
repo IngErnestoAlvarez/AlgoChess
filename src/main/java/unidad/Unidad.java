@@ -1,5 +1,7 @@
 package unidad;
 
+import ErroresYExcepciones.CeldaNoEstaEnRango;
+import equipo.Equipo;
 import unidad.accion.*;
 
 public abstract class Unidad {
@@ -7,6 +9,7 @@ public abstract class Unidad {
     int vida;
     int precio;
     Accion accion;
+    Equipo equipo;
 
     public int getVida(){
         return vida;
@@ -16,8 +19,8 @@ public abstract class Unidad {
         return precio;
     }
 
-    public void interactuar(Unidad unidad){
-        accion.interactuar(unidad);
+    public void interactuar(Unidad unidad, int distancia) throws CeldaNoEstaEnRango {
+        accion.interactuar(unidad, distancia);
     }
 
     public void recibirCuracion(int vidaCurada){
@@ -28,4 +31,7 @@ public abstract class Unidad {
         vida -= danio;
     }
 
+    public void setEquipo(Equipo equipo){
+        this.equipo = equipo;
+    }
 }

@@ -10,7 +10,7 @@ public class Rango {
         rangoMinimo = min;
     }
 
-    boolean perteneceAlRango(int distancia){
+    public boolean perteneceAlRango(int distancia){
 
         return distancia <= rangoMaximo && distancia >= rangoMinimo;
 
