@@ -188,9 +188,15 @@ public class Tablero {
         return (this.esBatallonVertical(posicionCentro) || this.esBatallonHorizontal(posicionCentro));
     }
 
-    private boolean esBatallonHorizontal(Posicion posicionCentro) throws  NoSeEncontroLaCelda {
-        Celda celdaDerecha = this.buscarCeldaConPosicion(posicionCentro.derecha());
-        Celda celdaIzquierda = this.buscarCeldaConPosicion(posicionCentro.izquierda());
+    private boolean esBatallonHorizontal(Posicion posicionCentro) {
+        Celda celdaDerecha = null;
+        Celda celdaIzquierda = null;
+        try {
+            celdaIzquierda = this.buscarCeldaConPosicion(posicionCentro.izquierda());
+            celdaDerecha = this.buscarCeldaConPosicion(posicionCentro.derecha());
+        } catch (NoSeEncontroLaCelda noSeEncontroLaCelda) {
+            return false;
+        }
         try {
             return (celdaDerecha.verUnidad() instanceof Soldado && celdaIzquierda.verUnidad() instanceof Soldado);
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
@@ -198,9 +204,15 @@ public class Tablero {
         }
     }
 
-    private boolean esBatallonVertical(Posicion posicionCentro) throws NoSeEncontroLaCelda {
-        Celda celdaArriba = this.buscarCeldaConPosicion(posicionCentro.arriba());
-        Celda celdaAbajo = this.buscarCeldaConPosicion(posicionCentro.abajo());
+    private boolean esBatallonVertical(Posicion posicionCentro) {
+        Celda celdaArriba = null;
+        Celda celdaAbajo = null;
+        try {
+            celdaArriba = this.buscarCeldaConPosicion(posicionCentro.arriba());
+            celdaAbajo = this.buscarCeldaConPosicion(posicionCentro.abajo());
+        } catch (NoSeEncontroLaCelda noSeEncontroLaCelda) {
+            return false;
+        }
         try {
             return (celdaArriba.verUnidad() instanceof Soldado && celdaAbajo.verUnidad() instanceof Soldado);
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
