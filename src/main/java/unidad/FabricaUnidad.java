@@ -1,24 +1,24 @@
 package unidad;
 
-import ErroresYExcepciones.*;
+import java.util.HashMap;
 
 public class FabricaUnidad {
 
+    private HashMap fabricaUnidades;
+
     public FabricaUnidad() {
+
+        this.fabricaUnidades = new HashMap(4,2);
+
+        fabricaUnidades.put("SOLDADO", new Soldado());
+        fabricaUnidades.put("JINETE", new Jinete());
+        fabricaUnidades.put("CATAPULTA", new Catapulta());
+        fabricaUnidades.put("CURANDERO", new Curandero());
 
     }
 
-    public Unidad fabricar(String claseUnidad) throws EquipoQuiereCrearUnidadInvalida {
+    public Unidad fabricar(String clave){
 
-        if (claseUnidad.equalsIgnoreCase("SOLDADO")) {
-            return new Soldado();
-        } else if (claseUnidad.equalsIgnoreCase("JINETE")) {
-            return new Jinete();
-        } else if (claseUnidad.equalsIgnoreCase("CURANDERO")) {
-            return new Curandero();
-        } else if (claseUnidad.equalsIgnoreCase("CATAPULTA")) {
-            return new Catapulta();
-        }
-        throw new EquipoQuiereCrearUnidadInvalida();
+        return  (Unidad)this.fabricaUnidades.get(clave.toUpperCase());
     }
 }

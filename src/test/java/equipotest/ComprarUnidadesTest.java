@@ -2,6 +2,7 @@ package equipotest;
 
 import equipo.*;
 import ErroresYExcepciones.*;
+import unidad.*;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
