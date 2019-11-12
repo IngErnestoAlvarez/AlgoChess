@@ -5,7 +5,7 @@ import celda.EstadoCelda;
 import celda.EstadoCeldaVacia;
 import junit.framework.TestCase;
 
-public class EstadoCeldaTest extends TestCase {
+public class EstadoJineteCeldaTest extends TestCase {
 
     public void test00EstadoCeldaVaciaNoSePuedeVerUnidad(){
         EstadoCelda estadoCelda = new EstadoCeldaVacia();

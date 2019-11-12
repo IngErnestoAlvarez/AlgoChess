@@ -1,5 +1,8 @@
 package unidad.accion;
 
+import ErroresYExcepciones.RangoMuyCercano;
+import ErroresYExcepciones.RangoMuyLejano;
+
 public class Rango {
 
     private int rangoMaximo;
@@ -10,9 +13,14 @@ public class Rango {
         rangoMinimo = min;
     }
 
-    boolean perteneceAlRango(int distancia){
+    public boolean perteneceAlRango(int distancia) throws RangoMuyLejano, RangoMuyCercano {
 
-        return distancia <= rangoMaximo && distancia >= rangoMinimo;
-
+        if(distancia > rangoMaximo){
+            throw new RangoMuyLejano();
+        }
+        else if(distancia < rangoMinimo){
+            throw new RangoMuyCercano();
+        }
+        return true;
     }
 }
