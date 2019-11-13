@@ -19,6 +19,6 @@ public class FabricaUnidad {
 
     public Unidad fabricar(String clave){
 
-        return  (Unidad)this.fabricaUnidades.get(clave.toUpperCase());
+        return  (Unidad) this.fabricaUnidades.get(clave.toUpperCase());
     }
 }
