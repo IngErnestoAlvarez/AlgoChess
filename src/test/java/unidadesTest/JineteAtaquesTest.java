@@ -3,18 +3,33 @@ package unidadesTest;
 
 import ErroresYExcepciones.RangoMuyCercano;
 import ErroresYExcepciones.RangoMuyLejano;
+import celda.Celda;
 import equipo.Equipo;
 import junit.framework.TestCase;
 import unidad.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class JineteAtaquesTest extends TestCase {
 
     public void test01JineteAtacaAJineteCercanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
+        Equipo equipoAliado = mock(Equipo.class);
+        Equipo equipoEnemigo = mock(Equipo.class);
+        Celda celdaJinete1 = mock(Celda.class);
+        Celda celdaJinete2 = mock(Celda.class);
 
-        Jinete jinete1 = new Jinete();
-        Jinete jinete2 = new Jinete();
+        Jinete jinete1 = new Jinete(celdaJinete1, equipoAliado);
+        Jinete jinete2 = new Jinete(celdaJinete2, equipoEnemigo);
+
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        listaDeUnidadesCercanas.add(jinete2);
+
+        when(celdaJinete1.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
+
 
         jinete1.interactuar(jinete2, 1);
 
@@ -24,12 +39,17 @@ public class JineteAtaquesTest extends TestCase {
 
 
     public void test02JineteAtacaAJineteLejanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
+        Equipo equipoAliado = mock(Equipo.class);
+        Equipo equipoEnemigo = mock(Equipo.class);
+        Celda celdaJinete1 = mock(Celda.class);
+        Celda celdaJinete2 = mock(Celda.class);
 
+        Jinete jinete1 = new Jinete(celdaJinete1, equipoAliado);
+        Jinete jinete2 = new Jinete(celdaJinete2, equipoEnemigo);
 
-        Jinete jinete1 = new Jinete();
-        Jinete jinete2 = new Jinete();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
 
-        jinete1.cambiarAtaque();
+        when(celdaJinete1.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
         jinete1.interactuar(jinete2, 3);
 
@@ -37,9 +57,19 @@ public class JineteAtaquesTest extends TestCase {
     }
 
     public void test03JineteAtacaACatapultaCercanaYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
+        Equipo equipoAliado = mock(Equipo.class);
+        Equipo equipoEnemigo = mock(Equipo.class);
+        Celda celdaJinete = mock(Celda.class);
+        Celda celdaCatapulta = mock(Celda.class);
 
-        Jinete jinete = new Jinete();
-        Catapulta catapulta = new Catapulta();
+        Jinete jinete = new Jinete(celdaJinete, equipoAliado);
+        Catapulta catapulta = new Catapulta(celdaCatapulta, equipoEnemigo);
+
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+
+        listaDeUnidadesCercanas.add(catapulta);
+
+        when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
         jinete.interactuar(catapulta, 1);
 
@@ -48,22 +78,37 @@ public class JineteAtaquesTest extends TestCase {
     }
 
     public void test04JineteAtacaACatapultaLejanaYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
+        Equipo equipoAliado = mock(Equipo.class);
+        Equipo equipoEnemigo = mock(Equipo.class);
+        Celda celdaJinete = mock(Celda.class);
+        Celda celdaCatapulta = mock(Celda.class);
 
-        Jinete jinete = new Jinete();
-        Catapulta catapulta = new Catapulta();
+        Jinete jinete = new Jinete(celdaJinete, equipoAliado);
+        Catapulta catapulta = new Catapulta(celdaCatapulta, equipoEnemigo);
 
-        jinete.cambiarAtaque();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
 
-        jinete.interactuar(catapulta, 3);
+
+        when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
+
+        jinete.interactuar(catapulta, 4);
 
         assertEquals(35, catapulta.getVida());
-
     }
 
     public void test05JineteAtacaACuranderoCercanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
+        Equipo equipoAliado = mock(Equipo.class);
+        Equipo equipoEnemigo = mock(Equipo.class);
+        Celda celdaJinete = mock(Celda.class);
+        Celda celdaCurandero = mock(Celda.class);
 
-        Jinete jinete = new Jinete();
-        Curandero curandero = new Curandero();
+        Jinete jinete = new Jinete(celdaJinete, equipoAliado);
+        Curandero curandero = new Curandero(celdaCurandero, equipoEnemigo);
+
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        listaDeUnidadesCercanas.add(curandero);
+
+        when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
         jinete.interactuar(curandero, 1);
 
@@ -72,11 +117,17 @@ public class JineteAtaquesTest extends TestCase {
     }
 
     public void test06JineteAtacaACuranderoLejanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
+        Equipo equipoAliado = mock(Equipo.class);
+        Equipo equipoEnemigo = mock(Equipo.class);
+        Celda celdaJinete = mock(Celda.class);
+        Celda celdaCurandero = mock(Celda.class);
 
-        Jinete jinete = new Jinete();
-        Curandero curandero = new Curandero();
+        Jinete jinete = new Jinete(celdaJinete, equipoAliado);
+        Curandero curandero = new Curandero(celdaCurandero, equipoEnemigo);
 
-        jinete.cambiarAtaque();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+
+        when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
         jinete.interactuar(curandero, 3);
 
@@ -85,9 +136,18 @@ public class JineteAtaquesTest extends TestCase {
     }
 
     public void test07JineteAtacaASoldadoCercanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
+        Equipo equipoAliado = mock(Equipo.class);
+        Equipo equipoEnemigo = mock(Equipo.class);
+        Celda celdaJinete = mock(Celda.class);
+        Celda celdaSoldado = mock(Celda.class);
 
-        Jinete jinete = new Jinete();
-        Soldado soldado = new Soldado();
+        Jinete jinete = new Jinete(celdaJinete, equipoAliado);
+        Soldado soldado = new Soldado(celdaSoldado, equipoEnemigo);
+
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        listaDeUnidadesCercanas.add(soldado);
+
+        when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
         jinete.interactuar(soldado, 1);
 
@@ -96,11 +156,18 @@ public class JineteAtaquesTest extends TestCase {
     }
 
     public void test08JineteAtacaASoldadoLejanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
+        Equipo equipoAliado = mock(Equipo.class);
+        Equipo equipoEnemigo = mock(Equipo.class);
+        Celda celdaJinete = mock(Celda.class);
+        Celda celdaSoldado = mock(Celda.class);
 
-        Jinete jinete = new Jinete();
-        Soldado soldado = new Soldado();
+        Jinete jinete = new Jinete(celdaJinete, equipoAliado);
+        Soldado soldado = new Soldado(celdaSoldado, equipoEnemigo);
 
-        jinete.cambiarAtaque();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+
+        when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
+
 
         jinete.interactuar(soldado, 5);
 
@@ -108,62 +175,47 @@ public class JineteAtaquesTest extends TestCase {
 
     }
 
-    public void test09JineteTieneUnidadEnemigaCercaYAtacaConLaEspada(){
-        Jinete jinete = new Jinete();
-        Unidad soldadoEnemigo = new Soldado();
 
+    public void test09JineteTieneUnidadEnemigaDemasiadoLejosYlanzaExcepcion(){
         Equipo equipoAliado = mock(Equipo.class);
-        jinete.setEquipo(equipoAliado);
-
         Equipo equipoEnemigo = mock(Equipo.class);
-        soldadoEnemigo.setEquipo(equipoEnemigo);
+        Celda celdaJinete = mock(Celda.class);
+        Celda celdaSoldado = mock(Celda.class);
 
-        try {
-            jinete.interactuar(soldadoEnemigo, 1);
-        } catch (RangoMuyLejano rangoMuyLejano) {
-            fail("Tendria que no ser mayor al rango");
-        } catch (RangoMuyCercano rangoMuyCercano) {
-            fail("Tendria que no ser menor al rango");
-        }
+        Jinete jinete = new Jinete(celdaJinete, equipoAliado);
+        Unidad soldadoEnemigo = new Soldado(celdaSoldado, equipoEnemigo);
 
-        assertEquals(95, soldadoEnemigo.getVida());
-    }
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
 
-    public void test10JineteTieneUnidadEnemigaLejosYAtacaConArcoYFlecha(){
-        Jinete jinete = new Jinete();
-        Unidad soldadoEnemigo = new Soldado();
+        when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
-        Equipo equipoAliado = mock(Equipo.class);
-        jinete.setEquipo(equipoAliado);
-
-        Equipo equipoEnemigo = mock(Equipo.class);
-        soldadoEnemigo.setEquipo(equipoEnemigo);
-
-        jinete.cambiarAtaque();
-        try {
-            jinete.interactuar(soldadoEnemigo, 4);
-        } catch (RangoMuyLejano rangoMuyLejano) {
-            fail("Tendria que no ser mayor al rango");
-        } catch (RangoMuyCercano rangoMuyCercano) {
-            fail("Tendria que no ser menor al rango");
-        }
-
-        assertEquals(85, soldadoEnemigo.getVida());
-    }
-
-    public void test11JineteTieneUnidadEnemigaDemasiadoLejosYlanzaExcepcion(){
-        Jinete jinete = new Jinete();
-        Unidad soldadoEnemigo = new Soldado();
-
-        Equipo equipoAliado = mock(Equipo.class);
-        jinete.setEquipo(equipoAliado);
-
-        Equipo equipoEnemigo = mock(Equipo.class);
-        soldadoEnemigo.setEquipo(equipoEnemigo);
-
-        jinete.cambiarAtaque();
         try {
             jinete.interactuar(soldadoEnemigo, 10);
+            fail("Tendria que ser mayor el rango");
+        } catch (RangoMuyLejano rangoMuyLejano) {
+        } catch (RangoMuyCercano rangoMuyCercano) {
+            fail("Tendria que no ser menor al rango");
+        }
+    }
+
+    public void test10JineteTieneUnidadEnemigaCercaYNoPuedeAtacarLejos(){
+        Equipo equipoAliado = mock(Equipo.class);
+        Equipo equipoEnemigo = mock(Equipo.class);
+        Celda celdaJinete = mock(Celda.class);
+        Celda celdaSoldado = mock(Celda.class);
+
+        Jinete jinete = new Jinete(celdaJinete, equipoAliado);
+        Unidad soldadoEnemigoCercano = new Soldado(celdaSoldado, equipoEnemigo);
+        Unidad soldadoEnemigoLejano = new Soldado(celdaSoldado, equipoEnemigo);
+
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+
+        listaDeUnidadesCercanas.add(soldadoEnemigoCercano);
+
+        when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
+
+        try {
+            jinete.interactuar(soldadoEnemigoLejano, 4);
             fail("Tendria que ser mayor el rango");
         } catch (RangoMuyLejano rangoMuyLejano) {
         } catch (RangoMuyCercano rangoMuyCercano) {

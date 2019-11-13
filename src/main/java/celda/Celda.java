@@ -4,14 +4,23 @@ import ErroresYExcepciones.CeldaYaTieneUnidad;
 import unidad.Unidad;
 import ErroresYExcepciones.CeldaNoTieneUnidad;
 
+import java.util.List;
+
 public class Celda {
     EstadoCelda estado;
     private Posicion posicion;
+    private Adyacentes adyacentes;
 
 
     public Celda(){
         estado = new EstadoCeldaVacia();
         posicion = new Posicion();
+    }
+
+    public Celda(Posicion unaPosicion, Adyacentes adyacentes){
+        this.estado = new EstadoCeldaVacia();
+        this.posicion = unaPosicion;
+        this.adyacentes = adyacentes;
     }
 
     public Celda(Posicion unaPosicion){
@@ -50,6 +59,9 @@ public class Celda {
         return this.posicion;
     }
 
+    public List<Unidad> verUnidadesAdyacentes(){
+        return adyacentes.verUnidadesAdyacentes();
+    }
 }
 
 
