@@ -1,9 +1,11 @@
 package celda;
 
 import ErroresYExcepciones.CeldaYaTieneUnidad;
+import net.bytebuddy.dynamic.scaffold.inline.AbstractInliningDynamicTypeBuilder;
 import unidad.Unidad;
 import ErroresYExcepciones.CeldaNoTieneUnidad;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Celda {
@@ -15,6 +17,7 @@ public class Celda {
     public Celda(){
         estado = new EstadoCeldaVacia();
         posicion = new Posicion();
+        adyacentes = new Adyacentes(new ArrayList<Celda>());
     }
 
     public Celda(Posicion unaPosicion, Adyacentes adyacentes){

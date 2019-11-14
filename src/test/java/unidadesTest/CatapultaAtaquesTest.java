@@ -3,6 +3,8 @@ package unidadesTest;
 
 import ErroresYExcepciones.RangoMuyCercano;
 import ErroresYExcepciones.RangoMuyLejano;
+import celda.Celda;
+import equipo.Equipo;
 import junit.framework.TestCase;
 import unidad.*;
 
@@ -11,7 +13,7 @@ public class CatapultaAtaquesTest extends TestCase {
     public void test01CatapultaNoPuedeAtacarAUnidadCercana() throws RangoMuyLejano, RangoMuyCercano {
 
         Catapulta catapulta = new Catapulta();
-        Jinete jinete = new Jinete();
+        Jinete jinete = new Jinete(new Celda(), new Equipo());
 
         try {
             catapulta.interactuar(jinete, 1);
@@ -23,7 +25,7 @@ public class CatapultaAtaquesTest extends TestCase {
     public void test02CatapultaAtacaAJineteLejanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
 
         Catapulta catapulta = new Catapulta();
-        Jinete jinete = new Jinete();
+        Jinete jinete = new Jinete(new Celda(), new Equipo());
 
         catapulta.interactuar(jinete, 7);
 
@@ -33,7 +35,7 @@ public class CatapultaAtaquesTest extends TestCase {
     public void test03CatapultaAtacaACatapultaLejanaYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
 
         Catapulta catapulta1 = new Catapulta();
-        Catapulta catapulta2 = new Catapulta();
+        Catapulta catapulta2 = new Catapulta(new Celda(), new Equipo());
 
         catapulta1.interactuar(catapulta2, 7);
 
@@ -44,7 +46,7 @@ public class CatapultaAtaquesTest extends TestCase {
     public void test04CatapultaAtacaASoldadoLejanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
 
         Catapulta catapulta = new Catapulta();
-        Soldado soldado = new Soldado();
+        Soldado soldado = new Soldado(new Celda(), new Equipo());
 
         catapulta.interactuar(soldado, 7);
 
@@ -55,7 +57,7 @@ public class CatapultaAtaquesTest extends TestCase {
     public void test05CatapultaAtacaACuranderoLejanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
 
         Catapulta catapulta = new Catapulta();
-        Curandero curandero = new Curandero();
+        Curandero curandero = new Curandero(new Celda(), new Equipo());
 
         catapulta.interactuar(curandero, 7);
 
