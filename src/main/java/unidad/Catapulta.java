@@ -5,6 +5,8 @@ import celda.Celda;
 import equipo.Equipo;
 import unidad.accion.*;
 
+import java.util.List;
+
 public class Catapulta extends Unidad {
 
     private static final int precioCatapulta = 5;
@@ -28,5 +30,4 @@ public class Catapulta extends Unidad {
     public void recibirCuracion(int puntosVida){
         vida += 0;
     }
-
 }

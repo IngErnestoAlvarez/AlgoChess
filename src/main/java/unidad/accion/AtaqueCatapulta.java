@@ -19,8 +19,26 @@ public class AtaqueCatapulta extends Accion{
     public void interactuar(Unidad unidad, int distancia) throws RangoMuyLejano, RangoMuyCercano {
 
         rango.perteneceAlRango(distancia);
-        unidad.recibirDanio(puntosVida);
 
+        HashSet atacados = new HashSet();
+        Stack<Unidad> pila = new Stack<>();
+
+
+        pila.add(unidad);
+
+        while (! (pila.isEmpty())){  //Recorrido estilo BFS
+            Unidad unidadAAtacar = pila.pop();
+
+            if (!(atacados.contains(unidadAAtacar))){
+                unidadAAtacar.recibirDanio(puntosVida);
+                atacados.add(unidadAAtacar);
+
+                for(Unidad adyacente : unidadAAtacar.verUnidadesAdyacentes()){
+                    pila.add(adyacente);
+                }
+            }
+
+        }
     }
 
 }
