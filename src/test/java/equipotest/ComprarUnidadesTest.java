@@ -93,20 +93,21 @@ public class ComprarUnidadesTest extends TestCase{
         }
     }
 
-    public void test08ExcepcionEquipoNoTienePuntosSuficientes() throws EquipoNoTienePuntosSuficientes, EquipoQuiereCrearUnidadInvalida{
+    public void test08ExcepcionEquipoNoTienePuntosSuficientes() throws EquipoQuiereCrearUnidadInvalida, EquipoNoPuedeComprarMasUnidades {
 
-        Equipo equipo = new Equipo();
+        Equipo equipo = new Equipo("Alejo was here", 20);
         try {
 
             equipo.comprarUnidad("catapulta");
             equipo.comprarUnidad("catapulta");
             equipo.comprarUnidad("catapulta");
-            equipo.comprarUnidad("catapulta");
 
             equipo.comprarUnidad("jinete");
-            fail( "No se lanzo la excepcion." );
+            equipo.comprarUnidad("jinete");
+            fail( "No se lanzo la excepcion de puntos insuficientes." );
 
-        }catch (EquipoNoPuedeComprarMasUnidades excepcion ) {
+        }catch (EquipoNoTienePuntosSuficientes excepcion ) {
         }
     }
 }
+
