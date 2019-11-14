@@ -20,8 +20,22 @@ public class CuranderoCuracionesTest extends TestCase {
         curandero.interactuar(catapulta, 1);
 
         assertEquals(40, catapulta.getVida());
-        }
+    }
 
+    public void test02CuranderoNoPuedeCurarUnaUnidadLejana() throws RangoMuyLejano, RangoMuyCercano {
+
+        Curandero curandero = new Curandero();
+        Jinete jinete = new Jinete();
+        Soldado soldado = new Soldado();
+
+        soldado.interactuar(jinete, 1);
+
+        try {
+            curandero.interactuar(jinete, 5);
+        }catch(RangoMuyLejano e){}
+
+        assertEquals(90, jinete.getVida());
+    }
 
     public void test03CuranderoCuraSoldadoLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
         Curandero curandero = new Curandero();

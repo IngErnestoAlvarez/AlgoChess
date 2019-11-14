@@ -8,13 +8,24 @@ import unidad.*;
 
 public class CatapultaAtaquesTest extends TestCase {
 
-    public void test02CatapultaAtacaAJineteLejanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
-
+    public void test01CatapultaNoPuedeAtacarAUnidadCercana() throws RangoMuyLejano, RangoMuyCercano {
 
         Catapulta catapulta = new Catapulta();
         Jinete jinete = new Jinete();
 
-        catapulta.interactuar(jinete, 1);
+        try {
+            catapulta.interactuar(jinete, 1);
+        }catch(RangoMuyCercano e){}
+
+        assertEquals(100, jinete.getVida());
+    }
+
+    public void test02CatapultaAtacaAJineteLejanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
+
+        Catapulta catapulta = new Catapulta();
+        Jinete jinete = new Jinete();
+
+        catapulta.interactuar(jinete, 7);
 
         assertEquals(80, jinete.getVida());
     }
@@ -24,7 +35,7 @@ public class CatapultaAtaquesTest extends TestCase {
         Catapulta catapulta1 = new Catapulta();
         Catapulta catapulta2 = new Catapulta();
 
-        catapulta1.interactuar(catapulta2, 1);
+        catapulta1.interactuar(catapulta2, 7);
 
         assertEquals(30, catapulta2.getVida());
 
@@ -35,7 +46,7 @@ public class CatapultaAtaquesTest extends TestCase {
         Catapulta catapulta = new Catapulta();
         Soldado soldado = new Soldado();
 
-        catapulta.interactuar(soldado, 1);
+        catapulta.interactuar(soldado, 7);
 
         assertEquals(80, soldado.getVida());
 
@@ -46,7 +57,7 @@ public class CatapultaAtaquesTest extends TestCase {
         Catapulta catapulta = new Catapulta();
         Curandero curandero = new Curandero();
 
-        catapulta.interactuar(curandero, 1);
+        catapulta.interactuar(curandero, 7);
 
         assertEquals(55, curandero.getVida());
 

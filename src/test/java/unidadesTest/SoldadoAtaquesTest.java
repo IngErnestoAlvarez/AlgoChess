@@ -7,6 +7,18 @@ import unidad.*;
 
 public class SoldadoAtaquesTest extends TestCase {
 
+    public void test00SoldadoNoPuedeAtacarAUnidadLejana() throws RangoMuyLejano, RangoMuyCercano {
+
+        Soldado soldado = new Soldado();
+        Jinete jinete = new Jinete();
+        try {
+            soldado.interactuar(jinete, 4);
+        }catch(RangoMuyLejano e){}
+
+        assertEquals(100, jinete.getVida());
+
+    }
+
     public void test01SoldadoAtacaAJineteCercanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
 
         Soldado soldado = new Soldado();
