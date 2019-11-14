@@ -29,6 +29,11 @@ public class Posicion {
         return this.medirDistancia(unaPosicion) == 0;
     }
 
+    @Override
+    public int hashCode(){
+        return 1;
+    }
+
     public Posicion abajo(){
         return new Posicion(fila+1, columna);
     }

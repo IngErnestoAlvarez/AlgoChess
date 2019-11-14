@@ -222,7 +222,7 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test09TableroMoverBatallonVerticalSeMueveVerticalmente() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, MovimientoInvalido {
+	public void test10TableroMoverBatallonVerticalSeMueveVerticalmente() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, MovimientoInvalido {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
@@ -250,7 +250,7 @@ public class TableroTest extends TestCase {
 		Assert.assertEquals(soldadoDelCentro, nuevoTablero.verUnidad(posicionCentro));
 	}
 
-	public void test10TableroMoverBatallonVerticalSeMueveHorizontalmente() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, MovimientoInvalido {
+	public void test11TableroMoverBatallonVerticalSeMueveHorizontalmente() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, MovimientoInvalido {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
@@ -296,7 +296,7 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test11TableroObstaculoDetieneUnSoldadoDelBatallon() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido, NoSeEncontroLaCelda {
+	public void test13TableroObstaculoDetieneUnSoldadoDelBatallon() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido, NoSeEncontroLaCelda {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
@@ -321,7 +321,7 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test13TableroBatallonConUnSoldadoDeMasSoloMueveTresSoldados() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido, NoSeEncontroLaCelda {
+	public void test14TableroBatallonConUnSoldadoDeMasSoloMueveTresSoldados() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido, NoSeEncontroLaCelda {
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
@@ -346,7 +346,7 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test14TableroObstaculoDetieneUnSoldadoDelBatallonYElBatallonQuedaSeparado() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido, NoSeEncontroLaCelda {
+	public void test15TableroObstaculoDetieneUnSoldadoDelBatallonYElBatallonQuedaSeparado() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido, NoSeEncontroLaCelda {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
@@ -378,7 +378,7 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test15TableroTrataDeMoverUnidadMasLejosQueUnCasilleroYLanzaExcepcion() throws NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
+	public void test16TableroTrataDeMoverUnidadMasLejosQueUnCasilleroYLanzaExcepcion() throws NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
@@ -397,7 +397,7 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test15TableroTrataDeMoverCatapultaYLanzaExcepcion() throws NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
+	public void test17TableroTrataDeMoverCatapultaYLanzaExcepcion() throws NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
