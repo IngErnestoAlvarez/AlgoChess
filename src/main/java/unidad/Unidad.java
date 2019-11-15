@@ -6,6 +6,8 @@ import celda.Celda;
 import equipo.Equipo;
 import unidad.accion.*;
 
+import java.util.List;
+
 public abstract class Unidad {
 
     int vida;
@@ -17,7 +19,7 @@ public abstract class Unidad {
     public int getVida(){
         return vida;
     }
-    
+
     public int getPrecio(){
         return precio;
     }
@@ -40,5 +42,9 @@ public abstract class Unidad {
 
     protected Equipo verEquipo() {
         return this.equipo;
+    }
+
+    public List<Unidad> verUnidadesAdyacentes(){
+        return celda.verUnidadesAdyacentes();
     }
 }
