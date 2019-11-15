@@ -33,6 +33,8 @@ public class Equipo{
 
         unidadAComprar = fabricaUnidad.fabricar(claseUnidad);
 
+        if(unidadAComprar == null) throw new EquipoQuiereCrearUnidadInvalida();
+
         if(unidadAComprar.getPrecio() <= this.puntos) {
             this.unidades.add(unidadAComprar);
             this.puntos -= unidadAComprar.getPrecio();
