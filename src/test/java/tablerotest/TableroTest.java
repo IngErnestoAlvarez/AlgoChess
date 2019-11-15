@@ -449,6 +449,7 @@ public class TableroTest extends TestCase {
 	}
 
 	public void test20TableroSeCambiaDeSectorDosVecesYNoSeLanzaLaExcepcionDeSectorInvalido() throws CeldaYaTieneUnidad, CeldaNoEstaEnElTablero {
+
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
@@ -465,4 +466,17 @@ public class TableroTest extends TestCase {
 		}
 	}
 
+	public void test21TableroSeTrataDeVerUnaUnidadFueraDelTableroYLanzaLaExcepcion() throws CeldaNoTieneUnidad {
+
+		Equipo equipoDeJorge = mock(Equipo.class);
+		Equipo equipoDeRaul = mock(Equipo.class);
+		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
+		Posicion unaPosicion = new Posicion(21, 21);
+
+		try {
+			nuevoTablero.verUnidad(unaPosicion);
+			fail("No se lanzo la excepcion de celdaFueraDelTablero");
+		} catch (CeldaNoEstaEnElTablero celdaNoEstaEnElTablero) {
+		}
+	}
 }
