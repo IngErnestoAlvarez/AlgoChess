@@ -36,7 +36,7 @@ public class Tablero {
         this.llenarTablero(largo, alto);
     }
 
-    public void colocarUnidad(Unidad unaUnidad, Posicion posicionDeseada) throws TableroSectorInvalido, CeldaNoEstaEnElTablero {
+    public void colocarUnidad(Unidad unaUnidad, Posicion posicionDeseada) throws TableroSectorInvalido, CeldaNoEstaEnElTablero, CeldaYaTieneUnidad {
 
         Celda miCelda = null;
 
@@ -51,11 +51,7 @@ public class Tablero {
             sectorActual.colocarUnidad(miCelda, unaUnidad);
         } catch(CeldaNoEstaEnMiSector celdaNoEstaEnElSector){
             throw new TableroSectorInvalido();
-        } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
-            celdaYaTieneUnidad.printStackTrace();
-            // !!!Actuar en caso de excepcion (interfaz)
         }
-
     }
 
 

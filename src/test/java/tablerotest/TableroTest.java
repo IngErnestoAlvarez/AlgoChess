@@ -23,7 +23,7 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test01TableroSoloSePuedeColocarUnaUnidadEnElSectorAliado() throws CeldaNoEstaEnElTablero {
+	public void test01TableroSoloSePuedeColocarUnaUnidadEnElSectorAliado() throws CeldaNoEstaEnElTablero, CeldaYaTieneUnidad {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
@@ -38,7 +38,7 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test02TableroSeColocaUnaUnidadEnElSectorQueCorresponde() throws CeldaNoEstaEnElTablero, CeldaNoTieneUnidad {
+	public void test02TableroSeColocaUnaUnidadEnElSectorQueCorresponde() throws CeldaNoEstaEnElTablero, CeldaNoTieneUnidad, CeldaYaTieneUnidad {
 
 		Equipo equipoDeJorge = mock(Equipo.class); //nombre,puntos;
 		Equipo equipoDeRaul = mock(Equipo.class);
@@ -61,7 +61,7 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test03TableroSePuedeCambiarElSectorQueEstaPoniendoLasFichas() throws CeldaNoEstaEnElTablero {
+	public void test03TableroSePuedeCambiarElSectorQueEstaPoniendoLasFichas() throws CeldaNoEstaEnElTablero, CeldaYaTieneUnidad {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
@@ -142,7 +142,7 @@ public class TableroTest extends TestCase {
 	}
 
 
-	public void test07TableroMoverUnaUnidadACeldaOcupada() throws CeldaNoTieneUnidad, NoSeEncontroLaCelda, TableroSectorInvalido, CeldaNoEstaEnElTablero, MovimientoInvalido {
+	public void test07TableroMoverUnaUnidadACeldaOcupada() throws CeldaNoTieneUnidad, NoSeEncontroLaCelda, TableroSectorInvalido, CeldaNoEstaEnElTablero, MovimientoInvalido, CeldaYaTieneUnidad {
 
 		Equipo equipoDeJorge = mock(Equipo.class); //nombre,puntos;
 		Equipo equipoDeRaul = mock(Equipo.class);
@@ -414,4 +414,55 @@ public class TableroTest extends TestCase {
 		}
 
 	}
+
+	public void test18TableroSeIntentaColocarUnaUnidadFueraDelTableroYSeLanzaLaExcepcion() throws TableroSectorInvalido, CeldaYaTieneUnidad {
+		Equipo equipoDeJorge = mock(Equipo.class);
+		Equipo equipoDeRaul = mock(Equipo.class);
+		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
+		Unidad unaCatapulta = mock(Catapulta.class);
+		Posicion unaPosicion = new Posicion(21, 21);
+
+		try {
+			nuevoTablero.colocarUnidad(unaCatapulta,unaPosicion);
+			fail("No se lanzo la excepcion de CeldaNoEstaEnElTablero");
+		} catch (CeldaNoEstaEnElTablero celdaNoEstaEnElTablero) {
+		}
+
+	}
+
+	public void test19TableroSeIntentaColocarUnaUnidadSobreOtraYSeLanzaLaExcepcion() throws TableroSectorInvalido, CeldaNoEstaEnElTablero {
+		Equipo equipoDeJorge = mock(Equipo.class);
+		Equipo equipoDeRaul = mock(Equipo.class);
+		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
+		Unidad unaCatapulta = mock(Catapulta.class);
+		Unidad catapultaInvasoraDeEspacioPersonal = mock(Catapulta.class);
+		Posicion unaPosicion = new Posicion(20, 20);
+
+		try {
+			nuevoTablero.colocarUnidad(unaCatapulta,unaPosicion);
+			nuevoTablero.colocarUnidad(catapultaInvasoraDeEspacioPersonal,unaPosicion);
+			fail("No se lanzo la excepcion de CeldaYaTieneUnidad");
+		} catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
+		}
+
+
+	}
+
+	public void test20TableroSeCambiaDeSectorDosVecesYNoSeLanzaLaExcepcionDeSectorInvalido() throws CeldaYaTieneUnidad, CeldaNoEstaEnElTablero {
+		Equipo equipoDeJorge = mock(Equipo.class);
+		Equipo equipoDeRaul = mock(Equipo.class);
+		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
+		Unidad unaCatapulta = mock(Catapulta.class);
+		Posicion unaPosicion = new Posicion(20, 20);
+
+		nuevoTablero.cambiarSector();
+		nuevoTablero.cambiarSector();
+
+		try {
+			nuevoTablero.colocarUnidad(unaCatapulta,unaPosicion);
+		} catch (TableroSectorInvalido tableroSectorInvalido) {
+			fail("Se Lanzo la excepcion de sector invalido");
+		}
+	}
+
 }
