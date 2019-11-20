@@ -34,6 +34,7 @@ public class Tablero {
 
         this.celdas = new ArrayList<Celda>();
         this.llenarTablero(largo, alto);
+        this.llenarAdyacentesCeldas();
     }
 
     public void colocarUnidad(Unidad unaUnidad, Posicion posicionDeseada) throws TableroSectorInvalido, CeldaNoEstaEnElTablero, CeldaYaTieneUnidad {
@@ -159,6 +160,36 @@ public class Tablero {
 
         throw new NoSeEncontroLaCelda();
 
+    }
+
+    private void llenarAdyacentesCeldas(){
+
+        Celda celdaIzquierda;
+        Celda celdaDerecha;
+        Celda celdaArriba;
+        Celda celdaAbajo;
+
+        for(Celda celdaActual : this.celdas){
+            try {
+                celdaIzquierda = this.buscarCeldaConPosicion(celdaActual.verPosicion().izquierda());
+                celdaActual.darAdyacente(celdaIzquierda);
+            } catch (NoSeEncontroLaCelda e) {}
+
+            try {
+                celdaDerecha = this.buscarCeldaConPosicion(celdaActual.verPosicion().derecha());
+                celdaActual.darAdyacente(celdaDerecha);
+            } catch (NoSeEncontroLaCelda e) {}
+
+            try {
+                celdaArriba = this.buscarCeldaConPosicion(celdaActual.verPosicion().arriba());
+                celdaActual.darAdyacente(celdaArriba);
+            } catch (NoSeEncontroLaCelda e) {}
+
+            try {
+                celdaAbajo = this.buscarCeldaConPosicion(celdaActual.verPosicion().abajo());
+                celdaActual.darAdyacente(celdaAbajo);
+            } catch (NoSeEncontroLaCelda e) { }
+        }
     }
 
 }

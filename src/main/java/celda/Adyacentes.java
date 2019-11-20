@@ -13,7 +13,7 @@ public class Adyacentes {
         this.celdas = adyacentes;
     }
 
-    public List<Celda> verCeldasAdyacentes(){
+    List<Celda> verCeldasAdyacentes(){
         return celdas;
     }
 
@@ -26,5 +26,9 @@ public class Adyacentes {
             } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {}
         }
         return unidades;
+    }
+
+    void aniadirAdyacente(Celda celda) {
+        celdas.add(celda);
     }
 }

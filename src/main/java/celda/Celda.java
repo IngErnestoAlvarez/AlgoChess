@@ -29,11 +29,13 @@ public class Celda {
     public Celda(Posicion unaPosicion){
         estado = new EstadoCeldaVacia();
         this.posicion = unaPosicion;
+        adyacentes = new Adyacentes(new ArrayList<Celda>());
     }
 
     public Celda(int x, int y){
         posicion = new Posicion(x , y);
         estado = new EstadoCeldaVacia();
+        adyacentes = new Adyacentes(new ArrayList<Celda>());
     }
 
     public void colocarUnidad(Unidad unidad) throws CeldaYaTieneUnidad {
@@ -64,6 +66,14 @@ public class Celda {
 
     public List<Unidad> verUnidadesAdyacentes(){
         return adyacentes.verUnidadesAdyacentes();
+    }
+
+    public List<Celda> verCeldasAdyacentes(){
+        return adyacentes.verCeldasAdyacentes();
+    }
+
+    public void darAdyacente(Celda celdaAAniadir){
+        this.adyacentes.aniadirAdyacente(celdaAAniadir);
     }
 }
 
