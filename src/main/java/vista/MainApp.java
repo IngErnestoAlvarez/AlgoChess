@@ -6,11 +6,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
+    private Stage escenario;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -18,30 +23,31 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        stage.setTitle("AlgoChess");
+        this.escenario = stage;
 
-        stage.setScene(this.escenaInicial());
+        this.escenario.setTitle("AlgoChess");
 
-        stage.show();
+        this.escenario.setScene(this.escenaInicial());
+
+        this.escenario.show();
     }
+
+
 
     private Scene escenaInicial(){
 
-        Label labelEquipo1 = new Label();
-        labelEquipo1.setText("Equipo1");
-
+        Label labelEquipo1 = new Label("Equipo1");
+        labelEquipo1.setFont(Font.font("Cambria", 32));
         TextField nombreEquipo1 = new TextField();
         nombreEquipo1.setPromptText("Escriba el nombre del equipo1");
-
         HBox boxEquipo1 = new HBox(labelEquipo1, nombreEquipo1);
         boxEquipo1.setSpacing(15);
 
-        Label labelEquipo2 = new Label();
-        labelEquipo2.setText("Equipo2");
 
+        Label labelEquipo2 = new Label("Equipo2");
+        labelEquipo2.setFont(Font.font("Cambria", 32));
         TextField nombreEquipo2 = new TextField();
         nombreEquipo2.setPromptText("Escriba el nombre del equipo2");
-
         HBox boxEquipo2 = new HBox(labelEquipo2, nombreEquipo2);
         boxEquipo2.setSpacing(15);
 
