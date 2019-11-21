@@ -2,16 +2,15 @@ package tablero;
 
 import ErroresYExcepciones.*;
 import celda.Posicion;
-import javafx.geometry.Pos;
 import tablero.movimientos.Movimiento;
 import unidad.Catapulta;
 import unidad.Soldado;
 import unidad.Unidad;
 import celda.Celda;
 import equipo.*;
+import unidad.batallon.Batallon;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
@@ -76,59 +75,29 @@ public class Tablero {
 
     }
 
+    public void moverBatallon(Posicion centroDelBatallon, Posicion destinoDelBatallon) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, MovimientoInvalido, NoEsBatallon {
+        Celda celdaOrigen = this.buscarCeldaConPosicion(centroDelBatallon);
+        Celda celdaDestino = this.buscarCeldaConPosicion(destinoDelBatallon);
+
+        if(celdaOrigen.medirDistacia(celdaDestino) != 1 || celdaOrigen.verUnidad() instanceof Catapulta) throw new MovimientoInvalido();
+
+        Batallon unBatallon = new Batallon(celdaOrigen,this);
+        Movimiento movimientoDelBatallon = new Movimiento(centroDelBatallon,destinoDelBatallon);
+        unBatallon.moverBatallon(movimientoDelBatallon);
+
+    }
+
     public void moverUnidad(Posicion posicionOrigen, Posicion posicionDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido {
             Celda celdaOrigen = this.buscarCeldaConPosicion(posicionOrigen);
             Celda celdaDestino = this.buscarCeldaConPosicion(posicionDestino);
 
             if(celdaOrigen.medirDistacia(celdaDestino) != 1 || celdaOrigen.verUnidad() instanceof Catapulta) throw new MovimientoInvalido();
 
-            if (celdaOrigen.verUnidad() instanceof Soldado && this.esBatallon(posicionOrigen)){
-                Batallon elBatallon = new Batallon(celdaOrigen, this.esBatallonHorizontal(posicionOrigen), this);
-                Movimiento movimientoDelBatallon = new Movimiento(posicionOrigen, posicionDestino);
-                elBatallon.moverBatallon(movimientoDelBatallon, this);
-                return;
-            }
-
             Unidad unidadAMover = celdaOrigen.quitarUnidad();
 
             celdaDestino.colocarUnidad(unidadAMover);
     }
 
-    private boolean esBatallon(Posicion posicionCentro){
-        return (this.esBatallonVertical(posicionCentro) || this.esBatallonHorizontal(posicionCentro));
-    }
-
-    private boolean esBatallonHorizontal(Posicion posicionCentro) {
-        Celda celdaDerecha = null;
-        Celda celdaIzquierda = null;
-        try {
-            celdaIzquierda = this.buscarCeldaConPosicion(posicionCentro.izquierda());
-            celdaDerecha = this.buscarCeldaConPosicion(posicionCentro.derecha());
-        } catch (NoSeEncontroLaCelda noSeEncontroLaCelda) {
-            return false;
-        }
-        try {
-            return (celdaDerecha.verUnidad() instanceof Soldado && celdaIzquierda.verUnidad() instanceof Soldado);
-        } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
-            return false;
-        }
-    }
-
-    private boolean esBatallonVertical(Posicion posicionCentro) {
-        Celda celdaArriba = null;
-        Celda celdaAbajo = null;
-        try {
-            celdaArriba = this.buscarCeldaConPosicion(posicionCentro.arriba());
-            celdaAbajo = this.buscarCeldaConPosicion(posicionCentro.abajo());
-        } catch (NoSeEncontroLaCelda noSeEncontroLaCelda) {
-            return false;
-        }
-        try {
-            return (celdaArriba.verUnidad() instanceof Soldado && celdaAbajo.verUnidad() instanceof Soldado);
-        } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
-            return false;
-        }
-    }
 
 
     private void llenarTablero(int largo, int alto){
