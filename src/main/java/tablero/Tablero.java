@@ -4,7 +4,6 @@ import ErroresYExcepciones.*;
 import celda.Posicion;
 import tablero.movimientos.Movimiento;
 import unidad.Catapulta;
-import unidad.Soldado;
 import unidad.Unidad;
 import celda.Celda;
 import equipo.*;
