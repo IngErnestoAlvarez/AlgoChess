@@ -415,6 +415,7 @@ public class TableroTest extends TestCase {
 	}
 
 	public void test18TableroSeIntentaColocarUnaUnidadFueraDelTableroYSeLanzaLaExcepcion() throws TableroSectorInvalido, CeldaYaTieneUnidad {
+
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
@@ -430,6 +431,7 @@ public class TableroTest extends TestCase {
 	}
 
 	public void test19TableroSeIntentaColocarUnaUnidadSobreOtraYSeLanzaLaExcepcion() throws TableroSectorInvalido, CeldaNoEstaEnElTablero {
+
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
@@ -484,8 +486,8 @@ public class TableroTest extends TestCase {
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 
-		Celda celdaCentral = nuevoTablero.buscarCeldaConPosicion(posicionCeldaCentral);
 		Posicion posicionCeldaCentral = new Posicion(4 , 5);
+		Celda celdaCentral = nuevoTablero.buscarCeldaConPosicion(posicionCeldaCentral);
 		assertTrue(celdaCentral.verCeldasAdyacentes().contains(nuevoTablero.buscarCeldaConPosicion(posicionCeldaCentral.arriba())));
 		assertTrue(celdaCentral.verCeldasAdyacentes().contains(nuevoTablero.buscarCeldaConPosicion(posicionCeldaCentral.abajo())));
 		assertTrue(celdaCentral.verCeldasAdyacentes().contains(nuevoTablero.buscarCeldaConPosicion(posicionCeldaCentral.derecha())));
@@ -493,6 +495,7 @@ public class TableroTest extends TestCase {
 	}
 	
 	public void test23TableroSeTrataMoverUnBatallonAlBordeDelMapaYLanzaCeldaNoEstaEnElTablero() throws CeldaNoTieneUnidad, NoEsBatallon, CeldaYaTieneUnidad, TableroSectorInvalido, MovimientoInvalido, CeldaNoEstaEnElTablero {
+
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
