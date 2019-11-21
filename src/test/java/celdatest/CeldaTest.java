@@ -1,9 +1,9 @@
 package celdatest;
 
-import ErroresYExcepciones.CeldaNoTieneUnidad;
-import ErroresYExcepciones.CeldaYaTieneUnidad;
-import unidad.Unidad;
-import celda.Celda;
+import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
+import modelo.ErroresYExcepciones.CeldaYaTieneUnidad;
+import modelo.unidad.Unidad;
+import modelo.celda.Celda;
 import junit.framework.TestCase;
 
 import static org.mockito.Mockito.mock;
@@ -22,7 +22,7 @@ public class CeldaTest extends TestCase {
 
         try{
             celda.verUnidad();
-            fail("No se ĺanzó la excepcion que la celda no tiene unidad");
+            fail("No se ĺanzó la excepcion que la modelo.celda no tiene modelo.unidad");
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
         }
     }
@@ -81,13 +81,13 @@ public class CeldaTest extends TestCase {
             celda.colocarUnidad(unidad1);
         }
         catch(CeldaYaTieneUnidad e){
-            fail("No se pudo colocar la primer unidad");
+            fail("No se pudo colocar la primer modelo.unidad");
         }
         Unidad unidad2 = mock(Unidad.class);
 
         try{
             celda.colocarUnidad(unidad2);
-            fail("Se colocaron 2 unidades en una celda. No tiro excepcion");
+            fail("Se colocaron 2 unidades en una modelo.celda. No tiro excepcion");
         }
         catch (CeldaYaTieneUnidad e){
         }

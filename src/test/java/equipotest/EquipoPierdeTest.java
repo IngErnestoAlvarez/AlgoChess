@@ -1,8 +1,8 @@
 package equipotest;
 
-import equipo.*;
-import unidad.*;
-import ErroresYExcepciones.*;
+import modelo.equipo.*;
+import modelo.unidad.*;
+import modelo.ErroresYExcepciones.*;
 
 
 import junit.framework.TestCase;

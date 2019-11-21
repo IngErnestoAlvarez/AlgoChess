@@ -1,8 +1,8 @@
 package celdatest;
 
-import ErroresYExcepciones.CeldaNoTieneUnidad;
-import celda.EstadoCelda;
-import celda.EstadoCeldaVacia;
+import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
+import modelo.celda.EstadoCelda;
+import modelo.celda.EstadoCeldaVacia;
 import junit.framework.TestCase;
 
 public class EstadoJineteCeldaTest extends TestCase {

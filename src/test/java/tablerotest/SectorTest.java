@@ -1,14 +1,14 @@
 package tablerotest;
 
-import ErroresYExcepciones.CeldaNoEstaEnMiSector;
-import ErroresYExcepciones.CeldaNoTieneUnidad;
-import ErroresYExcepciones.CeldaYaTieneUnidad;
-import unidad.Unidad;
-import unidad.Soldado;
-import celda.Celda;
+import modelo.ErroresYExcepciones.CeldaNoEstaEnMiSector;
+import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
+import modelo.ErroresYExcepciones.CeldaYaTieneUnidad;
+import modelo.unidad.Unidad;
+import modelo.unidad.Soldado;
+import modelo.celda.Celda;
 import junit.framework.Assert;
 import junit.framework.TestCase;
-import tablero.Sector;
+import modelo.tablero.Sector;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -48,7 +48,7 @@ public class SectorTest extends TestCase {
 
         try{
             miSector.colocarUnidad(unaCelda, unSoldado);
-            fail("No lanzó la excepción que no contiene la celda");
+            fail("No lanzó la excepción que no contiene la modelo.celda");
         }  catch (CeldaNoEstaEnMiSector celdaNoEstaEnMiSector) {
         }
     }

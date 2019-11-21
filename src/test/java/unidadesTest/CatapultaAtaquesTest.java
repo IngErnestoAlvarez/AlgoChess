@@ -1,12 +1,12 @@
 
 package unidadesTest;
 
-import ErroresYExcepciones.RangoMuyCercano;
-import ErroresYExcepciones.RangoMuyLejano;
-import celda.Celda;
-import equipo.Equipo;
+import modelo.ErroresYExcepciones.RangoMuyCercano;
+import modelo.ErroresYExcepciones.RangoMuyLejano;
+import modelo.celda.Celda;
+import modelo.equipo.Equipo;
 import junit.framework.TestCase;
-import unidad.*;
+import modelo.unidad.*;
 
 public class CatapultaAtaquesTest extends TestCase {
 

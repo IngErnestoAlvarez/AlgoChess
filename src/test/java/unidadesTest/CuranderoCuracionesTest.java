@@ -1,11 +1,11 @@
 
 package unidadesTest;
 
-import ErroresYExcepciones.RangoMuyCercano;
-import ErroresYExcepciones.RangoMuyLejano;
+import modelo.ErroresYExcepciones.RangoMuyCercano;
+import modelo.ErroresYExcepciones.RangoMuyLejano;
 import junit.framework.TestCase;
 
-import unidad.*;
+import modelo.unidad.*;
 
 public class CuranderoCuracionesTest extends TestCase {
 
@@ -32,7 +32,7 @@ public class CuranderoCuracionesTest extends TestCase {
 
         try {
             curandero.interactuar(jinete, 5);
-        }catch(RangoMuyLejano e){}
+        }catch(RangoMuyLejano ignore){}
 
         assertEquals(90, jinete.getVida());
     }

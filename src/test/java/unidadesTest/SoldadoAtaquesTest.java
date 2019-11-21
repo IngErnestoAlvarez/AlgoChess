@@ -1,9 +1,9 @@
 package unidadesTest;
 
-import ErroresYExcepciones.RangoMuyCercano;
-import ErroresYExcepciones.RangoMuyLejano;
+import modelo.ErroresYExcepciones.RangoMuyCercano;
+import modelo.ErroresYExcepciones.RangoMuyLejano;
 import junit.framework.TestCase;
-import unidad.*;
+import modelo.unidad.*;
 
 public class SoldadoAtaquesTest extends TestCase {
 

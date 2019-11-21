@@ -1,9 +1,9 @@
 package unidadesTest.AccionTest;
 
-import ErroresYExcepciones.RangoMuyCercano;
-import ErroresYExcepciones.RangoMuyLejano;
+import modelo.ErroresYExcepciones.RangoMuyCercano;
+import modelo.ErroresYExcepciones.RangoMuyLejano;
 import junit.framework.TestCase;
-import unidad.accion.Rango;
+import modelo.unidad.accion.Rango;
 
 public class RangoTest extends TestCase {
 

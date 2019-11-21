@@ -1,12 +1,12 @@
 
 package unidadesTest;
 
-import ErroresYExcepciones.RangoMuyCercano;
-import ErroresYExcepciones.RangoMuyLejano;
-import celda.Celda;
-import equipo.Equipo;
+import modelo.ErroresYExcepciones.RangoMuyCercano;
+import modelo.ErroresYExcepciones.RangoMuyLejano;
+import modelo.celda.Celda;
+import modelo.equipo.Equipo;
 import junit.framework.TestCase;
-import unidad.*;
+import modelo.unidad.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete1 = new Jinete(celdaJinete1, equipoAliado);
         Jinete jinete2 = new Jinete(celdaJinete2, equipoEnemigo);
 
-        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList<>();
         listaDeUnidadesCercanas.add(jinete2);
 
         when(celdaJinete1.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
@@ -47,7 +47,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete1 = new Jinete(celdaJinete1, equipoAliado);
         Jinete jinete2 = new Jinete(celdaJinete2, equipoEnemigo);
 
-        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList<>();
 
         when(celdaJinete1.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
@@ -65,7 +65,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete(celdaJinete, equipoAliado);
         Catapulta catapulta = new Catapulta(celdaCatapulta, equipoEnemigo);
 
-        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList<>();
 
         listaDeUnidadesCercanas.add(catapulta);
 
@@ -86,7 +86,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete(celdaJinete, equipoAliado);
         Catapulta catapulta = new Catapulta(celdaCatapulta, equipoEnemigo);
 
-        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList<>();
 
 
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
@@ -105,7 +105,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete(celdaJinete, equipoAliado);
         Curandero curandero = new Curandero(celdaCurandero, equipoEnemigo);
 
-        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList<>();
         listaDeUnidadesCercanas.add(curandero);
 
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
@@ -125,7 +125,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete(celdaJinete, equipoAliado);
         Curandero curandero = new Curandero(celdaCurandero, equipoEnemigo);
 
-        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList<>();
 
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
@@ -144,7 +144,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete(celdaJinete, equipoAliado);
         Soldado soldado = new Soldado(celdaSoldado, equipoEnemigo);
 
-        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList<>();
         listaDeUnidadesCercanas.add(soldado);
 
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
@@ -164,7 +164,7 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete(celdaJinete, equipoAliado);
         Soldado soldado = new Soldado(celdaSoldado, equipoEnemigo);
 
-        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList<>();
 
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
@@ -185,14 +185,14 @@ public class JineteAtaquesTest extends TestCase {
         Jinete jinete = new Jinete(celdaJinete, equipoAliado);
         Unidad soldadoEnemigo = new Soldado(celdaSoldado, equipoEnemigo);
 
-        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList<>();
 
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
         try {
             jinete.interactuar(soldadoEnemigo, 10);
             fail("Tendria que ser mayor el rango");
-        } catch (RangoMuyLejano rangoMuyLejano) {
+        } catch (RangoMuyLejano ignore) {
         } catch (RangoMuyCercano rangoMuyCercano) {
             fail("Tendria que no ser menor al rango");
         }
@@ -208,7 +208,7 @@ public class JineteAtaquesTest extends TestCase {
         Unidad soldadoEnemigoCercano = new Soldado(celdaSoldado, equipoEnemigo);
         Unidad soldadoEnemigoLejano = new Soldado(celdaSoldado, equipoEnemigo);
 
-        List<Unidad> listaDeUnidadesCercanas = new ArrayList();
+        List<Unidad> listaDeUnidadesCercanas = new ArrayList<>();
 
         listaDeUnidadesCercanas.add(soldadoEnemigoCercano);
 
@@ -217,7 +217,7 @@ public class JineteAtaquesTest extends TestCase {
         try {
             jinete.interactuar(soldadoEnemigoLejano, 4);
             fail("Tendria que ser mayor el rango");
-        } catch (RangoMuyLejano rangoMuyLejano) {
+        } catch (RangoMuyLejano ignore) {
         } catch (RangoMuyCercano rangoMuyCercano) {
             fail("Tendria que no ser menor al rango");
         }

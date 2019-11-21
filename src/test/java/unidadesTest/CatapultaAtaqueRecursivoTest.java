@@ -1,14 +1,11 @@
 package unidadesTest;
 
-import static org.mockito.Mockito.*;
-
-import ErroresYExcepciones.CeldaNoTieneUnidad;
-import celda.Adyacentes;
-import celda.Posicion;
-import equipo.Equipo;
+import modelo.celda.Adyacentes;
+import modelo.celda.Posicion;
+import modelo.equipo.Equipo;
 import junit.framework.TestCase;
-import celda.Celda;
-import unidad.*;
+import modelo.celda.Celda;
+import modelo.unidad.*;
 import java.util.*;
 
 public class CatapultaAtaqueRecursivoTest extends TestCase {

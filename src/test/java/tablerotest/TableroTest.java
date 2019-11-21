@@ -1,11 +1,11 @@
 package tablerotest;
 
-import ErroresYExcepciones.*;
-import celda.Posicion;
-import unidad.*;
-import equipo.*;
-import celda.Celda;
-import tablero.Tablero;
+import modelo.ErroresYExcepciones.*;
+import modelo.celda.Posicion;
+import modelo.unidad.*;
+import modelo.equipo.*;
+import modelo.celda.Celda;
+import modelo.tablero.Tablero;
 import junit.framework.Assert;
 import junit.framework.TestCase;
 
@@ -31,7 +31,7 @@ public class TableroTest extends TestCase {
 		Unidad unSoldado = mock(Soldado.class);
 		Posicion unaPosicion = new Posicion(1, 1);
 		try {
-			nuevoTablero.colocarUnidad(unSoldado, unaPosicion); // empieza poniendo el equipo de abajo.
+			nuevoTablero.colocarUnidad(unSoldado, unaPosicion); // empieza poniendo el modelo.equipo de abajo.
 			fail("No se lanzo la excepcion de sector invalido");
 		} catch (TableroSectorInvalido excepcion) {
 		}
@@ -56,7 +56,7 @@ public class TableroTest extends TestCase {
 		try {
 			Assert.assertEquals(nuevoTablero.verUnidad(posicionDeseada), unSoldado);
 		} catch (CeldaNoEstaEnElTablero celdaNoEstaEnElTablero) {
-			fail("Error al buscar la celda.");
+			fail("Error al buscar la modelo.celda.");
 		}
 
 	}
@@ -291,7 +291,7 @@ public class TableroTest extends TestCase {
 			nuevoTablero.colocarUnidad(unSoldado, posicionDeUnidad);
 			nuevoTablero.moverUnidad(posicionDeUnidad, posicionDeUnidad.arriba());
 		} catch (CeldaNoEstaEnElTablero celdaNoEstaEnElTablero) {
-			fail("No se deberia tirar la celda no esta en el tablero.");
+			fail("No se deberia tirar la modelo.celda no esta en el modelo.tablero.");
 		}
 
 	}

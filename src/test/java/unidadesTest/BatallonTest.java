@@ -1,16 +1,16 @@
 package unidadesTest;
 
-import ErroresYExcepciones.*;
-import celda.Celda;
-import celda.Posicion;
-import equipo.Equipo;
+import modelo.ErroresYExcepciones.*;
+import modelo.celda.Celda;
+import modelo.celda.Posicion;
+import modelo.equipo.Equipo;
 import junit.framework.Assert;
 import junit.framework.TestCase;
-import tablero.Tablero;
-import tablero.movimientos.Movimiento;
-import unidad.Soldado;
-import unidad.Unidad;
-import unidad.batallon.Batallon;
+import modelo.tablero.Tablero;
+import modelo.tablero.movimientos.Movimiento;
+import modelo.unidad.Soldado;
+import modelo.unidad.Unidad;
+import modelo.unidad.batallon.Batallon;
 
 import static org.mockito.Mockito.mock;
 

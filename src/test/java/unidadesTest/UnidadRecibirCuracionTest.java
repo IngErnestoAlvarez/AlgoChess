@@ -1,7 +1,7 @@
 package unidadesTest;
 
 import junit.framework.TestCase;
-import unidad.*;
+import modelo.unidad.*;
 
 public class UnidadRecibirCuracionTest extends TestCase{
 

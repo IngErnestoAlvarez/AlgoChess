@@ -1,6 +1,6 @@
 package celdatest;
 
-import celda.Posicion;
+import modelo.celda.Posicion;
 import junit.framework.TestCase;
 
 public class PosicionTest extends TestCase {

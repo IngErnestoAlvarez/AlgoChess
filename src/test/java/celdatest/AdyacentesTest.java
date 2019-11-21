@@ -1,10 +1,10 @@
 package celdatest;
 
-import ErroresYExcepciones.CeldaYaTieneUnidad;
-import celda.Adyacentes;
-import celda.Celda;
+import modelo.ErroresYExcepciones.CeldaYaTieneUnidad;
+import modelo.celda.Adyacentes;
+import modelo.celda.Celda;
 import junit.framework.TestCase;
-import unidad.*;
+import modelo.unidad.*;
 
 import java.util.ArrayList;
 import java.util.List;
