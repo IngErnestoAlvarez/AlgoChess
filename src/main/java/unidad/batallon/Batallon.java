@@ -16,11 +16,12 @@ public class Batallon {
     private List<Celda> batallon;
     private Tablero miTablero;
 
-    public Batallon(Celda celdaCentro , Tablero tableroDelBatallon) throws NoSeEncontroLaCelda, NoEsBatallon{
+    public Batallon(Celda celdaCentro , Tablero tableroDelBatallon) throws NoSeEncontroLaCelda, NoEsBatallon, CeldaNoTieneUnidad {
         this.miTablero = tableroDelBatallon;
         this.batallon = new ArrayList<>();
 
-        if (!this.esBatallon(celdaCentro.verPosicion())) throw new NoEsBatallon;
+        if (!(this.esBatallon(celdaCentro.verPosicion()) || !(celdaCentro.verUnidad() instanceof Soldado) )) throw new NoEsBatallon();
+
 
         Celda primerCeldaConSoldado = null;
         Celda tercerCeldaConSoldado = null;
@@ -39,7 +40,7 @@ public class Batallon {
 
     }
 
-    public void moverBatallon(Movimiento direccionDeMovimiento) throws CeldaNoTieneUnidad, NoSeEncontroLaCelda, MovimientoInvalido {
+    public void moverBatallon(Movimiento direccionDeMovimiento) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad {
         List<Boolean> seMovio = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
@@ -55,8 +56,11 @@ public class Batallon {
                     Celda origen = batallon.get(j);
                     Posicion posicionAuxiliar = direccionDeMovimiento.transformarPosicionPorMovimiento(origen.verPosicion());
                     Celda destino = miTablero.buscarCeldaConPosicion(posicionAuxiliar);
+                    Unidad unaUnidad = origen.verUnidad();
                     try {
-                        this.miTablero.moverUnidad(origen.verPosicion(), destino.verPosicion());
+                        destino.colocarUnidad(unaUnidad);
+                        seMovio.set(j, true);
+                        origen.quitarUnidad();
                     } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {}
                 }
 

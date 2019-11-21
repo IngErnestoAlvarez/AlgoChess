@@ -74,21 +74,14 @@ public class Tablero {
 
     }
 
-    public void crearBatallon(Posicion centroDelBatallon) throws NoEsBatallon, NoSeEncontroLaCelda {
-        Celda miCelda = this.buscarCeldaConPosicion(centroDelBatallon);
-        Batallon unBatallon = new Batallon(miCelda, this);
-        //Celda poner unidad unBatallon, necesita una unidad mas abstracta
-    }
-
-    public void moverBatallon(Posicion centroDelBatallon, Posicion destinoDelBatallon) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, MovimientoInvalido {
+    public void moverBatallon(Posicion centroDelBatallon, Posicion destinoDelBatallon) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, MovimientoInvalido, NoEsBatallon {
         Celda celdaOrigen = this.buscarCeldaConPosicion(centroDelBatallon);
         Celda celdaDestino = this.buscarCeldaConPosicion(destinoDelBatallon);
 
         if(celdaOrigen.medirDistacia(celdaDestino) != 1 || celdaOrigen.verUnidad() instanceof Catapulta) throw new MovimientoInvalido();
 
-        Batallon unBatallon = celdaOrigen.verUnidad(); // como distingue entre soldado y batallon? hace falta?
+        Batallon unBatallon = new Batallon(celdaOrigen,this);
         Movimiento movimientoDelBatallon = new Movimiento(centroDelBatallon,destinoDelBatallon);
-
         unBatallon.moverBatallon(movimientoDelBatallon);
 
     }
