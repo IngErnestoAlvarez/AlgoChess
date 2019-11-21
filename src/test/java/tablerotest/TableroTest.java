@@ -478,6 +478,7 @@ public class TableroTest extends TestCase {
 		} catch (CeldaNoEstaEnElTablero celdaNoEstaEnElTablero) {
 		}
 	}
+	
 	public void test22TableroSeAnalizaLaAdyacenciaCorrectaDeVariasCeldas() throws NoSeEncontroLaCelda {
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
@@ -490,7 +491,8 @@ public class TableroTest extends TestCase {
 		assertTrue(celdaCentral.verCeldasAdyacentes().contains(nuevoTablero.buscarCeldaConPosicion(posicionCeldaCentral.derecha())));
 		assertTrue(celdaCentral.verCeldasAdyacentes().contains(nuevoTablero.buscarCeldaConPosicion(posicionCeldaCentral.izquierda())));
 	}
-	public void test22TableroSeTrataMoverUnBatallonAlBordeDelMapaYLanzaCeldaNoEstaEnElTablero() throws CeldaNoTieneUnidad, NoEsBatallon, CeldaYaTieneUnidad, TableroSectorInvalido, MovimientoInvalido, CeldaNoEstaEnElTablero {
+	
+	public void test23TableroSeTrataMoverUnBatallonAlBordeDelMapaYLanzaCeldaNoEstaEnElTablero() throws CeldaNoTieneUnidad, NoEsBatallon, CeldaYaTieneUnidad, TableroSectorInvalido, MovimientoInvalido, CeldaNoEstaEnElTablero {
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
