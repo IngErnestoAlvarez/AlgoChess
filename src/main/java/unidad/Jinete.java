@@ -4,13 +4,14 @@ import ErroresYExcepciones.RangoMuyCercano;
 import ErroresYExcepciones.RangoMuyLejano;
 import celda.Celda;
 import equipo.Equipo;
-import unidad.estadosJinete.*;
+import unidad.accion.AtaqueCercano;
+import unidad.accion.AtaqueLejano;
+import unidad.accion.AtaqueMedio;
 
 import java.util.List;
 
 public class Jinete extends Unidad {
 
-    private EstadoJinete estadoJineteAtaque;
 
     private static final int precioJinete = 3;
     private static final int vidaJinete = 100;
@@ -18,7 +19,6 @@ public class Jinete extends Unidad {
     public Jinete(){
         precio = precioJinete;
         vida = vidaJinete;
-        estadoJineteAtaque = new EstadoJineteAtaqueCercano();
     }
 
     public Jinete(Celda celda, Equipo equipo){
@@ -29,18 +29,18 @@ public class Jinete extends Unidad {
     }
 
     public void usaAtaqueMedio(){
-        estadoJineteAtaque = new EstadoJineteAtaqueMedio();
+        accion = new AtaqueMedio(15);
     }
 
     public void usaAtaqueCorto(){
-        estadoJineteAtaque = new EstadoJineteAtaqueCercano();
+        accion = new AtaqueCercano(5);
     }
 
     @Override
     public void interactuar(Unidad unidad, int distancia) throws RangoMuyLejano, RangoMuyCercano {
         if(this.tieneUnidadesEnemigasCerca()){ this.usaAtaqueCorto();}
         else{this.usaAtaqueMedio();}
-        estadoJineteAtaque.atacar(unidad, distancia);
+        accion.interactuar(unidad, distancia);
     }
 
     private boolean tieneUnidadesEnemigasCerca(){
