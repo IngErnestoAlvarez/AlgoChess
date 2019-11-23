@@ -6,8 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -27,7 +25,7 @@ public class MainApp extends Application {
 
         this.escenario.setTitle("AlgoChess");
 
-        this.escenario.setScene(this.escenaInicial());
+        this.escenario.setScene(this.escenaDeCompra());
 
         this.escenario.show();
     }
@@ -38,8 +36,7 @@ public class MainApp extends Application {
 
         Label labelEquipo1 = new Label("Equipo1");
         labelEquipo1.setFont(Font.font("Cambria", 32));
-        TextField nombreEquipo1 = new TextField();
-        nombreEquipo1.setPromptText("Escriba el nombre del equipo1");
+        TextField nombreEquipo1 = new TextField("Escriba el nombre del equipo1");
         HBox boxEquipo1 = new HBox(labelEquipo1, nombreEquipo1);
         boxEquipo1.setSpacing(15);
 
@@ -58,7 +55,17 @@ public class MainApp extends Application {
         contenedorPrincipal.setSpacing(30);
         contenedorPrincipal.setPadding(new Insets(300));
 
-        Scene scene = new Scene(contenedorPrincipal, 1200, 800);
-        return scene;
+        return new Scene(contenedorPrincipal, 1200, 800);
+    }
+
+
+    private Scene escenaDeCompra() {
+
+        HBox botonera = new HBox();
+
+        HBox unidades = new HBox();
+
+        VBox contenedorPrincipal = new VBox(new VistaCompraUnidad(), unidades, botonera);
+        return new Scene(contenedorPrincipal, 1200, 800);
     }
 }
