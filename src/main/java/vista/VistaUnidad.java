@@ -6,9 +6,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import modelo.unidad.Catapulta;
-import modelo.unidad.Curandero;
-import modelo.unidad.Jinete;
 import modelo.unidad.Unidad;
 
 import java.io.FileInputStream;

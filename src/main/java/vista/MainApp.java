@@ -1,5 +1,6 @@
 package vista;
 
+import controladores.BotonConfirmarEquipoHandler;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -10,9 +11,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import modelo.equipo.Equipo;
+import modelo.tablero.Tablero;
 
 public class MainApp extends Application {
     private Stage escenario;
+    private Equipo equipo1;
+    private Equipo equipo2;
+    private Tablero tablero;
 
     public static void main(String[] args) {
         launch(args);
@@ -25,7 +31,7 @@ public class MainApp extends Application {
 
         this.escenario.setTitle("AlgoChess");
 
-        this.escenario.setScene(this.escenaDeCompra());
+        this.escenario.setScene(this.escenaInicial());
 
         this.escenario.show();
     }
@@ -36,7 +42,8 @@ public class MainApp extends Application {
 
         Label labelEquipo1 = new Label("Equipo1");
         labelEquipo1.setFont(Font.font("Cambria", 32));
-        TextField nombreEquipo1 = new TextField("Escriba el nombre del equipo1");
+        TextField nombreEquipo1 = new TextField();
+        nombreEquipo1.setPromptText("Escriba el nombre del equipo1");
         HBox boxEquipo1 = new HBox(labelEquipo1, nombreEquipo1);
         boxEquipo1.setSpacing(15);
 
@@ -50,6 +57,7 @@ public class MainApp extends Application {
 
         Button botonEnviar = new Button();
         botonEnviar.setText("Confirmar");
+        botonEnviar.setOnAction(new BotonConfirmarEquipoHandler(nombreEquipo1, nombreEquipo2, this));
 
         VBox contenedorPrincipal = new VBox(boxEquipo1, boxEquipo2, botonEnviar);
         contenedorPrincipal.setSpacing(30);
@@ -59,13 +67,36 @@ public class MainApp extends Application {
     }
 
 
+
+    public void cambiarAEscenaDeCompra() {
+        this.escenario.setScene(this.escenaDeCompra());
+    }
+
     private Scene escenaDeCompra() {
 
         HBox botonera = new HBox();
 
         HBox unidades = new HBox();
 
+
         VBox contenedorPrincipal = new VBox(new VistaCompraUnidad(), unidades, botonera);
         return new Scene(contenedorPrincipal, 1200, 800);
+    }
+
+
+    public Equipo getEquipo1() {
+        return equipo1;
+    }
+
+    public Equipo getEquipo2() {
+        return equipo2;
+    }
+
+    public void setEquipo1(Equipo equipo1) {
+        this.equipo1 = equipo1;
+    }
+
+    public void setEquipo2(Equipo equipo2) {
+        this.equipo2 = equipo2;
     }
 }
