@@ -1,14 +1,12 @@
 package vista;
 
+import controladores.BotonComprarUnidadHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import modelo.unidad.Catapulta;
-import modelo.unidad.Curandero;
-import modelo.unidad.Jinete;
 import modelo.unidad.Unidad;
 
 import java.io.FileInputStream;
@@ -16,6 +14,8 @@ import java.io.FileNotFoundException;
 import java.util.Hashtable;
 
 public class VistaUnidad extends VBox {
+
+    private BotonComprarUnidadHandler botonDeCompraHandler;
 
     public VistaUnidad(Unidad unidad){
         super();
@@ -29,6 +29,9 @@ public class VistaUnidad extends VBox {
 
         Button botonDeCompra = new Button("Comprar " + unidad.getClass().getSimpleName());
 
+        this.botonDeCompraHandler = new BotonComprarUnidadHandler(unidad);
+        botonDeCompra.setOnAction(this.botonDeCompraHandler);
+
         this.setSpacing(40);
         this.getChildren().add(this.imagenDeUnidad(unidad));
         this.getChildren().add(nombre);
@@ -38,7 +41,7 @@ public class VistaUnidad extends VBox {
     }
 
 
-    private Label imagenDeUnidad(Unidad unidad){
+    public static Label imagenDeUnidad(Unidad unidad){
 
         Hashtable<String, String> directorio = new Hashtable<>();
 
@@ -64,5 +67,9 @@ public class VistaUnidad extends VBox {
         label.setGraphic(imagen);
 
         return label;
+    }
+
+    public BotonComprarUnidadHandler getBotonDeCompraHandler() {
+        return botonDeCompraHandler;
     }
 }
