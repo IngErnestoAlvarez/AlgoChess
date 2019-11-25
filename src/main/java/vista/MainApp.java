@@ -1,5 +1,6 @@
 package vista;
 
+import controladores.BotonCambiarDeEquipoCompra;
 import controladores.BotonConfirmarEquipoHandler;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -69,12 +70,16 @@ public class MainApp extends Application {
 
 
     public void cambiarAEscenaDeCompra() {
-        this.escenario.setScene(this.escenaDeCompra());
+        this.escenario.setScene(this.escenaDeCompra1());
     }
 
-    private Scene escenaDeCompra() {
+    private Scene escenaDeCompra1() {
 
-        HBox botonera = new HBox();
+        Label nombreEquipo = new Label("Equipo: " + equipo1.getNombre());
+        Button botonDeTerminar = new Button("TerminarCompra");
+        botonDeTerminar.setOnAction(new BotonCambiarDeEquipoCompra(this));
+
+        HBox botonera = new HBox(nombreEquipo, botonDeTerminar);
 
         HBox unidades = new HBox();
 
@@ -97,5 +102,22 @@ public class MainApp extends Application {
 
     public void setEquipo2(Equipo equipo2) {
         this.equipo2 = equipo2;
+    }
+
+    public void cambiarAEscenaDeCompra2() {
+        this.escenario.setScene(this.escenaDeCompra2());
+    }
+
+    private Scene escenaDeCompra2() {
+        Label nombreEquipo = new Label("Equipo: " + equipo2.getNombre());
+        Button botonDeTerminar = new Button("TerminarCompra");
+        botonDeTerminar.setOnAction(new BotonCambiarDeEquipoCompra(this));
+
+        HBox botonera = new HBox(nombreEquipo, botonDeTerminar);
+
+        HBox unidades = new HBox();
+
+        VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo2, unidades), unidades, botonera);
+        return new Scene(contenedorPrincipal, 1200, 800);
     }
 }

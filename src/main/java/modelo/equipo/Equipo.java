@@ -74,4 +74,8 @@ public class Equipo{
     public boolean esPerdedor(){
         return !(tieneUnidades());
     }
+
+    public String getNombre() {
+        return nombre;
+    }
 }
