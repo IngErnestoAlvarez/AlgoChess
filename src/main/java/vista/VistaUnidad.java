@@ -20,14 +20,14 @@ public class VistaUnidad extends VBox {
     public VistaUnidad(Unidad unidad){
         super();
 
-        Label nombre = new Label("Nombre de la unidad: " + unidad.getClass().getSimpleName());
-        nombre.setFont(Font.font("Cambria", 20));
+        Label nombre = new Label(unidad.getClass().getSimpleName());
+        nombre.setFont(Font.font("Cambria", 30));
 
         Label vida = new Label("Vida: " + unidad.getVida());
 
         Label precio = new Label("Precio: " + unidad.getPrecio());
 
-        Button botonDeCompra = new Button("Comprar unidad");
+        Button botonDeCompra = new Button("Comprar " + unidad.getClass().getSimpleName());
 
         this.setSpacing(40);
         this.getChildren().add(this.imagenDeUnidad(unidad));
@@ -45,7 +45,7 @@ public class VistaUnidad extends VBox {
         directorio.put("Soldado", "./resources/imagenes/Soldado.png");
         directorio.put("Jinete", "./resources/imagenes/Soldado.png");
         directorio.put("Catapulta", "./resources/imagenes/Soldado.png");
-        directorio.put("Curandero", "./resources/imagenes/Soldado.png");
+        directorio.put("Curandero", "./resources/imagenes/Curandero.png");
 
         Image imagenFinal = null;
         try {
