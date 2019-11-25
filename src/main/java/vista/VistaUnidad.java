@@ -15,7 +15,6 @@ import java.util.Hashtable;
 
 public class VistaUnidad extends VBox {
 
-    private BotonComprarUnidadHandler botonDeCompraHandler;
 
     public VistaUnidad(Unidad unidad){
         super();
@@ -27,17 +26,12 @@ public class VistaUnidad extends VBox {
 
         Label precio = new Label("Precio: " + unidad.getPrecio());
 
-        Button botonDeCompra = new Button("Comprar " + unidad.getClass().getSimpleName());
-
-        this.botonDeCompraHandler = new BotonComprarUnidadHandler(unidad);
-        botonDeCompra.setOnAction(this.botonDeCompraHandler);
 
         this.setSpacing(40);
         this.getChildren().add(this.imagenDeUnidad(unidad));
         this.getChildren().add(nombre);
         this.getChildren().add(vida);
         this.getChildren().add(precio);
-        this.getChildren().add(botonDeCompra);
     }
 
 
@@ -69,7 +63,5 @@ public class VistaUnidad extends VBox {
         return label;
     }
 
-    public BotonComprarUnidadHandler getBotonDeCompraHandler() {
-        return botonDeCompraHandler;
-    }
+
 }
