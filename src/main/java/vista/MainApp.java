@@ -25,7 +25,7 @@ public class MainApp extends Application {
 
         this.escenario.setTitle("AlgoChess");
 
-        this.escenario.setScene(this.escenaDeCompra());
+        this.escenario.setScene(this.escenaInicial());
 
         this.escenario.show();
     }
@@ -34,22 +34,23 @@ public class MainApp extends Application {
 
     private Scene escenaInicial(){
 
-        Label labelEquipo1 = new Label("Equipo1");
+        Label labelEquipo1 = new Label("Equipo 1");
         labelEquipo1.setFont(Font.font("Cambria", 32));
-        TextField nombreEquipo1 = new TextField("Escriba el nombre del equipo1");
+        TextField nombreEquipo1 = new TextField();
+        nombreEquipo1.setPromptText("Nombre");
         HBox boxEquipo1 = new HBox(labelEquipo1, nombreEquipo1);
         boxEquipo1.setSpacing(15);
 
 
-        Label labelEquipo2 = new Label("Equipo2");
+        Label labelEquipo2 = new Label("Equipo 2");
         labelEquipo2.setFont(Font.font("Cambria", 32));
         TextField nombreEquipo2 = new TextField();
-        nombreEquipo2.setPromptText("Escriba el nombre del equipo2");
+        nombreEquipo2.setPromptText("Nombre");
         HBox boxEquipo2 = new HBox(labelEquipo2, nombreEquipo2);
         boxEquipo2.setSpacing(15);
 
         Button botonEnviar = new Button();
-        botonEnviar.setText("Confirmar");
+        botonEnviar.setText("Play");
 
         VBox contenedorPrincipal = new VBox(boxEquipo1, boxEquipo2, botonEnviar);
         contenedorPrincipal.setSpacing(30);
