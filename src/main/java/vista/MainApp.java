@@ -13,6 +13,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import modelo.equipo.Equipo;
 import modelo.tablero.Tablero;
+import modelo.unidad.Unidad;
 
 public class MainApp extends Application {
     private Stage escenario;
@@ -78,8 +79,7 @@ public class MainApp extends Application {
 
         HBox unidades = new HBox();
 
-
-        VBox contenedorPrincipal = new VBox(new VistaCompraUnidad(), unidades, botonera);
+        VBox contenedorPrincipal = new VBox(new VistaCompraUnidad(this.equipo1, unidades), unidades, botonera);
         return new Scene(contenedorPrincipal, 1200, 800);
     }
 

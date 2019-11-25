@@ -40,6 +40,10 @@ public abstract class Unidad {
         this.equipo = equipo;
     }
 
+    public void setCelda(Celda celda) {
+        this.celda = celda;
+    }
+
     protected Equipo verEquipo() {
         return this.equipo;
     }
