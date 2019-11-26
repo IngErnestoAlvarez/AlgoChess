@@ -33,7 +33,7 @@ public class VistaUnidad extends VBox {
     }
 
 
-    public static Label imagenDeUnidad(Unidad unidad){
+    public static VistaUnidadTablero imagenDeUnidad(Unidad unidad){
 
         Hashtable<String, String> directorio = new Hashtable<>();
 
@@ -49,17 +49,18 @@ public class VistaUnidad extends VBox {
             e.printStackTrace();
         }
 
-        Label label = new Label();
 
         ImageView imagen = new ImageView();
-        imagen.setFitHeight(100);
-        imagen.setFitWidth(100);
+        imagen.setFitHeight(70);
+        imagen.setFitWidth(70);
         imagen.setPreserveRatio(true);
         imagen.setImage(imagenFinal);
-        label.setGraphic(imagen);
+        VistaUnidadTablero label = new VistaUnidadTablero(imagen, unidad);
+
 
         return label;
     }
+
 
 
 }
