@@ -7,7 +7,7 @@ import modelo.unidad.accion.*;
 public class Curandero extends Unidad {
 
     private static final int precioCurandero = 2;
-    private static final int vidaCurandero = 75;
+    private static final double vidaCurandero = 75;
 
     public Curandero(){
         precio = precioCurandero;

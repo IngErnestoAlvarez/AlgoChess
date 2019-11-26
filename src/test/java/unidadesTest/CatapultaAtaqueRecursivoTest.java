@@ -22,10 +22,10 @@ public class CatapultaAtaqueRecursivoTest extends TestCase {
             listaDeAdyacentes.add(celda);
         }
 
-        catapulta.interactuar(listaDeAdyacentes.get(0).verUnidad(), 7);
+        catapulta.interactuar(listaDeAdyacentes.get(0).verUnidad(), 7,1);
 
         for (int i = 0; i < 4; i++) {
-            assertEquals(80, listaDeAdyacentes.get(i).verUnidad().getVida());
+            assertEquals(80.0, listaDeAdyacentes.get(i).verUnidad().getVida());
         }
 
     }
@@ -48,10 +48,10 @@ public class CatapultaAtaqueRecursivoTest extends TestCase {
             listaDeAdyacentes.add(celda);
         }
 
-        catapulta.interactuar(listaDeAdyacentes.get(0).verUnidad(), 7);
+        catapulta.interactuar(listaDeAdyacentes.get(0).verUnidad(), 7,1);
 
         for (int i = 0; i < 5; i++) {
-            assertEquals(80, listaDeAdyacentes.get(i).verUnidad().getVida());
+            assertEquals(80.0, listaDeAdyacentes.get(i).verUnidad().getVida());
         }
     }
 }

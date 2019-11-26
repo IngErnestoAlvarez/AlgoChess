@@ -13,7 +13,7 @@ public class Jinete extends Unidad {
 
 
     private static final int precioJinete = 3;
-    private static final int vidaJinete = 100;
+    private static final double vidaJinete = 100;
 
     public Jinete(){
         precio = precioJinete;
@@ -36,10 +36,10 @@ public class Jinete extends Unidad {
     }
 
     @Override
-    public void interactuar(Unidad unidad, int distancia) throws RangoMuyLejano, RangoMuyCercano {
+    public void interactuar(Unidad unidad, int distancia, double incremento) throws RangoMuyLejano, RangoMuyCercano {
         if(this.tieneUnidadesEnemigasCerca()){ this.usaAtaqueCorto();}
         else{this.usaAtaqueMedio();}
-        accion.interactuar(unidad, distancia);
+        accion.interactuar(unidad, distancia, incremento);
     }
 
     private boolean tieneUnidadesEnemigasCerca(){

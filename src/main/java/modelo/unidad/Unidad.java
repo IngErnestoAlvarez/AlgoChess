@@ -10,13 +10,13 @@ import java.util.List;
 
 public abstract class Unidad {
 
-    int vida;
+    double vida;
     int precio;
     Accion accion;
     Equipo equipo;
     Celda celda;
 
-    public int getVida(){
+    public double getVida(){
         return vida;
     }
 
@@ -24,15 +24,15 @@ public abstract class Unidad {
         return precio;
     }
 
-    public void interactuar(Unidad unidad, int distancia) throws RangoMuyLejano, RangoMuyCercano {
-        accion.interactuar(unidad, distancia);
+    public void interactuar(Unidad unidad, int distancia, double incremento) throws RangoMuyLejano, RangoMuyCercano {
+        accion.interactuar(unidad, distancia,incremento);
     }
 
-    public void recibirCuracion(int vidaCurada){
+    public void recibirCuracion(double vidaCurada){
         vida += vidaCurada;
     }
 
-    public void recibirDanio(int danio){
+    public void recibirDanio(double danio){
         vida -= danio;
     }
 
@@ -40,11 +40,13 @@ public abstract class Unidad {
         this.equipo = equipo;
     }
 
+    public Equipo getEquipo (){ return this.equipo;}
+
     public void setCelda(Celda celda) {
         this.celda = celda;
     }
 
-    protected Equipo verEquipo() {
+    public Equipo verEquipo() {
         return this.equipo;
     }
 

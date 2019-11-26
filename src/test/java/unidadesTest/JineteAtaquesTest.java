@@ -31,9 +31,9 @@ public class JineteAtaquesTest extends TestCase {
         when(celdaJinete1.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
 
-        jinete1.interactuar(jinete2, 1);
+        jinete1.interactuar(jinete2, 1, 1);
 
-        assertEquals(95, jinete2.getVida());
+        assertEquals(95.0, jinete2.getVida());
 
     }
 
@@ -51,9 +51,9 @@ public class JineteAtaquesTest extends TestCase {
 
         when(celdaJinete1.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
-        jinete1.interactuar(jinete2, 3);
+        jinete1.interactuar(jinete2, 3,1);
 
-        assertEquals(85, jinete2.getVida());
+        assertEquals(85.0, jinete2.getVida());
     }
 
     public void test03JineteAtacaACatapultaCercanaYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
@@ -71,9 +71,9 @@ public class JineteAtaquesTest extends TestCase {
 
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
-        jinete.interactuar(catapulta, 1);
+        jinete.interactuar(catapulta, 1,1);
 
-        assertEquals(45, catapulta.getVida());
+        assertEquals(45.0, catapulta.getVida());
 
     }
 
@@ -91,9 +91,9 @@ public class JineteAtaquesTest extends TestCase {
 
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
-        jinete.interactuar(catapulta, 4);
+        jinete.interactuar(catapulta, 4,1);
 
-        assertEquals(35, catapulta.getVida());
+        assertEquals(35.0, catapulta.getVida());
     }
 
     public void test05JineteAtacaACuranderoCercanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
@@ -110,9 +110,9 @@ public class JineteAtaquesTest extends TestCase {
 
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
-        jinete.interactuar(curandero, 1);
+        jinete.interactuar(curandero, 1,1);
 
-        assertEquals(70, curandero.getVida());
+        assertEquals(70.0, curandero.getVida());
 
     }
 
@@ -129,9 +129,9 @@ public class JineteAtaquesTest extends TestCase {
 
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
-        jinete.interactuar(curandero, 3);
+        jinete.interactuar(curandero, 3,1);
 
-        assertEquals(60, curandero.getVida());
+        assertEquals(60.0, curandero.getVida());
 
     }
 
@@ -149,9 +149,9 @@ public class JineteAtaquesTest extends TestCase {
 
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
-        jinete.interactuar(soldado, 1);
+        jinete.interactuar(soldado, 1,1);
 
-        assertEquals(95, soldado.getVida());
+        assertEquals(95.0, soldado.getVida());
 
     }
 
@@ -169,9 +169,9 @@ public class JineteAtaquesTest extends TestCase {
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
 
-        jinete.interactuar(soldado, 5);
+        jinete.interactuar(soldado, 5,1);
 
-        assertEquals(85, soldado.getVida());
+        assertEquals(85.0, soldado.getVida());
 
     }
 
@@ -190,7 +190,7 @@ public class JineteAtaquesTest extends TestCase {
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
         try {
-            jinete.interactuar(soldadoEnemigo, 10);
+            jinete.interactuar(soldadoEnemigo, 10,1);
             fail("Tendria que ser mayor el rango");
         } catch (RangoMuyLejano ignore) {
         } catch (RangoMuyCercano rangoMuyCercano) {
@@ -215,7 +215,7 @@ public class JineteAtaquesTest extends TestCase {
         when(celdaJinete.verUnidadesAdyacentes()).thenReturn(listaDeUnidadesCercanas);
 
         try {
-            jinete.interactuar(soldadoEnemigoLejano, 4);
+            jinete.interactuar(soldadoEnemigoLejano, 4,1);
             fail("Tendria que ser mayor el rango");
         } catch (RangoMuyLejano ignore) {
         } catch (RangoMuyCercano rangoMuyCercano) {

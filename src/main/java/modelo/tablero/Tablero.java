@@ -27,7 +27,9 @@ public class Tablero {
         this.equipoDeArriba = equipoDeArriba;
 
         this.sectorDeAbajo = new Sector();
+        sectorDeAbajo.setEquipo(equipoDeAbajo);
         this.sectorDeArriba = new Sector();
+        sectorDeArriba.setEquipo(equipoDeArriba);
         this.sectorActual = sectorDeAbajo;
 
         this.celdas = new ArrayList<Celda>();
@@ -55,6 +57,7 @@ public class Tablero {
 
 
     public void cambiarSector(){
+
         if(this.sectorActual == this.sectorDeAbajo){
             this.sectorActual = this.sectorDeArriba;
         }else {
@@ -63,6 +66,7 @@ public class Tablero {
     }
 
     public Unidad verUnidad(Posicion unaPosicion) throws CeldaNoEstaEnElTablero, CeldaNoTieneUnidad {
+
         Celda celdaIndicada = null;
         try {
             celdaIndicada = this.buscarCeldaConPosicion(unaPosicion);
@@ -75,6 +79,7 @@ public class Tablero {
     }
 
     public void moverBatallon(Posicion centroDelBatallon, Posicion destinoDelBatallon) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, MovimientoInvalido, NoEsBatallon {
+
         Celda celdaOrigen = this.buscarCeldaConPosicion(centroDelBatallon);
         Celda celdaDestino = this.buscarCeldaConPosicion(destinoDelBatallon);
 
@@ -86,15 +91,36 @@ public class Tablero {
 
     }
 
+    public void interaccion(Posicion posicionOrigen, Posicion posicionDestino) throws CeldaNoTieneUnidad, NoSeEncontroLaCelda, RangoMuyLejano, RangoMuyCercano {
+
+        Celda celdaOrigen = this.buscarCeldaConPosicion(posicionOrigen);
+        Celda celdaDestino = this.buscarCeldaConPosicion(posicionDestino);
+
+        Unidad unidadAtacante = celdaOrigen.verUnidad();
+        Unidad unidadVictima = celdaDestino.verUnidad();
+
+        double incremento = 1;
+
+        try {
+            sectorDeAbajo.encontrarCelda(celdaDestino);
+            incremento = sectorDeAbajo.definirIncremento(celdaDestino);
+        } catch (CeldaNoEstaEnMiSector celdaNoEstaEnMiSector) {
+            incremento = sectorDeArriba.definirIncremento(celdaDestino);
+        }
+
+        unidadAtacante.interactuar(unidadVictima, posicionOrigen.medirDistancia(posicionDestino), incremento);
+
+    }
+
     public void moverUnidad(Posicion posicionOrigen, Posicion posicionDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido {
-            Celda celdaOrigen = this.buscarCeldaConPosicion(posicionOrigen);
-            Celda celdaDestino = this.buscarCeldaConPosicion(posicionDestino);
+        Celda celdaOrigen = this.buscarCeldaConPosicion(posicionOrigen);
+        Celda celdaDestino = this.buscarCeldaConPosicion(posicionDestino);
 
-            if(celdaOrigen.medirDistacia(celdaDestino) != 1 || celdaOrigen.verUnidad() instanceof Catapulta) throw new MovimientoInvalido();
+        if(celdaOrigen.medirDistacia(celdaDestino) != 1 || celdaOrigen.verUnidad() instanceof Catapulta) throw new MovimientoInvalido();
 
-            Unidad unidadAMover = celdaOrigen.quitarUnidad();
+        Unidad unidadAMover = celdaOrigen.quitarUnidad();
 
-            celdaDestino.colocarUnidad(unidadAMover);
+        celdaDestino.colocarUnidad(unidadAMover);
     }
 
 

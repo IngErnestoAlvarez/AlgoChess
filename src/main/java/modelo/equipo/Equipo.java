@@ -38,6 +38,7 @@ public class Equipo{
         if(unidadAComprar.getPrecio() <= this.puntos) {
             this.unidades.add(unidadAComprar);
             this.puntos -= unidadAComprar.getPrecio();
+            unidadAComprar.setEquipo(this);
             return unidadAComprar;
         }else{
             if (this.puntos > 0){

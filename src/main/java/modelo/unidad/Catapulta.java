@@ -8,7 +8,7 @@ import modelo.unidad.accion.*;
 public class Catapulta extends Unidad {
 
     private static final int precioCatapulta = 5;
-    private static final int vidaCatapulta = 50;
+    private static final double vidaCatapulta = 50;
 
     public Catapulta(){
         precio = precioCatapulta;
@@ -25,7 +25,7 @@ public class Catapulta extends Unidad {
     }
 
     @Override
-    public void recibirCuracion(int puntosVida){
+    public void recibirCuracion(double puntosVida){
         vida += 0;
     }
 }
