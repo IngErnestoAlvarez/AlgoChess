@@ -12,10 +12,8 @@ import modelo.tablero.Tablero;
 
 public class VistaTablero extends GridPane {
 
-    public VistaTablero(Equipo equipo1, Equipo equipo2) throws NoSeEncontroLaCelda {
+    public VistaTablero(Equipo equipo1, Equipo equipo2, Tablero tablero) throws NoSeEncontroLaCelda {
         super();
-
-        Tablero tablero = new Tablero(20, 20, equipo1, equipo2);
 
         this.setHeight(1280);
         this.setWidth(720);

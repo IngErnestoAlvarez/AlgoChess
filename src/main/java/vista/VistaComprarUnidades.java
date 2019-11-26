@@ -1,8 +1,6 @@
 package vista;
 
-import controladores.BotonComprarUnidadHandler;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import modelo.equipo.Equipo;
 import modelo.unidad.Catapulta;

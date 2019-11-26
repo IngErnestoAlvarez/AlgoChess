@@ -1,7 +1,6 @@
 package vista;
 
-import controladores.BotonCambiarDeEquipoCompra;
-import controladores.BotonConfirmarEquipoHandler;
+import controladores.*;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -13,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import modelo.ErroresYExcepciones.NoSeEncontroLaCelda;
 import modelo.equipo.Equipo;
 import modelo.tablero.Tablero;
 
@@ -90,7 +90,7 @@ public class MainApp extends Application {
 
         HBox unidades = new HBox();
 
-        VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo1, unidades), unidades, botonera);
+        VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo1, unidades), botonera, unidades);
         return new Scene(contenedorPrincipal, 1200, 800);
     }
 
@@ -111,6 +111,14 @@ public class MainApp extends Application {
         this.equipo2 = equipo2;
     }
 
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
     public void cambiarAEscenaDeCompra2() {
         this.escenario.setScene(this.escenaDeCompra2());
     }
@@ -118,13 +126,30 @@ public class MainApp extends Application {
     private Scene escenaDeCompra2() {
         Label nombreEquipo = new Label("Equipo: " + equipo2.getNombre());
         Button botonDeTerminar = new Button("TerminarCompra");
-        botonDeTerminar.setOnAction(new BotonCambiarDeEquipoCompra(this));
+        botonDeTerminar.setOnAction(new BotonPasarAColocarUnidad(this));
 
         HBox botonera = new HBox(nombreEquipo, botonDeTerminar);
 
         HBox unidades = new HBox();
 
-        VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo2, unidades), unidades, botonera);
+        VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo2, unidades), botonera, unidades);
+        return new Scene(contenedorPrincipal, 1200, 800);
+    }
+    public void cambiarAEscenaColocarUnidad1() throws NoSeEncontroLaCelda {
+        this.escenario.setScene(this.escenaColocarUnidad1());
+    }
+
+    private Scene escenaColocarUnidad1() throws NoSeEncontroLaCelda {
+        GridPane tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero());
+
+        VBox unidades = new VBox();
+        Button botonCambioDeEquipo = new Button("Confirmar");
+        botonCambioDeEquipo.setOnAction(new BotonCambiarDeEquipoColocar(this));
+
+        unidades.getChildren().add(botonCambioDeEquipo);
+
+        HBox contenedorPrincipal = new HBox(tablero, unidades);
+
         return new Scene(contenedorPrincipal, 1200, 800);
     }
 
@@ -136,7 +161,7 @@ public class MainApp extends Application {
                 BackgroundPosition.CENTER,
                 new BackgroundSize(1200, 800, false, false, false, false)));
 
-        GridPane tablero = new VistaTablero(new Equipo(), new Equipo());
+        GridPane tablero = new VistaTablero(new Equipo(), new Equipo(), this.getTablero());
 
         Label textoEntreUnidades = new Label("vs");
         textoEntreUnidades.setVisible(false);
@@ -153,5 +178,27 @@ public class MainApp extends Application {
         contenedorPrincipal.setSpacing(20);
 
         return new Scene(contenedorPrincipal, 1200, 800);
+    }
+
+    public void cambiarAEscenaColocarUnidad2() throws NoSeEncontroLaCelda {
+        this.escenario.setScene(this.escenaColocarUnidad2());
+    }
+
+    private Scene escenaColocarUnidad2() throws NoSeEncontroLaCelda {
+        GridPane tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero());
+
+        VBox unidades = new VBox();
+        Button botonCambioDeEquipo = new Button("Confirmar");
+        botonCambioDeEquipo.setOnAction(new BotonCambiarAEscenaPrincipal(this));
+
+        unidades.getChildren().add(botonCambioDeEquipo);
+
+        HBox contenedorPrincipal = new HBox(tablero, unidades);
+
+        return new Scene(contenedorPrincipal, 1200, 800);
+    }
+
+    public void cambiarAEscenaPrincipal() throws Exception {
+        this.escenario.setScene(this.escenaTablero());
     }
 }
