@@ -7,7 +7,7 @@ import modelo.unidad.accion.*;
 public class Soldado extends Unidad {
 
     private static final int precioSoldado = 1;
-    private static final int vidaSoldado = 100;
+    private static final double vidaSoldado = 100;
 
     public Soldado(){
         precio = precioSoldado;

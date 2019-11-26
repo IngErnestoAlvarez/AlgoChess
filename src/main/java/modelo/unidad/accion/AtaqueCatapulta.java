@@ -15,7 +15,7 @@ public class AtaqueCatapulta extends Accion{
     }
 
     @Override
-    public void interactuar(Unidad unidad, int distancia) throws RangoMuyLejano, RangoMuyCercano {
+    public void interactuar(Unidad unidad, int distancia, double incremento) throws RangoMuyLejano, RangoMuyCercano {
 
         rango.perteneceAlRango(distancia);
 
@@ -29,7 +29,7 @@ public class AtaqueCatapulta extends Accion{
             Unidad unidadAAtacar = pila.pop();
 
             if (!(atacados.contains(unidadAAtacar))){
-                unidadAAtacar.recibirDanio(puntosVida);
+                unidadAAtacar.recibirDanio(puntosVida*incremento);
                 atacados.add(unidadAAtacar);
 
                 pila.addAll(unidadAAtacar.verUnidadesAdyacentes());

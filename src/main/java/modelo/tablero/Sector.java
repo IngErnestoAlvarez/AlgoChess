@@ -1,7 +1,9 @@
 package modelo.tablero;
 
 import modelo.ErroresYExcepciones.CeldaNoEstaEnMiSector;
+import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
 import modelo.ErroresYExcepciones.CeldaYaTieneUnidad;
+import modelo.equipo.Equipo;
 import modelo.unidad.Unidad;
 import modelo.celda.Celda;
 
@@ -11,6 +13,7 @@ import java.util.List;
 
 public class Sector {
     private List<Celda> celdas;
+    private Equipo equipoDelSector;
 
     public Sector(){
        this.celdas = new ArrayList<Celda>();
@@ -27,7 +30,7 @@ public class Sector {
 
     }
 
-    private Celda encontrarCelda(Celda celdaAEncontrar) throws CeldaNoEstaEnMiSector {
+    public Celda encontrarCelda(Celda celdaAEncontrar) throws CeldaNoEstaEnMiSector {
 
         Iterator iter = this.celdas.iterator();
         Celda celdaActual = null;
@@ -42,5 +45,14 @@ public class Sector {
         }
 
         throw new CeldaNoEstaEnMiSector();
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipoDelSector = equipo;
+    }
+
+    public double definirIncremento(Celda celdaDestino) throws CeldaNoTieneUnidad {
+        if(celdaDestino.verUnidad().verEquipo() != this.equipoDelSector) return 1.05;
+        return 1;
     }
 }

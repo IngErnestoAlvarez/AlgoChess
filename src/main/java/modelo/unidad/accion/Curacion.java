@@ -13,7 +13,7 @@ public class Curacion extends Accion {
     }
 
     @Override
-    public void interactuar(Unidad unidad, int distancia) throws RangoMuyLejano, RangoMuyCercano {
+    public void interactuar(Unidad unidad, int distancia, double incremento) throws RangoMuyLejano, RangoMuyCercano {
 
         rango.perteneceAlRango(distancia);
 

@@ -12,10 +12,10 @@ public class SoldadoAtaquesTest extends TestCase {
         Soldado soldado = new Soldado();
         Jinete jinete = new Jinete();
         try {
-            soldado.interactuar(jinete, 4);
+            soldado.interactuar(jinete, 4,1);
         }catch(RangoMuyLejano e){}
 
-        assertEquals(100, jinete.getVida());
+        assertEquals(100.0, jinete.getVida());
 
     }
 
@@ -24,9 +24,9 @@ public class SoldadoAtaquesTest extends TestCase {
         Soldado soldado = new Soldado();
         Jinete jinete = new Jinete();
 
-        soldado.interactuar(jinete, 1);
+        soldado.interactuar(jinete, 1,1);
 
-        assertEquals(90, jinete.getVida());
+        assertEquals(90.0, jinete.getVida());
 
     }
 
@@ -36,9 +36,9 @@ public class SoldadoAtaquesTest extends TestCase {
         Soldado soldado = new Soldado();
         Catapulta catapulta = new Catapulta();
 
-        soldado.interactuar(catapulta, 1);
+        soldado.interactuar(catapulta, 1,1);
 
-        assertEquals(40, catapulta.getVida());
+        assertEquals(40.0, catapulta.getVida());
 
     }
 
@@ -47,9 +47,9 @@ public class SoldadoAtaquesTest extends TestCase {
         Soldado soldado = new Soldado();
         Curandero curandero = new Curandero();
 
-        soldado.interactuar(curandero, 1);
+        soldado.interactuar(curandero, 1,1);
 
-        assertEquals(65, curandero.getVida());
+        assertEquals(65.0, curandero.getVida());
 
     }
 
@@ -58,9 +58,9 @@ public class SoldadoAtaquesTest extends TestCase {
         Soldado soldado1 = new Soldado();
         Soldado soldado2 = new Soldado();
 
-        soldado1.interactuar(soldado2, 1);
+        soldado1.interactuar(soldado2, 1,1);
 
-        assertEquals(90, soldado2.getVida());
+        assertEquals(90.0, soldado2.getVida());
 
     }
 
