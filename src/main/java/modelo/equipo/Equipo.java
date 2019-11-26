@@ -77,4 +77,8 @@ public class Equipo{
     public String getNombre() {
         return nombre;
     }
+
+    public List<Unidad> getUnidades() {
+        return unidades;
+    }
 }
