@@ -11,7 +11,7 @@ public class AtaqueLejano extends Accion {
     }
 
     @Override
-    public void interactuar(Unidad unidad, int distancia){
+    public void interactuar(Unidad unidad, int distancia, double incremento){
         unidad.recibirDanio(puntosVida);
     }
 }

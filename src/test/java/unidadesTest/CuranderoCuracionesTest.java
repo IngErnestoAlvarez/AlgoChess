@@ -15,11 +15,11 @@ public class CuranderoCuracionesTest extends TestCase {
         Catapulta catapulta = new Catapulta();
         Soldado soldado = new Soldado();
 
-        soldado.interactuar(catapulta, 1);
+        soldado.interactuar(catapulta, 1,1);
 
-        curandero.interactuar(catapulta, 1);
+        curandero.interactuar(catapulta, 1,1);
 
-        assertEquals(40, catapulta.getVida());
+        assertEquals(40.0, catapulta.getVida());
     }
 
     public void test02CuranderoNoPuedeCurarUnaUnidadLejana() throws RangoMuyLejano, RangoMuyCercano {
@@ -28,13 +28,13 @@ public class CuranderoCuracionesTest extends TestCase {
         Jinete jinete = new Jinete();
         Soldado soldado = new Soldado();
 
-        soldado.interactuar(jinete, 1);
+        soldado.interactuar(jinete, 1,1);
 
         try {
-            curandero.interactuar(jinete, 5);
+            curandero.interactuar(jinete, 5,1);
         }catch(RangoMuyLejano ignore){}
 
-        assertEquals(90, jinete.getVida());
+        assertEquals(90.0, jinete.getVida());
     }
 
     public void test03CuranderoCuraSoldadoLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
@@ -42,11 +42,11 @@ public class CuranderoCuracionesTest extends TestCase {
         Soldado soldado1 = new Soldado();
         Soldado soldado2 = new Soldado();
 
-        soldado1.interactuar(soldado2, 1);
+        soldado1.interactuar(soldado2, 1,1);
 
-        curandero.interactuar(soldado2, 1);
+        curandero.interactuar(soldado2, 1,1);
 
-        assertEquals(105, soldado2.getVida());
+        assertEquals(105.0, soldado2.getVida());
 
     }
 
@@ -55,11 +55,11 @@ public class CuranderoCuracionesTest extends TestCase {
         Jinete jinete= new Jinete();
         Soldado soldado = new Soldado();
 
-        soldado.interactuar(jinete, 1);
+        soldado.interactuar(jinete, 1,1);
 
-        curandero.interactuar(jinete, 1);
+        curandero.interactuar(jinete, 1,1);
 
-        assertEquals(105, jinete.getVida());
+        assertEquals(105.0, jinete.getVida());
 
     }
 
@@ -69,11 +69,11 @@ public class CuranderoCuracionesTest extends TestCase {
         Soldado soldado = new Soldado();
         Curandero curandero2 = new Curandero();
 
-        soldado.interactuar(curandero2, 1);
+        soldado.interactuar(curandero2, 1,1);
 
-        curandero1.interactuar(curandero2, 1);
+        curandero1.interactuar(curandero2, 1,1);
 
-        assertEquals(80, curandero2.getVida());
+        assertEquals(80.0, curandero2.getVida());
     }
 }
 

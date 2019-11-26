@@ -16,10 +16,10 @@ public class CatapultaAtaquesTest extends TestCase {
         Jinete jinete = new Jinete(new Celda(), new Equipo());
 
         try {
-            catapulta.interactuar(jinete, 1);
+            catapulta.interactuar(jinete, 1,1);
         }catch(RangoMuyCercano e){}
 
-        assertEquals(100, jinete.getVida());
+        assertEquals(100.0, jinete.getVida());
     }
 
     public void test02CatapultaAtacaAJineteLejanoYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
@@ -27,9 +27,9 @@ public class CatapultaAtaquesTest extends TestCase {
         Catapulta catapulta = new Catapulta();
         Jinete jinete = new Jinete(new Celda(), new Equipo());
 
-        catapulta.interactuar(jinete, 7);
+        catapulta.interactuar(jinete, 7,1);
 
-        assertEquals(80, jinete.getVida());
+        assertEquals(80.0, jinete.getVida());
     }
 
     public void test03CatapultaAtacaACatapultaLejanaYLeQuitaLaVidaCorrecta() throws RangoMuyLejano, RangoMuyCercano {
@@ -37,9 +37,9 @@ public class CatapultaAtaquesTest extends TestCase {
         Catapulta catapulta1 = new Catapulta();
         Catapulta catapulta2 = new Catapulta(new Celda(), new Equipo());
 
-        catapulta1.interactuar(catapulta2, 7);
+        catapulta1.interactuar(catapulta2, 7,1);
 
-        assertEquals(30, catapulta2.getVida());
+        assertEquals(30.0, catapulta2.getVida());
 
     }
 
@@ -48,9 +48,9 @@ public class CatapultaAtaquesTest extends TestCase {
         Catapulta catapulta = new Catapulta();
         Soldado soldado = new Soldado(new Celda(), new Equipo());
 
-        catapulta.interactuar(soldado, 7);
+        catapulta.interactuar(soldado, 7,1);
 
-        assertEquals(80, soldado.getVida());
+        assertEquals(80.0, soldado.getVida());
 
     }
 
@@ -59,9 +59,9 @@ public class CatapultaAtaquesTest extends TestCase {
         Catapulta catapulta = new Catapulta();
         Curandero curandero = new Curandero(new Celda(), new Equipo());
 
-        catapulta.interactuar(curandero, 7);
+        catapulta.interactuar(curandero, 7,1);
 
-        assertEquals(55, curandero.getVida());
+        assertEquals(55.0, curandero.getVida());
 
     }
 

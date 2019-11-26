@@ -515,4 +515,65 @@ public class TableroTest extends TestCase {
 		} catch (NoSeEncontroLaCelda noSeEncontroLaCelda) {
 		}
 	}
+
+	public void test24TableroUnidadAtacaAUnidadYLeSacaVida() throws CeldaYaTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero, CeldaNoTieneUnidad, RangoMuyLejano, NoSeEncontroLaCelda, RangoMuyCercano {
+
+		Equipo equipoDeJorge = mock(Equipo.class);
+		Equipo equipoDeRaul = mock(Equipo.class);
+		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
+		Posicion unaPosicion = new Posicion(11, 10);
+		Unidad unSoldado = new Soldado();
+		unSoldado.setEquipo(equipoDeJorge);
+		Unidad otroSoldado = new Soldado();
+		otroSoldado.setEquipo(equipoDeRaul);
+
+		nuevoTablero.colocarUnidad(unSoldado, unaPosicion);
+		nuevoTablero.cambiarSector();
+		nuevoTablero.colocarUnidad(otroSoldado, unaPosicion.arriba());
+
+		nuevoTablero.interaccion(unaPosicion, unaPosicion.arriba()); // Un soldado ataca al otro y le saca 10 de vida
+
+
+		Assert.assertEquals(otroSoldado.getVida(), 90.0);
+	}
+
+	public void test25TableroUnidadAtacaAUnidadFueraDeSuRangoYLanzaExcepcion() throws NoSeEncontroLaCelda, RangoMuyCercano, CeldaNoTieneUnidad, CeldaYaTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
+		Equipo equipoDeJorge = mock(Equipo.class);
+		Equipo equipoDeRaul = mock(Equipo.class);
+		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
+		Posicion unaPosicion = new Posicion(11, 10);
+		Unidad unSoldado = new Soldado();
+		Unidad otroSoldado = new Soldado();
+
+		nuevoTablero.colocarUnidad(unSoldado, unaPosicion);
+		nuevoTablero.cambiarSector();
+		nuevoTablero.colocarUnidad(otroSoldado, unaPosicion.arriba().izquierda().arriba());
+
+		try {
+			nuevoTablero.interaccion(unaPosicion, unaPosicion.arriba().izquierda().arriba()); // Un soldado ataca al otro y le saca 10 de vida
+			fail("No se lanzo la excepcion de rango muy lejano");
+		} catch (RangoMuyLejano rangoMuyLejano) {
+		}
+
+	}
+
+	public void test26TableroUnidadEnSectorEnemigoRecibeMasDanio() throws CeldaNoTieneUnidad, RangoMuyLejano, NoSeEncontroLaCelda, RangoMuyCercano, CeldaYaTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
+		Equipo equipoDeJorge = mock(Equipo.class);
+		Equipo equipoDeRaul = mock(Equipo.class);
+		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
+		Posicion unaPosicion = new Posicion(11, 10);
+		Unidad unSoldado = new Soldado();
+		Unidad otroSoldado = new Soldado();
+		unSoldado.setEquipo(equipoDeJorge);
+		otroSoldado.setEquipo(equipoDeRaul);
+
+		nuevoTablero.colocarUnidad(unSoldado, unaPosicion);
+		nuevoTablero.colocarUnidad(otroSoldado, unaPosicion.abajo());
+
+		nuevoTablero.interaccion(unaPosicion, unaPosicion.abajo());
+
+		double  numero = 100-10* 1.05;
+
+		Assert.assertEquals(numero, otroSoldado.getVida()); //5% de danio extra
+	}
 }
