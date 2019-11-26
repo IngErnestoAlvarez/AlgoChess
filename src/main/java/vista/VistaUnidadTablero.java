@@ -24,4 +24,7 @@ public class VistaUnidadTablero extends Label {
         this.setOnMouseClicked(evento);
     }
 
+    public Unidad getUnidad() {
+        return unidad;
+    }
 }
