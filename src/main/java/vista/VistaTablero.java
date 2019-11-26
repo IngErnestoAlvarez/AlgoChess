@@ -1,8 +1,10 @@
 package vista;
 
 import controladores.BotonCeldaHandler;
+import controladores.ClickearCeldaColocarUnidad;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
 import modelo.ErroresYExcepciones.NoSeEncontroLaCelda;
@@ -19,9 +21,16 @@ public class VistaTablero extends GridPane {
 
     private List<VistaCelda> vistaCeldas;
     public VBox unidadesIzquierda;
+    private Equipo equipo1;
+    private Equipo equipo2;
+    private Tablero tablero;
 
     public VistaTablero(Equipo equipo1, Equipo equipo2, Tablero tablero, VBox unidadesIzquierda) throws NoSeEncontroLaCelda {
         super();
+
+        this.equipo1 = equipo1;
+        this.equipo2 = equipo2;
+        this.tablero = tablero;
 
         this.vistaCeldas = new ArrayList<>();
 
@@ -30,7 +39,13 @@ public class VistaTablero extends GridPane {
         this.setVgap(5);
         this.setHgap(5);
 
+        try {
+            this.llenarCeldas();
+        } catch (Exception e) {
+        }
+    }
 
+    public void llenarCeldas() throws Exception{
         int equipo;
         for (int fila = 1; fila <= 20; fila++) {
             for (int col = 1; col <= 20; col++) {
@@ -53,5 +68,14 @@ public class VistaTablero extends GridPane {
         }
     }
 
+    public void colocarHandlers(VBox seleccionados){
+        for(Node nodos : this.getChildren()){
+            VistaCelda vistaCeldaunica = (VistaCelda)nodos;
+            vistaCeldaunica.setHandler(new ClickearCeldaColocarUnidad(seleccionados, tablero, vistaCeldaunica, this));
+        }
+    }
 
+//    public VistaTablero refresh()throws Exception{
+//        return new VistaTablero(equipo1, equipo2, tablero, unidadesIzquierda);
+//    }
 }

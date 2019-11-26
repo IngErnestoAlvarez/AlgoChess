@@ -8,7 +8,7 @@ import modelo.unidad.Unidad;
 
 public class VistaUnidadTablero extends Label {
     private Unidad unidad;
-    private ImageView imagen;
+    public ImageView imagen;
 
     public VistaUnidadTablero(ImageView imagen, Unidad unidad){
         super();
@@ -27,4 +27,10 @@ public class VistaUnidadTablero extends Label {
     public Unidad getUnidad() {
         return unidad;
     }
+
+    public void setTamanio(int h, int w){
+        imagen.setFitHeight(h);
+        imagen.setFitWidth(w);
+    }
+
 }

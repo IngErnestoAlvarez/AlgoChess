@@ -144,7 +144,7 @@ public class MainApp extends Application {
 
     private Scene escenaColocarUnidad1() throws NoSeEncontroLaCelda {
 
-        GridPane tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero(), null);
+        VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero(), null);
 
 
         VBox unidades = new VBox();
@@ -160,11 +160,7 @@ public class MainApp extends Application {
             vistaPrueba.setClickearImagen(new ClickearYCambiarDeLugarImagen(vistaPrueba, unidades, seleccionados));
         }
 
-
-        for(Node nodos : tablero.getChildren()){
-            VistaCelda vistaCeldaunica = (VistaCelda)nodos;
-            vistaCeldaunica.setHandler(new ClickearCeldaColocarUnidad(seleccionados, this.getTablero(), vistaCeldaunica));
-        }
+        tablero.colocarHandlers(seleccionados);
 
         Button botonCambioDeEquipo = new Button("Confirmar");
         botonCambioDeEquipo.setOnAction(new BotonCambiarDeEquipoColocar(this, this.tablero));
@@ -176,7 +172,7 @@ public class MainApp extends Application {
         return new Scene(contenedorPrincipal, 1200, 800);
     }
     private Scene escenaColocarUnidad2() throws NoSeEncontroLaCelda {
-        GridPane tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero(), null);
+        VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero(), null);
 
         VBox unidades = new VBox();
 
@@ -195,7 +191,7 @@ public class MainApp extends Application {
 
         for(Node nodos : tablero.getChildren()){
             VistaCelda vistaCeldaunica = (VistaCelda)nodos;
-            vistaCeldaunica.setHandler(new ClickearCeldaColocarUnidad(seleccionados, this.getTablero(), vistaCeldaunica));
+            vistaCeldaunica.setHandler(new ClickearCeldaColocarUnidad(seleccionados, this.getTablero(), vistaCeldaunica, tablero));
         }
         Button botonCambioDeEquipo = new Button("Confirmar");
         botonCambioDeEquipo.setOnAction(new BotonCambiarAEscenaPrincipal(this));
@@ -243,6 +239,5 @@ public class MainApp extends Application {
     public void cambiarAEscenaColocarUnidad2() throws NoSeEncontroLaCelda {
         this.escenario.setScene(this.escenaColocarUnidad2());
     }
-
 
 }

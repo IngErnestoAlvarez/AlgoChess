@@ -7,13 +7,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
 import modelo.celda.Celda;
 import modelo.equipo.Equipo;
 import modelo.unidad.Unidad;
 
-public class VistaCelda extends Button {
+public class VistaCelda extends ToggleButton {
 
     public Celda celda;
     private VBox unidades;
@@ -22,17 +22,22 @@ public class VistaCelda extends Button {
         super();
 
         this.celda = celda;
-        /*ImageView imagen = new ImageView();
+
         try {
-            String url = String.format("./resources/imagenes/%s.png", celda.verUnidad().getClass().getSimpleName());
-            Image unidad = new Image(url);
-        }catch(CeldaNoTieneUnidad e){}
-
-         */
-
-        this.setText(String.valueOf(equipo));
-        this.setPrefHeight(50);
-        this.setPrefWidth(40);
+            VistaUnidadTablero vista = VistaUnidad.imagenDeUnidad(celda.verUnidad());
+            //vista.setTamanio(40, 30);
+           /* BackgroundImage bImage = new BackgroundImage(vista.imagen.getImage(), BackgroundRepeat.NO_REPEAT,
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.CENTER,
+                    new BackgroundSize(50, 40, false, false, true, true));*/
+            //Background fondo = new Background(bImage);
+            this.setGraphic(vista);
+            //this.setBackground(fondo);
+        } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
+        }
+        //this.setText(String.valueOf(equipo));
+        this.setPrefSize(40, 50);
+        this.setMaxSize(40, 50);
 
         if(equipo == 2) {
             this.setStyle("-fx-background-color: #6c6eb3");
