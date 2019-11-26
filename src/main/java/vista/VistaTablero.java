@@ -35,11 +35,11 @@ public class VistaTablero extends GridPane {
         for (int fila = 1; fila <= 20; fila++) {
             for (int col = 1; col <= 20; col++) {
                 if(col > 10){
-                    equipo = 2;
-                }else{
                     equipo = 1;
+                }else{
+                    equipo = 2;
                 }
-                VistaCelda celda = new VistaCelda(tablero.buscarCeldaConPosicion(new Posicion(fila, col)), equipo);
+                VistaCelda celda = new VistaCelda(tablero.buscarCeldaConPosicion(new Posicion(col, fila)), equipo);
                 celda.unidadesAMostrar(unidadesIzquierda);
                 this.add(celda, fila, col);
                 this.vistaCeldas.add(celda);
