@@ -40,7 +40,7 @@ public class MainApp extends Application {
 
         this.escenario.setTitle("AlgoChess");
 
-        this.escenario.setScene(this.escenaColocarUnidad1());
+        this.escenario.setScene(this.escenaInicial());
 
         this.escenario.show();
     }
@@ -142,7 +142,7 @@ public class MainApp extends Application {
 
     private Scene escenaColocarUnidad1() throws NoSeEncontroLaCelda {
         //Cambiar new Tablero
-        GridPane tablero = new VistaTablero(this.equipo1, this.equipo2, new Tablero(20, 20 , new Equipo(), new Equipo()));
+        GridPane tablero = new VistaTablero(this.equipo1, this.equipo2, new Tablero(20, 20 , new Equipo(), new Equipo()), null);
 
         VistaUnidadTablero vistaPrueba = VistaUnidad.imagenDeUnidad(new Soldado());
         VBox unidades = new VBox(vistaPrueba);
@@ -174,7 +174,7 @@ public class MainApp extends Application {
 
         VBox unidades = new VBox(new VBox(), textoEntreUnidades ,new VBox());
 
-        VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.tablero);
+        VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.tablero, unidades);
         tablero.botones();
 
         unidades.setSpacing(40);
@@ -194,7 +194,7 @@ public class MainApp extends Application {
     }
 
     private Scene escenaColocarUnidad2() throws NoSeEncontroLaCelda {
-        GridPane tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero());
+        GridPane tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero(), null);
 
         VBox unidades = new VBox();
         Button botonCambioDeEquipo = new Button("Confirmar");

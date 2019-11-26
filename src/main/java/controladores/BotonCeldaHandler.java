@@ -20,8 +20,7 @@ public class BotonCeldaHandler implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent event) {
         try {
-            this.unidad = new VBox(new VistaUnidad(new Soldado()));
-            celda.verUnidad();
+            this.unidad = new VBox(new VistaUnidad(celda.verUnidad()));
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
             celdaNoTieneUnidad.printStackTrace();
         }

@@ -20,7 +20,7 @@ public class VistaTablero extends GridPane {
     private List<VistaCelda> vistaCeldas;
     public VBox unidadesIzquierda;
 
-    public VistaTablero(Equipo equipo1, Equipo equipo2, Tablero tablero) throws NoSeEncontroLaCelda {
+    public VistaTablero(Equipo equipo1, Equipo equipo2, Tablero tablero, VBox unidadesIzquierda) throws NoSeEncontroLaCelda {
         super();
 
         this.vistaCeldas = new ArrayList<>();
@@ -32,15 +32,16 @@ public class VistaTablero extends GridPane {
 
 
         int equipo;
-        for (int i = 1; i <= 20; i++) {
-            for (int j = 1; j <= 20; j++) {
-                if(j > 10){
+        for (int fila = 1; fila <= 20; fila++) {
+            for (int col = 1; col <= 20; col++) {
+                if(col > 10){
                     equipo = 2;
-                }else {
+                }else{
                     equipo = 1;
                 }
-                VistaCelda celda = new VistaCelda(tablero.buscarCeldaConPosicion(new Posicion(i, j)), equipo, this);
-                this.add(celda, i, j);
+                VistaCelda celda = new VistaCelda(tablero.buscarCeldaConPosicion(new Posicion(fila, col)), equipo);
+                celda.unidadesAMostrar(unidadesIzquierda);
+                this.add(celda, fila, col);
                 this.vistaCeldas.add(celda);
             }
         }
@@ -49,7 +50,6 @@ public class VistaTablero extends GridPane {
     public void botones() {
         for (VistaCelda vistaCelda : this.vistaCeldas) {
             vistaCelda.setHandler(new BotonCeldaHandler(vistaCelda.celda));
-
         }
     }
 

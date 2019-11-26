@@ -4,6 +4,11 @@ import controladores.BotonCeldaHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
+import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
 import modelo.celda.Celda;
 import modelo.equipo.Equipo;
 import modelo.unidad.Unidad;
@@ -11,14 +16,21 @@ import modelo.unidad.Unidad;
 public class VistaCelda extends Button {
 
     public Celda celda;
-    private VistaTablero tablero;
+    private VBox unidades;
 
-    public VistaCelda(Celda celda, int equipo, VistaTablero tablero){
+    public VistaCelda(Celda celda, int equipo){
         super();
 
         this.celda = celda;
-        this.tablero = tablero;
+        /*ImageView imagen = new ImageView();
+        try {
+            String url = String.format("./resources/imagenes/%s.png", celda.verUnidad().getClass().getSimpleName());
+            Image unidad = new Image(url);
+        }catch(CeldaNoTieneUnidad e){}
 
+         */
+
+        this.setText(String.valueOf(equipo));
         this.setPrefHeight(50);
         this.setPrefWidth(40);
 
@@ -33,4 +45,7 @@ public class VistaCelda extends Button {
         this.setOnAction(eventHandler);
     }
 
+    public void unidadesAMostrar(VBox unidadesIzquierda) {
+        this.unidades = unidadesIzquierda;
+    }
 }

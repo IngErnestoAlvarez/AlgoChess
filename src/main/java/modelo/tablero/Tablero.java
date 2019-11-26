@@ -101,9 +101,9 @@ public class Tablero {
 
     private void llenarTablero(int largo, int alto){
 
-        for (int fila = 1; fila <= largo; fila++ ){
+        for (int columna = 1; columna <= largo; columna++ ){
 
-            for ( int columna = 1; columna <= alto; columna++ ){
+            for ( int fila = 1; fila <= alto; fila++ ){
 
                 Celda celda = new Celda( fila , columna );
 
