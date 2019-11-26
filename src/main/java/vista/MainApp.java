@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import modelo.ErroresYExcepciones.NoSeEncontroLaCelda;
 import modelo.equipo.Equipo;
 import modelo.tablero.Tablero;
+import modelo.unidad.Soldado;
 
 import java.io.FileInputStream;
 
@@ -39,7 +40,7 @@ public class MainApp extends Application {
 
         this.escenario.setTitle("AlgoChess");
 
-        this.escenario.setScene(this.escenaInicial());
+        this.escenario.setScene(this.escenaColocarUnidad1());
 
         this.escenario.show();
     }
@@ -140,15 +141,21 @@ public class MainApp extends Application {
     }
 
     private Scene escenaColocarUnidad1() throws NoSeEncontroLaCelda {
-        GridPane tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero());
+        //Cambiar new Tablero
+        GridPane tablero = new VistaTablero(this.equipo1, this.equipo2, new Tablero(20, 20 , new Equipo(), new Equipo()));
 
-        VBox unidades = new VBox();
+        VistaUnidadTablero vistaPrueba = VistaUnidad.imagenDeUnidad(new Soldado());
+        VBox unidades = new VBox(vistaPrueba);
+
+        VBox seleccionados = new VBox();
+        vistaPrueba.setClickearImagen(new ClickearYCambiarDeLugarImagen(vistaPrueba, unidades, seleccionados));
+
         Button botonCambioDeEquipo = new Button("Confirmar");
         botonCambioDeEquipo.setOnAction(new BotonCambiarDeEquipoColocar(this));
 
         unidades.getChildren().add(botonCambioDeEquipo);
 
-        HBox contenedorPrincipal = new HBox(tablero, unidades);
+        HBox contenedorPrincipal = new HBox(tablero, unidades, seleccionados);
 
         return new Scene(contenedorPrincipal, 1200, 800);
     }
