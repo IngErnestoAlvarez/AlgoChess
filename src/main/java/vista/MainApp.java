@@ -161,16 +161,18 @@ public class MainApp extends Application {
                 BackgroundPosition.CENTER,
                 new BackgroundSize(1200, 800, false, false, false, false)));
 
-        GridPane tablero = new VistaTablero(new Equipo(), new Equipo(), this.getTablero());
 
         Label textoEntreUnidades = new Label("vs");
         textoEntreUnidades.setVisible(false);
 
         VBox unidades = new VBox(new VBox(), textoEntreUnidades ,new VBox());
 
+        VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.tablero);
+        tablero.botones();
+
         unidades.setSpacing(40);
 
-        HBox contenedorPrincipal = new HBox(unidades, tablero);
+        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(unidades, tablero);
 
         contenedorPrincipal.setBackground(fondo);
         contenedorPrincipal.setAlignment(Pos.CENTER);

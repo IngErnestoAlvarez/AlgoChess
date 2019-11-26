@@ -1,10 +1,10 @@
 package equipotest;
 
-import modelo.equipo.*;
 import modelo.ErroresYExcepciones.*;
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
+import modelo.equipo.Equipo;
 
 public class ComprarUnidadesTest extends TestCase{
 

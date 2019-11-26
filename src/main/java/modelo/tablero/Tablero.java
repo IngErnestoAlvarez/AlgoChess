@@ -2,11 +2,11 @@ package modelo.tablero;
 
 import modelo.ErroresYExcepciones.*;
 import modelo.celda.Posicion;
+import modelo.equipo.Equipo;
 import modelo.tablero.movimientos.Movimiento;
 import modelo.unidad.Catapulta;
 import modelo.unidad.Unidad;
 import modelo.celda.Celda;
-import modelo.equipo.*;
 import modelo.unidad.batallon.Batallon;
 
 import java.util.ArrayList;

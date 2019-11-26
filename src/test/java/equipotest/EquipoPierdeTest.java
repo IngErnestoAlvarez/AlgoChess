@@ -1,6 +1,6 @@
 package equipotest;
 
-import modelo.equipo.*;
+import modelo.equipo.Equipo;
 import modelo.unidad.*;
 import modelo.ErroresYExcepciones.*;
 

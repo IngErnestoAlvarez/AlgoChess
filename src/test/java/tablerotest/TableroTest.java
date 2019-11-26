@@ -2,8 +2,8 @@ package tablerotest;
 
 import modelo.ErroresYExcepciones.*;
 import modelo.celda.Posicion;
+import modelo.equipo.Equipo;
 import modelo.unidad.*;
-import modelo.equipo.*;
 import modelo.celda.Celda;
 import modelo.tablero.Tablero;
 import junit.framework.Assert;

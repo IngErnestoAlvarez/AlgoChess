@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import modelo.unidad.*;
 import modelo.ErroresYExcepciones.*;
-import modelo.unidad.FabricaUnidad;
 
 
 public class Equipo{
