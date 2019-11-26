@@ -2,14 +2,22 @@ package vista;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import modelo.ErroresYExcepciones.NoSeEncontroLaCelda;
+import modelo.equipo.Equipo;
+import modelo.unidad.Jinete;
+import modelo.unidad.Soldado;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 public class MainApp extends Application {
     private Stage escenario;
@@ -21,11 +29,15 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+        stage.setMaximized(true);
+
+        stage.setResizable(false);
+
         this.escenario = stage;
 
         this.escenario.setTitle("AlgoChess");
 
-        this.escenario.setScene(this.escenaDeCompra());
+        this.escenario.setScene(this.escenaTablero());
 
         this.escenario.show();
     }
@@ -66,6 +78,33 @@ public class MainApp extends Application {
         HBox unidades = new HBox();
 
         VBox contenedorPrincipal = new VBox(new VistaCompraUnidad(), unidades, botonera);
+        return new Scene(contenedorPrincipal, 1200, 800);
+    }
+
+    private Scene escenaTablero() throws Exception {
+
+        Background fondo = new Background(new BackgroundImage(new Image(new FileInputStream("./resources/imagenes/fondo.png")),
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(1200, 800, false, false, false, false)));
+
+        GridPane tablero = new VistaTablero(new Equipo(), new Equipo());
+
+        Label textoEntreUnidades = new Label("vs");
+        textoEntreUnidades.setVisible(false);
+
+        VBox unidades = new VBox(new VBox(), textoEntreUnidades ,new VBox());
+
+        unidades.setSpacing(40);
+
+        HBox contenedorPrincipal = new HBox(unidades, tablero);
+
+        contenedorPrincipal.setBackground(fondo);
+        contenedorPrincipal.setAlignment(Pos.CENTER);
+
+        contenedorPrincipal.setSpacing(20);
+
         return new Scene(contenedorPrincipal, 1200, 800);
     }
 }
