@@ -43,8 +43,10 @@ public class VistaTablero extends GridPane {
         }
     }
 
-    public void llenarCeldas() throws Exception{
+    public void llenarCeldas() throws NoSeEncontroLaCelda {
         int equipo;
+        this.vistaCeldas.clear();
+        this.getChildren().clear();
         for (int fila = 1; fila <= 20; fila++) {
             for (int col = 1; col <= 20; col++) {
                 if(col > 10){

@@ -1,17 +1,12 @@
 package vista;
 
-import controladores.BotonCeldaHandler;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
 import modelo.celda.Celda;
-import modelo.equipo.Equipo;
-import modelo.unidad.Unidad;
 
 public class VistaCelda extends ToggleButton {
 
@@ -34,6 +29,7 @@ public class VistaCelda extends ToggleButton {
             this.setGraphic(vista);
             //this.setBackground(fondo);
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
+            this.setGraphic(new Label(""));
         }
         //this.setText(String.valueOf(equipo));
         this.setPrefSize(40, 50);
