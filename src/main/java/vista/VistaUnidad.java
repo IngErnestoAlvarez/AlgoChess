@@ -57,7 +57,6 @@ public class VistaUnidad extends VBox {
         imagen.setImage(imagenFinal);
         VistaUnidadTablero label = new VistaUnidadTablero(imagen, unidad);
 
-
         return label;
     }
 

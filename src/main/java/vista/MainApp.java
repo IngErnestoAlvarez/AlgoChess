@@ -51,6 +51,7 @@ public class MainApp extends Application {
 
     private Scene escenaInicial(){
 
+
         Label labelEquipo1 = new Label("Equipo 1");
         labelEquipo1.setFont(Font.font("Cambria", 32));
         TextField nombreEquipo1 = new TextField();
