@@ -226,7 +226,9 @@ public class MainApp extends Application {
 
         unidades.setSpacing(40);
 
-        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(unidades, tablero);
+        VBox controles = new VBox();
+
+        ContenedorPrincipal contenedorPrincipal = new ContenedorPrincipal(unidades, tablero, controles);
 
         contenedorPrincipal.setBackground(fondo);
         contenedorPrincipal.setAlignment(Pos.CENTER);

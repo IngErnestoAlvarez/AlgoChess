@@ -2,17 +2,16 @@ package vista;
 
 import controladores.BotonCeldaHandler;
 import controladores.ClickearCeldaColocarUnidad;
+import controladores.ClickearCeldaMoverUnidad1;
+import controladores.ClickearCeldaMoverUnidad2;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
 import modelo.ErroresYExcepciones.NoSeEncontroLaCelda;
 import modelo.celda.Celda;
 import modelo.celda.Posicion;
 import modelo.equipo.Equipo;
 import modelo.tablero.Tablero;
-import modelo.unidad.Unidad;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +74,22 @@ public class VistaTablero extends GridPane {
         }
     }
 
-//    public VistaTablero refresh()throws Exception{
+    public void modoMovimiento() {
+        for(VistaCelda vistaCelda : this.vistaCeldas){
+            vistaCelda.setHandler(new ClickearCeldaMoverUnidad1(this, vistaCelda));
+        }
+    }
+
+    public void modoRecibirUnidad(VistaCelda celdaOrigen) {
+        for (VistaCelda vistaCelda : this.vistaCeldas){
+            vistaCelda.setHandler(new ClickearCeldaMoverUnidad2(this, celdaOrigen, vistaCelda));
+        }
+    }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+    //    public VistaTablero refresh()throws Exception{
 //        return new VistaTablero(equipo1, equipo2, tablero, unidadesIzquierda);
 //    }
 }

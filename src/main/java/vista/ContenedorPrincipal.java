@@ -1,5 +1,7 @@
 package vista;
 
+import controladores.BotonCambiarTableroAModoMovimiento;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import modelo.unidad.Unidad;
@@ -8,11 +10,20 @@ public class ContenedorPrincipal extends HBox {
 
     private VBox unidades;
     private VistaTablero tablero;
+    private VBox controles;
 
-    public ContenedorPrincipal(VBox unidades, VistaTablero tablero) {
-        super(unidades, tablero);
+    public ContenedorPrincipal(VBox unidades, VistaTablero tablero, VBox controles) {
+        super(unidades, tablero, controles);
         this.unidades = unidades;
         this.tablero = tablero;
+        this.controles = controles;
+        this.botones();
+    }
+
+    private void botones() {
+        Button botonMovimiento = new Button("Mover Unidad");
+        botonMovimiento.setOnAction(new BotonCambiarTableroAModoMovimiento(tablero));
+        this.controles.getChildren().add(botonMovimiento);
     }
 
     public void agregarUnidadTop(Unidad unidad){
@@ -22,4 +33,6 @@ public class ContenedorPrincipal extends HBox {
     public void agregarUnidadBottom(Unidad unidad){
         this.unidades.getChildren().add(2, new VistaUnidad(unidad));
     }
+
+
 }
