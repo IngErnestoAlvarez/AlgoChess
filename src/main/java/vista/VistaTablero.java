@@ -8,7 +8,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import modelo.ErroresYExcepciones.NoSeEncontroLaCelda;
-import modelo.celda.Celda;
 import modelo.celda.Posicion;
 import modelo.equipo.Equipo;
 import modelo.tablero.Tablero;
@@ -75,12 +74,22 @@ public class VistaTablero extends GridPane {
     }
 
     public void modoMovimiento() {
+        try {
+            llenarCeldas();
+        } catch (Exception e) {
+
+        }
         for(VistaCelda vistaCelda : this.vistaCeldas){
             vistaCelda.setHandler(new ClickearCeldaMoverUnidad1(this, vistaCelda));
         }
     }
 
     public void modoRecibirUnidad(VistaCelda celdaOrigen) {
+        try {
+            llenarCeldas();
+        } catch (Exception e) {
+
+        }
         for (VistaCelda vistaCelda : this.vistaCeldas){
             vistaCelda.setHandler(new ClickearCeldaMoverUnidad2(this, celdaOrigen, vistaCelda));
         }
