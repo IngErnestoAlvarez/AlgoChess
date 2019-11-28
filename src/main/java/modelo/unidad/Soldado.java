@@ -24,4 +24,9 @@ public class Soldado extends Unidad {
         this.celda = celda;
         this.equipo = equipo;
     }
+
+    public String getStringAccion(){
+        return "Danio de ataque: " + danio;
+    }
+
 }

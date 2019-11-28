@@ -41,7 +41,6 @@ public class MainApp extends Application {
 
         this.escenario.setTitle("AlgoChess");
 
-
         this.escenario.setScene(this.escenaInicial());
 
         this.escenario.show();
@@ -251,13 +250,11 @@ public class MainApp extends Application {
                 new BackgroundSize(1200, 800, false, false, false, false)));
 
 
-        Label textoEntreUnidades = new Label("vs");
-        textoEntreUnidades.setVisible(false);
-
-        VBox unidades = new VBox(new VBox(), textoEntreUnidades ,new VBox());
+        VBox unidades = new VBox();
 
         VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.tablero, unidades, this);
         tablero.botones();
+
 
         unidades.setSpacing(40);
 

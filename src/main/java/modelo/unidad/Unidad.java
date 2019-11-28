@@ -65,4 +65,6 @@ public abstract class Unidad {
     public List<Unidad> verUnidadesAdyacentes(){
         return celda.verUnidadesAdyacentes();
     }
+
+   public abstract String getStringAccion();
 }

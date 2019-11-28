@@ -24,4 +24,8 @@ public class Curandero extends Unidad {
         this.equipo = equipo;
     }
 
+    public String getStringAccion(){
+        return "Vida que cura: " + curacion;
+    }
+
 }

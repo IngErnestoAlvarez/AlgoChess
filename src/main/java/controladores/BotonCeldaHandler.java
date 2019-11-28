@@ -6,23 +6,28 @@ import javafx.scene.layout.VBox;
 import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
 import modelo.celda.Celda;
 import modelo.unidad.Soldado;
+import modelo.unidad.Unidad;
 import vista.VistaUnidad;
+import vista.VistaUnidadInfo;
 
 public class BotonCeldaHandler implements EventHandler<ActionEvent> {
 
     private Celda celda;
     private VBox unidad;
 
-    public BotonCeldaHandler(Celda celda){
+
+    public BotonCeldaHandler(Celda celda, VBox unidadAMostrar){
         this.celda = celda;
+        this.unidad = unidadAMostrar;
     }
 
     @Override
     public void handle(ActionEvent event) {
         try {
-            this.unidad = new VBox(new VistaUnidad(celda.verUnidad()));
+            Unidad unidadCelda = celda.verUnidad();
+            this.unidad.getChildren().clear();
+            this.unidad.getChildren().add(new VistaUnidadInfo(unidadCelda));
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
-            celdaNoTieneUnidad.printStackTrace();
         }
     }
 }

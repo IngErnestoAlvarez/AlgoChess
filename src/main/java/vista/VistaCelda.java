@@ -50,7 +50,4 @@ public class VistaCelda extends ToggleButton {
         this.setOnAction(eventHandler);
     }
 
-    public void unidadesAMostrar(VBox unidadesIzquierda) {
-        this.unidades = unidadesIzquierda;
-    }
 }

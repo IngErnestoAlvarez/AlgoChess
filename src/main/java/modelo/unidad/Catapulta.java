@@ -29,4 +29,8 @@ public class Catapulta extends Unidad {
     public void recibirCuracion(double puntosVida){
         vida += 0;
     }
+
+    public String getStringAccion(){
+        return "Danio de ataque: " + danio;
+    }
 }

@@ -56,5 +56,9 @@ public class Jinete extends Unidad {
         }
         return false;
     }
+
+    public String getStringAccion(){
+        return "Danio de ataque lejano: " + danioLejano + "\nDanio de ataque cercano: " + danioCercano;
+    }
 }
 

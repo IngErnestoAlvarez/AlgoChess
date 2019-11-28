@@ -10,11 +10,14 @@ import modelo.equipo.Equipo;
 import modelo.unidad.Unidad;
 import vista.VistaUnidad;
 
+import java.awt.*;
+
 public class BotonComprarUnidadHandler implements EventHandler<ActionEvent> {
 
     private Equipo equipo;
     private Unidad unidad;
     private HBox vistaUnidades;
+    private Label puntosRestantes;
 
     public BotonComprarUnidadHandler(Unidad unidad){
 

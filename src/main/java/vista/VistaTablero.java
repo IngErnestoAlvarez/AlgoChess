@@ -17,19 +17,20 @@ import java.util.List;
 public class VistaTablero extends GridPane {
 
     private List<VistaCelda> vistaCeldas;
-    public VBox unidadesIzquierda;
+    public VBox unidad;
     private Equipo equipo1;
     private Equipo equipo2;
     private Tablero tablero;
     private MainApp main;
     private Label equipoQueJuega;
-    public VistaTablero(Equipo equipo1, Equipo equipo2, Tablero tablero, VBox unidadesIzquierda, MainApp main) throws NoSeEncontroLaCelda {
+    public VistaTablero(Equipo equipo1, Equipo equipo2, Tablero tablero, VBox unidad, MainApp main) throws NoSeEncontroLaCelda {
         super();
 
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
         this.tablero = tablero;
         this.main = main;
+        this.unidad = unidad;
         equipoQueJuega = new Label("El equipo que juega es: " + equipo1.getNombre());
         equipoQueJuega.setFont(Font.font("Cambria", 30));
         equipoQueJuega.setStyle("-fx-background-color:POWDERBLUE");
@@ -58,7 +59,6 @@ public class VistaTablero extends GridPane {
                     equipo = 2;
                 }
                 VistaCelda celda = new VistaCelda(tablero.buscarCeldaConPosicion(new Posicion(col, fila)), equipo);
-                celda.unidadesAMostrar(unidadesIzquierda);
                 this.add(celda, fila, col);
                 this.vistaCeldas.add(celda);
             }
@@ -67,7 +67,7 @@ public class VistaTablero extends GridPane {
 
     public void botones() {
         for (VistaCelda vistaCelda : this.vistaCeldas) {
-            vistaCelda.setHandler(new BotonCeldaHandler(vistaCelda.celda));
+            vistaCelda.setHandler(new BotonCeldaHandler(vistaCelda.celda, this.unidad));
         }
     }
 
