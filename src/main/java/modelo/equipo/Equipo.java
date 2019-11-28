@@ -72,6 +72,7 @@ public class Equipo{
     }
 
     public boolean esPerdedor(){
+        eliminarUnidadesMuertas();
         return !(tieneUnidades());
     }
 

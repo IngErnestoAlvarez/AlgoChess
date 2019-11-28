@@ -19,13 +19,14 @@ public class VistaTablero extends GridPane {
     private Equipo equipo1;
     private Equipo equipo2;
     private Tablero tablero;
-
-    public VistaTablero(Equipo equipo1, Equipo equipo2, Tablero tablero, VBox unidadesIzquierda) throws NoSeEncontroLaCelda {
+    private MainApp main;
+    public VistaTablero(Equipo equipo1, Equipo equipo2, Tablero tablero, VBox unidadesIzquierda, MainApp main) throws NoSeEncontroLaCelda {
         super();
 
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
         this.tablero = tablero;
+        this.main = main;
 
         this.vistaCeldas = new ArrayList<>();
 
@@ -104,20 +105,28 @@ public class VistaTablero extends GridPane {
         } catch (Exception e){}
 
         for(VistaCelda vistaCelda : this.vistaCeldas){
-            vistaCelda.setHandler(new ClickearCeldaAtaqueUnidad1(this, vistaCelda));
+            vistaCelda.setHandler(new ClickearCeldaAtaqueUnidad1(this, vistaCelda, main));
         }
     }
 
-    public void modoRecibirAtaque(VistaCelda vistaCeldaOrigen) {
+    public void modoRecibirAtaque(VistaCelda vistaCeldaOrigen, MainApp main) {
         try{
             llenarCeldas();
         } catch (Exception e){}
 
         for (VistaCelda vistaCelda : this.vistaCeldas){
-            vistaCelda.setHandler(new ClickearCeldaAtaqueUnidad2(this, vistaCeldaOrigen, vistaCelda));
+            vistaCelda.setHandler(new ClickearCeldaAtaqueUnidad2(this, vistaCeldaOrigen, vistaCelda, main));
         }
     }
     //    public VistaTablero refresh()throws Exception{
 //        return new VistaTablero(equipo1, equipo2, tablero, unidadesIzquierda);
 //    }
+
+    public Equipo getEquipo1() {
+        return equipo1;
+    }
+
+    public Equipo getEquipo2() {
+        return equipo2;
+    }
 }

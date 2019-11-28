@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import modelo.ErroresYExcepciones.NoSeEncontroLaCelda;
 import modelo.equipo.Equipo;
 import modelo.tablero.Tablero;
-import modelo.unidad.Soldado;
 import modelo.unidad.Unidad;
 
 import java.io.FileInputStream;
@@ -36,11 +35,12 @@ public class MainApp extends Application {
 
         stage.setMaximized(true);
 
-        stage.setResizable(false);
+        stage.setResizable(true);
 
         this.escenario = stage;
 
         this.escenario.setTitle("AlgoChess");
+
 
         this.escenario.setScene(this.escenaInicial());
 
@@ -145,21 +145,32 @@ public class MainApp extends Application {
 
     private Scene escenaColocarUnidad1() throws NoSeEncontroLaCelda {
 
-        VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero(), null);
+        VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero(), null, this);
 
 
         VBox unidades = new VBox();
+        Label nombreUnidades = new Label("UNIDADES");
+        nombreUnidades.setFont(Font.font("Cambria", 25));
+
+        VBox unidadesCompleta = new VBox(nombreUnidades, unidades);
+        unidadesCompleta.setSpacing(20);
 
         for(Unidad unidad : equipo1.getUnidades()){
             unidades.getChildren().add(VistaUnidad.imagenDeUnidad(unidad));
         }
 
         VBox seleccionados = new VBox();
+        Label nombreSeleccionados = new Label("SELECCIONADAS");
+        nombreSeleccionados.setFont(Font.font("Cambria", 25));
+
+        VBox seleccionadosCompleta = new VBox(nombreSeleccionados, seleccionados);
+        seleccionadosCompleta.setSpacing(20);
 
         for(Node nodo : unidades.getChildren()){
             VistaUnidadTablero vistaPrueba = (VistaUnidadTablero) nodo;
             vistaPrueba.setClickearImagen(new ClickearYCambiarDeLugarImagen(vistaPrueba, unidades, seleccionados));
         }
+
 
         tablero.colocarHandlers(seleccionados);
 
@@ -168,26 +179,41 @@ public class MainApp extends Application {
 
         unidades.getChildren().add(botonCambioDeEquipo);
 
-        HBox contenedorPrincipal = new HBox(tablero, unidades, seleccionados);
+
+
+
+        HBox contenedorPrincipal = new HBox(tablero, unidadesCompleta, seleccionadosCompleta);
+        contenedorPrincipal.setSpacing(30);
 
         return new Scene(contenedorPrincipal, 1200, 800);
     }
     private Scene escenaColocarUnidad2() throws NoSeEncontroLaCelda {
-        VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero(), null);
+        VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero(), null, this);
 
         VBox unidades = new VBox();
+        Label nombreUnidades = new Label("UNIDADES");
+        nombreUnidades.setFont(Font.font("Cambria", 25));
 
+        VBox unidadesCompleta = new VBox(nombreUnidades, unidades);
+        unidadesCompleta.setSpacing(20);
 
         for(Unidad unidad : equipo2.getUnidades()){
             unidades.getChildren().add(VistaUnidad.imagenDeUnidad(unidad));
         }
 
         VBox seleccionados = new VBox();
+        Label nombreSeleccionados = new Label("SELECCIONADAS");
+        nombreSeleccionados.setFont(Font.font("Cambria", 25));
+
+        VBox seleccionadosCompleta = new VBox(nombreSeleccionados, seleccionados);
+        seleccionadosCompleta.setSpacing(20);
 
         for(Node nodo : unidades.getChildren()){
             VistaUnidadTablero vistaPrueba = (VistaUnidadTablero) nodo;
             vistaPrueba.setClickearImagen(new ClickearYCambiarDeLugarImagen(vistaPrueba, unidades, seleccionados));
         }
+
+
 
 
         for(Node nodos : tablero.getChildren()){
@@ -196,10 +222,11 @@ public class MainApp extends Application {
         }
         Button botonCambioDeEquipo = new Button("Confirmar");
         botonCambioDeEquipo.setOnAction(new BotonCambiarAEscenaPrincipal(this));
-
         unidades.getChildren().add(botonCambioDeEquipo);
 
-        HBox contenedorPrincipal = new HBox(tablero, unidades, seleccionados);
+
+        HBox contenedorPrincipal = new HBox(tablero, unidadesCompleta, seleccionadosCompleta);
+        contenedorPrincipal.setSpacing(30);
 
         return new Scene(contenedorPrincipal, 1200, 800);
     }
@@ -222,7 +249,7 @@ public class MainApp extends Application {
 
         VBox unidades = new VBox(new VBox(), textoEntreUnidades ,new VBox());
 
-        VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.tablero, unidades);
+        VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.tablero, unidades, this);
         tablero.botones();
 
         unidades.setSpacing(40);
@@ -243,4 +270,27 @@ public class MainApp extends Application {
         this.escenario.setScene(this.escenaColocarUnidad2());
     }
 
+    public void cambiarAEscenaGanador(Equipo equipo2) {
+        this.escenario.setScene(this.escenaGanador(equipo2));
+    }
+
+    private Scene escenaGanador(Equipo equipo2) {
+        VBox contenedorPrincipal = new VBox();
+
+        Label ganador = new Label("GANADOR: " + equipo2.getNombre().toUpperCase());
+        ganador.setFont(Font.font("Cambria", 100));
+
+        Button botonJugarDeNuevo = new Button("Jugar de Nuevo");
+        botonJugarDeNuevo.setOnAction(new BotonIniciarJuegoDeVuetla(this));
+
+        contenedorPrincipal.getChildren().add(ganador);
+        contenedorPrincipal.getChildren().add(botonJugarDeNuevo);
+
+
+        return new Scene(contenedorPrincipal, 1200, 800);
+    }
+
+    public void cambiarAEscenaInicial() {
+        this.escenario.setScene(escenaInicial());
+    }
 }
