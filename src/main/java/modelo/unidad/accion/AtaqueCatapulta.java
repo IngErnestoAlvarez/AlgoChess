@@ -38,4 +38,9 @@ public class AtaqueCatapulta extends Accion{
         }
     }
 
+    @Override
+    public String getStringAudio() {
+        return "./resources/audio/catapult.mp3";
+    }
+
 }

@@ -20,4 +20,9 @@ public class Curacion extends Accion {
         unidad.recibirCuracion(puntosVida);
 
     }
+
+    @Override
+    public String getStringAudio() {
+        return "./resources/audio/heal.mp3";
+    }
 }

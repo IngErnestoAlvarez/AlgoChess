@@ -11,5 +11,7 @@ public abstract class Accion {
 
         public abstract void interactuar(Unidad unidad, int distancia, double incremento) throws RangoMuyLejano, RangoMuyCercano;
 
-        //public abstract void interactuar(ArrayList<Unidad> unidades);
+    public abstract String getStringAudio();
+
+    //public abstract void interactuar(ArrayList<Unidad> unidades);
 }

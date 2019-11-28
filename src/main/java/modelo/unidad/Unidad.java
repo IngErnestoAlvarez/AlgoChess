@@ -66,5 +66,9 @@ public abstract class Unidad {
         return celda.verUnidadesAdyacentes();
     }
 
-   public abstract String getStringAccion();
+    public abstract String getStringAccion();
+
+    public String getStringAudio(){
+        return accion.getStringAudio();
+    }
 }

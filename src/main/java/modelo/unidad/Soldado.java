@@ -29,4 +29,5 @@ public class Soldado extends Unidad {
         return "Danio de ataque: " + danio;
     }
 
+
 }

@@ -14,4 +14,9 @@ public class AtaqueLejano extends Accion {
     public void interactuar(Unidad unidad, int distancia, double incremento){
         unidad.recibirDanio(puntosVida);
     }
+
+    @Override
+    public String getStringAudio() {
+        return "./resources/audio/catapult.mp3";
+    }
 }

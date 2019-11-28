@@ -7,10 +7,14 @@ import Alertas.AlertaUnidadNoPerteneceAlEquipoQueJuega;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import modelo.ErroresYExcepciones.*;
 import vista.MainApp;
 import vista.VistaCelda;
 import vista.VistaTablero;
+
+import java.io.File;
 
 public class ClickearCeldaAtaqueUnidad2 implements EventHandler<ActionEvent> {
     private VistaTablero tablero;
@@ -28,6 +32,10 @@ public class ClickearCeldaAtaqueUnidad2 implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         try {
             tablero.getTablero().interaccion(vistaCeldaOrigen.celda.verPosicion(), vistaCeldaDestino.celda.verPosicion());
+            String musicFile = vistaCeldaOrigen.celda.verUnidad().getStringAudio();     // For example
+            Media sound = new Media(new File(musicFile).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.play();
             tablero.getTablero().cambiarEquipo();
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
             Alert alertaCeldaSinUnidad = new AlertaCeldaNoTieneUnidad();

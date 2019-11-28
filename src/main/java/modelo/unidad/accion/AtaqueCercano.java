@@ -16,4 +16,9 @@ public class AtaqueCercano extends Accion{
         rango.perteneceAlRango(distancia);
         unidad.recibirDanio(puntosVida*incremento);
     }
+
+    @Override
+    public String getStringAudio() {
+        return "./resources/audio/sword.mp3";
+    }
 }
