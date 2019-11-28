@@ -1,7 +1,10 @@
-package vista;
+package controladores;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import vista.MainApp;
+import vista.VistaCelda;
+import vista.VistaTablero;
 
 public class ClickearCeldaAtaqueUnidad1 implements EventHandler<ActionEvent> {
     private VistaCelda vistaCeldaOrigen;

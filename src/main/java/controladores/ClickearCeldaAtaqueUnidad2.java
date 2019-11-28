@@ -32,17 +32,23 @@ public class ClickearCeldaAtaqueUnidad2 implements EventHandler<ActionEvent> {
                 main.cambiarAEscenaGanador(tablero.getEquipo1());
             }
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
+            tablero.getTablero().cambiarEquipo();
             Alert alertaCeldaSinUnidad = new AlertaCeldaNoTieneUnidad();
             alertaCeldaSinUnidad.showAndWait();
         } catch (NoSeEncontroLaCelda noSeEncontroLaCelda){
+            tablero.getTablero().cambiarEquipo();
         } catch (RangoMuyLejano rangoMuyLejano) {
+            tablero.getTablero().cambiarEquipo();
         } catch (RangoMuyCercano rangoMuyCercano) {
+            tablero.getTablero().cambiarEquipo();
         } catch (EquipoEquivocado equipoEquivocado) {
+            tablero.getTablero().cambiarEquipo();
             equipoEquivocado.printStackTrace();
         }
         try{
             tablero.llenarCeldas();
         }catch (Exception e){}
         tablero.botones();
+        tablero.getTablero().cambiarEquipo();
     }
 }
