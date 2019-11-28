@@ -87,16 +87,17 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test04TableroSePuedeMoverUnaUnidadAUnaCasillaAdyacente() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, MovimientoInvalido {
+	public void test04TableroSePuedeMoverUnaUnidadAUnaCasillaAdyacente() throws TableroSectorInvalido, CeldaNoEstaEnElTablero, NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, MovimientoInvalido, EquipoEquivocado {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
-		Unidad unSoldado = mock(Soldado.class);
+		Unidad unSoldado = new Soldado();
 		Posicion posicionDeseada = new Posicion(2, 2);
 
 		nuevoTablero.cambiarSector();
 		nuevoTablero.colocarUnidad(unSoldado, posicionDeseada);
+		unSoldado.setEquipo(equipoDeJorge);
 		nuevoTablero.moverUnidad(posicionDeseada, posicionDeseada.derecha());
 
 		assertEquals(nuevoTablero.verUnidad(posicionDeseada.derecha()), unSoldado);
@@ -121,7 +122,7 @@ public class TableroTest extends TestCase {
 			nuevoTablero.moverUnidad(posicionDeseada, posicionDeseada.derecha());
 			Unidad unidadVacia = nuevoTablero.verUnidad(posicionDeseada);
 			fail("El test no tiro la excepcion CeldaNoTieneUnidad");
-		} catch (CeldaNoTieneUnidad e) {
+		} catch (CeldaNoTieneUnidad | EquipoEquivocado e) {
 		}
 
 	}
@@ -136,7 +137,7 @@ public class TableroTest extends TestCase {
 		try {
 			nuevoTablero.moverUnidad(posicionDeseada, posicionDeseada.derecha());
 			fail("El test no tiro la excepcion CeldaNoTieneUnidad");
-		} catch (CeldaNoTieneUnidad excepcion) {
+		} catch (CeldaNoTieneUnidad | EquipoEquivocado excepcion) {
 		}
 
 	}
@@ -158,7 +159,7 @@ public class TableroTest extends TestCase {
 		try {
 			nuevoTablero.moverUnidad(posicionDeseada, posicionDeseada.arriba());
 			fail("El test no tiro la excepcion CeldaYaTieneUnidad");
-		} catch (CeldaYaTieneUnidad otraExcepcion) {
+		} catch (CeldaYaTieneUnidad | EquipoEquivocado otraExcepcion) {
 		}
 
 	}
@@ -279,16 +280,17 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test12TableroUnidadesEnElBordeSePuedenMover() throws TableroSectorInvalido, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido, NoSeEncontroLaCelda {
+	public void test12TableroUnidadesEnElBordeSePuedenMover() throws TableroSectorInvalido, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido, NoSeEncontroLaCelda, EquipoEquivocado {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
 		Posicion posicionDeUnidad = new Posicion(20, 20);
-		Unidad unSoldado = mock(Soldado.class);
+		Unidad unSoldado = new Soldado();
 
 		try {
 			nuevoTablero.colocarUnidad(unSoldado, posicionDeUnidad);
+			unSoldado.setEquipo(equipoDeJorge);
 			nuevoTablero.moverUnidad(posicionDeUnidad, posicionDeUnidad.arriba());
 		} catch (CeldaNoEstaEnElTablero celdaNoEstaEnElTablero) {
 			fail("No se deberia tirar la modelo.celda no esta en el modelo.tablero.");
@@ -377,18 +379,19 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test16TableroTrataDeMoverUnidadMasLejosQueUnCasilleroYLanzaExcepcion() throws NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
+	public void test16TableroTrataDeMoverUnidadMasLejosQueUnCasilleroYLanzaExcepcion() throws NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero, EquipoEquivocado {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
-		Unidad unSoldado = mock(Soldado.class);
+		Unidad unSoldado = new Soldado();
 		Posicion unaPosicion = new Posicion(20, 20);
 
 		nuevoTablero.colocarUnidad(unSoldado, unaPosicion);
 
 
 		try {
+			unSoldado.setEquipo(equipoDeJorge);
 			nuevoTablero.moverUnidad(unaPosicion, unaPosicion.arriba().arriba());
 			fail("No se lanzo la excepcion de movimiento invalido.");
 		} catch (MovimientoInvalido movimientoInvalido) {
@@ -396,17 +399,18 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test17TableroTrataDeMoverCatapultaYLanzaExcepcion() throws NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
+	public void test17TableroTrataDeMoverCatapultaYLanzaExcepcion() throws NoSeEncontroLaCelda, CeldaYaTieneUnidad, CeldaNoTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero, EquipoEquivocado {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
-		Unidad unaCatapulta = mock(Catapulta.class);
+		Unidad unaCatapulta = new Catapulta();
 		Posicion unaPosicion = new Posicion(20, 20);
 
 		nuevoTablero.colocarUnidad(unaCatapulta,unaPosicion);
 
 		try {
+			unaCatapulta.setEquipo(equipoDeJorge);
 			nuevoTablero.moverUnidad(unaPosicion, unaPosicion.arriba().arriba());
 			fail("No se lanzo la excepcion de movimiento invalido.");
 		} catch (MovimientoInvalido movimientoInvalido) {
@@ -516,7 +520,7 @@ public class TableroTest extends TestCase {
 		}
 	}
 
-	public void test24TableroUnidadAtacaAUnidadYLeSacaVida() throws CeldaYaTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero, CeldaNoTieneUnidad, RangoMuyLejano, NoSeEncontroLaCelda, RangoMuyCercano {
+	public void test24TableroUnidadAtacaAUnidadYLeSacaVida() throws CeldaYaTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero, CeldaNoTieneUnidad, RangoMuyLejano, NoSeEncontroLaCelda, RangoMuyCercano, EquipoEquivocado {
 
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
@@ -537,7 +541,7 @@ public class TableroTest extends TestCase {
 		Assert.assertEquals(otroSoldado.getVida(), 90.0);
 	}
 
-	public void test25TableroUnidadAtacaAUnidadFueraDeSuRangoYLanzaExcepcion() throws NoSeEncontroLaCelda, RangoMuyCercano, CeldaNoTieneUnidad, CeldaYaTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
+	public void test25TableroUnidadAtacaAUnidadFueraDeSuRangoYLanzaExcepcion() throws NoSeEncontroLaCelda, RangoMuyCercano, CeldaNoTieneUnidad, CeldaYaTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero, EquipoEquivocado {
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);
@@ -550,6 +554,7 @@ public class TableroTest extends TestCase {
 		nuevoTablero.colocarUnidad(otroSoldado, unaPosicion.arriba().izquierda().arriba());
 
 		try {
+			unSoldado.setEquipo(equipoDeJorge);
 			nuevoTablero.interaccion(unaPosicion, unaPosicion.arriba().izquierda().arriba()); // Un soldado ataca al otro y le saca 10 de vida
 			fail("No se lanzo la excepcion de rango muy lejano");
 		} catch (RangoMuyLejano rangoMuyLejano) {
@@ -557,7 +562,7 @@ public class TableroTest extends TestCase {
 
 	}
 
-	public void test26TableroUnidadEnSectorEnemigoRecibeMasDanio() throws CeldaNoTieneUnidad, RangoMuyLejano, NoSeEncontroLaCelda, RangoMuyCercano, CeldaYaTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero {
+	public void test26TableroUnidadEnSectorEnemigoRecibeMasDanio() throws CeldaNoTieneUnidad, RangoMuyLejano, NoSeEncontroLaCelda, RangoMuyCercano, CeldaYaTieneUnidad, TableroSectorInvalido, CeldaNoEstaEnElTablero, EquipoEquivocado {
 		Equipo equipoDeJorge = mock(Equipo.class);
 		Equipo equipoDeRaul = mock(Equipo.class);
 		Tablero nuevoTablero = new Tablero(20, 20, equipoDeJorge, equipoDeRaul);

@@ -21,10 +21,12 @@ public class Tablero {
     private Sector sectorDeAbajo;
     private Sector sectorDeArriba;
     private Sector sectorActual;
+    private Equipo equipoActual;
 
     public Tablero(int largo, int alto, Equipo equipoDeAbajo, Equipo equipoDeArriba) {
         this.equipoDeAbajo = equipoDeAbajo;
         this.equipoDeArriba = equipoDeArriba;
+        this.equipoActual = equipoDeAbajo;
 
         this.sectorDeAbajo = new Sector();
         sectorDeAbajo.setEquipo(equipoDeAbajo);
@@ -53,6 +55,7 @@ public class Tablero {
         } catch(CeldaNoEstaEnMiSector celdaNoEstaEnElSector){
             throw new TableroSectorInvalido();
         }
+
     }
 
 
@@ -62,6 +65,14 @@ public class Tablero {
             this.sectorActual = this.sectorDeArriba;
         }else {
             this.sectorActual = this.sectorDeAbajo;
+        }
+    }
+
+    public void cambiarEquipo(){
+        if(this.equipoActual == this.equipoDeAbajo){
+            this.equipoActual = this.equipoDeArriba;
+        }else{
+            this.equipoActual = this.equipoDeAbajo;
         }
     }
 
@@ -91,12 +102,15 @@ public class Tablero {
 
     }
 
-    public void interaccion(Posicion posicionOrigen, Posicion posicionDestino) throws CeldaNoTieneUnidad, NoSeEncontroLaCelda, RangoMuyLejano, RangoMuyCercano {
+    public void interaccion(Posicion posicionOrigen, Posicion posicionDestino) throws CeldaNoTieneUnidad, NoSeEncontroLaCelda, RangoMuyLejano, RangoMuyCercano, EquipoEquivocado {
 
         Celda celdaOrigen = this.buscarCeldaConPosicion(posicionOrigen);
         Celda celdaDestino = this.buscarCeldaConPosicion(posicionDestino);
 
         Unidad unidadAtacante = celdaOrigen.verUnidad();
+        if(unidadAtacante.getEquipo() != this.equipoActual){
+            throw new EquipoEquivocado();
+        }
         Unidad unidadVictima = celdaDestino.verUnidad();
 
         double incremento = 1;
@@ -115,8 +129,11 @@ public class Tablero {
         }
     }
 
-    public void moverUnidad(Posicion posicionOrigen, Posicion posicionDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido {
+    public void moverUnidad(Posicion posicionOrigen, Posicion posicionDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido, EquipoEquivocado {
         Celda celdaOrigen = this.buscarCeldaConPosicion(posicionOrigen);
+        if(celdaOrigen.verUnidad().getEquipo() != this.equipoActual){
+            throw new EquipoEquivocado();
+        }
         Celda celdaDestino = this.buscarCeldaConPosicion(posicionDestino);
 
         if(celdaOrigen.medirDistacia(celdaDestino) != 1 || celdaOrigen.verUnidad() instanceof Catapulta) throw new MovimientoInvalido();

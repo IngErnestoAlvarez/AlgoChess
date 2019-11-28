@@ -2,10 +2,7 @@ package controladores;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
-import modelo.ErroresYExcepciones.CeldaYaTieneUnidad;
-import modelo.ErroresYExcepciones.MovimientoInvalido;
-import modelo.ErroresYExcepciones.NoSeEncontroLaCelda;
+import modelo.ErroresYExcepciones.*;
 import vista.VistaCelda;
 import vista.VistaTablero;
 
@@ -31,6 +28,8 @@ public class ClickearCeldaMoverUnidad2 implements EventHandler<ActionEvent> {
             celdaYaTieneUnidad.printStackTrace();
         } catch (MovimientoInvalido movimientoInvalido) {
             movimientoInvalido.printStackTrace();
+        } catch (EquipoEquivocado equipoEquivocado) {
+            equipoEquivocado.printStackTrace();
         }
         try {
             tablero.llenarCeldas();
