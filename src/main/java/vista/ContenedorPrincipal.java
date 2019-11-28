@@ -1,5 +1,6 @@
 package vista;
 
+import controladores.BotonCambiarTableroAModoAtaque;
 import controladores.BotonCambiarTableroAModoMovimiento;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -24,6 +25,10 @@ public class ContenedorPrincipal extends HBox {
         Button botonMovimiento = new Button("Mover Unidad");
         botonMovimiento.setOnAction(new BotonCambiarTableroAModoMovimiento(tablero));
         this.controles.getChildren().add(botonMovimiento);
+
+        Button botonAtaque = new Button("Atacar Unidad");
+        botonAtaque.setOnAction(new BotonCambiarTableroAModoAtaque(tablero));
+        this.controles.getChildren().add(botonAtaque);
     }
 
     public void agregarUnidadTop(Unidad unidad){

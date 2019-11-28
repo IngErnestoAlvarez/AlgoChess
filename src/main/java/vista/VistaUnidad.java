@@ -39,7 +39,7 @@ public class VistaUnidad extends VBox {
 
         directorio.put("Soldado", "./resources/imagenes/Soldado.png");
         directorio.put("Jinete", "./resources/imagenes/Soldado.png");
-        directorio.put("Catapulta", "./resources/imagenes/Soldado.png");
+        directorio.put("Catapulta", "./resources/imagenes/Catapulta.png");
         directorio.put("Curandero", "./resources/imagenes/Curandero.png");
 
         Image imagenFinal = null;

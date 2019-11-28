@@ -1,9 +1,6 @@
 package vista;
 
-import controladores.BotonCeldaHandler;
-import controladores.ClickearCeldaColocarUnidad;
-import controladores.ClickearCeldaMoverUnidad1;
-import controladores.ClickearCeldaMoverUnidad2;
+import controladores.*;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
@@ -99,6 +96,26 @@ public class VistaTablero extends GridPane {
 
     public Tablero getTablero() {
         return tablero;
+    }
+
+    public void modoAtaque() {
+        try{
+            llenarCeldas();
+        } catch (Exception e){}
+
+        for(VistaCelda vistaCelda : this.vistaCeldas){
+            vistaCelda.setHandler(new ClickearCeldaAtaqueUnidad1(this, vistaCelda));
+        }
+    }
+
+    public void modoRecibirAtaque(VistaCelda vistaCeldaOrigen) {
+        try{
+            llenarCeldas();
+        } catch (Exception e){}
+
+        for (VistaCelda vistaCelda : this.vistaCeldas){
+            vistaCelda.setHandler(new ClickearCeldaAtaqueUnidad2(this, vistaCeldaOrigen, vistaCelda));
+        }
     }
     //    public VistaTablero refresh()throws Exception{
 //        return new VistaTablero(equipo1, equipo2, tablero, unidadesIzquierda);
