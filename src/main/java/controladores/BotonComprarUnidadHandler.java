@@ -1,7 +1,10 @@
 package controladores;
 
+import Alertas.AlertaEquipoNoTienePuntosSuficientes;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import modelo.ErroresYExcepciones.EquipoNoPuedeComprarMasUnidades;
 import modelo.ErroresYExcepciones.EquipoNoTienePuntosSuficientes;
@@ -10,7 +13,6 @@ import modelo.equipo.Equipo;
 import modelo.unidad.Unidad;
 import vista.VistaUnidad;
 
-import java.awt.*;
 
 public class BotonComprarUnidadHandler implements EventHandler<ActionEvent> {
 
@@ -32,14 +34,17 @@ public class BotonComprarUnidadHandler implements EventHandler<ActionEvent> {
             equipoQuiereCrearUnidadInvalida.printStackTrace();
             return;
         } catch (EquipoNoTienePuntosSuficientes equipoNoTienePuntosSuficientes) {
-            equipoNoTienePuntosSuficientes.printStackTrace();
+            Alert alertaFaltanPuntos = new AlertaEquipoNoTienePuntosSuficientes();
+            alertaFaltanPuntos.showAndWait();
             return;
         } catch (EquipoNoPuedeComprarMasUnidades equipoNoPuedeComprarMasUnidades) {
-            equipoNoPuedeComprarMasUnidades.printStackTrace();
+            Alert alertaFaltanPuntos = new AlertaEquipoNoTienePuntosSuficientes();
+            alertaFaltanPuntos.showAndWait();
             return;
         }
 
         vistaUnidades.getChildren().add(VistaUnidad.imagenDeUnidad(unidad));
+        this.puntosRestantes.setText("Puntos restantes: " + this.equipo.getPuntaje());
     }
 
     public void setEquipo(Equipo equipo) {
@@ -48,5 +53,9 @@ public class BotonComprarUnidadHandler implements EventHandler<ActionEvent> {
 
     public void setVistaUnidades(HBox vistaUnidades) {
         this.vistaUnidades = vistaUnidades;
+    }
+
+    public void setPuntosRestantes(Label puntosRestantes) {
+        this.puntosRestantes = puntosRestantes;
     }
 }

@@ -89,15 +89,16 @@ public class MainApp extends Application {
     private Scene escenaDeCompra1() {
 
         Label nombreEquipo = new Label("Equipo: " + equipo1.getNombre());
+        Label puntosResantes = new Label("Puntos restantes: " + equipo1.getPuntaje());
         Button botonDeTerminar = new Button("TerminarCompra");
         botonDeTerminar.setOnAction(new BotonCambiarDeEquipoCompra(this));
 
-        HBox botonera = new HBox(nombreEquipo, botonDeTerminar);
+        HBox botonera = new HBox(nombreEquipo, puntosResantes, botonDeTerminar);
         botonera.setSpacing(50);
 
         HBox unidades = new HBox();
 
-        VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo1, unidades), botonera, unidades);
+        VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo1, unidades, puntosResantes), botonera, unidades);
         contenedorPrincipal.setSpacing(30);
         return new Scene(contenedorPrincipal, 1200, 800);
     }
@@ -133,15 +134,16 @@ public class MainApp extends Application {
 
     private Scene escenaDeCompra2() {
         Label nombreEquipo = new Label("Equipo: " + equipo2.getNombre());
+        Label puntosResantes = new Label("Puntos restantes: " + equipo2.getPuntaje());
         Button botonDeTerminar = new Button("TerminarCompra");
         botonDeTerminar.setOnAction(new BotonPasarAColocarUnidad(this));
 
-        HBox botonera = new HBox(nombreEquipo, botonDeTerminar);
+        HBox botonera = new HBox(nombreEquipo, puntosResantes, botonDeTerminar);
         botonera.setSpacing(50);
 
         HBox unidades = new HBox();
 
-        VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo2, unidades), botonera, unidades);
+        VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo2, unidades, puntosResantes), botonera, unidades);
         contenedorPrincipal.setSpacing(30);
         return new Scene(contenedorPrincipal, 1200, 800);
     }

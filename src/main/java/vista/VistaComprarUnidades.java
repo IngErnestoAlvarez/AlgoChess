@@ -1,6 +1,7 @@
 package vista;
 
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import modelo.equipo.Equipo;
 import modelo.unidad.Catapulta;
@@ -10,7 +11,7 @@ import modelo.unidad.Soldado;
 
 public class VistaComprarUnidades extends HBox {
 
-    public VistaComprarUnidades(Equipo equipo, HBox vistaUnidades){
+    public VistaComprarUnidades(Equipo equipo, HBox vistaUnidades, Label puntosRestantes){
         super();
 
         this.setSpacing(40);
@@ -24,6 +25,7 @@ public class VistaComprarUnidades extends HBox {
             VistaUnidadComprar vistaUnidad = (VistaUnidadComprar)vista;
             vistaUnidad.getBotonDeCompraHandler().setEquipo(equipo);
             vistaUnidad.getBotonDeCompraHandler().setVistaUnidades(vistaUnidades);
+            vistaUnidad.getBotonDeCompraHandler().setPuntosRestantes(puntosRestantes);
         }
     }
 

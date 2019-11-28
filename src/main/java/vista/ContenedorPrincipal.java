@@ -33,6 +33,7 @@ public class ContenedorPrincipal extends HBox {
         Button botonAtaque = new Button("Atacar Unidad");
         botonAtaque.setOnAction(new BotonCambiarTableroAModoAtaque(tablero));
         this.controles.getChildren().add(botonAtaque);
+        
 
         this.controles.setSpacing(30);
     }
