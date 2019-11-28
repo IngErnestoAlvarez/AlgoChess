@@ -124,9 +124,7 @@ public class Tablero {
 
         unidadAtacante.interactuar(unidadVictima, posicionOrigen.medirDistancia(posicionDestino), incremento);
 
-        if(unidadVictima.estaMuerta()){
-            celdaDestino.quitarUnidad();
-        }
+
     }
 
     public void moverUnidad(Posicion posicionOrigen, Posicion posicionDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido, EquipoEquivocado {
@@ -138,9 +136,12 @@ public class Tablero {
 
         if(celdaOrigen.medirDistacia(celdaDestino) != 1 || celdaOrigen.verUnidad() instanceof Catapulta) throw new MovimientoInvalido();
 
-        Unidad unidadAMover = celdaOrigen.quitarUnidad();
+
+        Unidad unidadAMover = celdaOrigen.verUnidad();
 
         celdaDestino.colocarUnidad(unidadAMover);
+        celdaOrigen.quitarUnidad();
+        unidadAMover.setCelda(celdaDestino);
     }
 
 

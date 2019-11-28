@@ -27,6 +27,7 @@ public class Sector {
 
         Celda celdaEncontrada = this.encontrarCelda(miCelda);
         celdaEncontrada.colocarUnidad(unaUnidad);
+        unaUnidad.setCelda(miCelda);
 
     }
 
