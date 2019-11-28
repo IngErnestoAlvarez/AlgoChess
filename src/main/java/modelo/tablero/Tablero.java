@@ -110,6 +110,9 @@ public class Tablero {
 
         unidadAtacante.interactuar(unidadVictima, posicionOrigen.medirDistancia(posicionDestino), incremento);
 
+        if(unidadVictima.estaMuerta()){
+            celdaDestino.quitarUnidad();
+        }
     }
 
     public void moverUnidad(Posicion posicionOrigen, Posicion posicionDestino) throws NoSeEncontroLaCelda, CeldaNoTieneUnidad, CeldaYaTieneUnidad, MovimientoInvalido {

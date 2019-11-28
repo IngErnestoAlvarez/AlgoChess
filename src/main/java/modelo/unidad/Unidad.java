@@ -36,6 +36,11 @@ public abstract class Unidad {
         vida -= danio;
     }
 
+    public boolean estaMuerta(){
+        if(vida <= 0){ return true;}
+        return false;
+    }
+
     public void setEquipo(Equipo equipo){
         this.equipo = equipo;
     }
