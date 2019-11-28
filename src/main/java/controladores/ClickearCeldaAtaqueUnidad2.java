@@ -25,12 +25,7 @@ public class ClickearCeldaAtaqueUnidad2 implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         try {
             tablero.getTablero().interaccion(vistaCeldaOrigen.celda.verPosicion(), vistaCeldaDestino.celda.verPosicion());
-            if(tablero.getEquipo1().esPerdedor()){
-                main.cambiarAEscenaGanador(tablero.getEquipo2());
-            }
-            else if(tablero.getEquipo2().esPerdedor()){
-                main.cambiarAEscenaGanador(tablero.getEquipo1());
-            }
+
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
             tablero.getTablero().cambiarEquipo();
             Alert alertaCeldaSinUnidad = new AlertaCeldaNoTieneUnidad();
@@ -44,6 +39,12 @@ public class ClickearCeldaAtaqueUnidad2 implements EventHandler<ActionEvent> {
         } catch (EquipoEquivocado equipoEquivocado) {
             tablero.getTablero().cambiarEquipo();
             equipoEquivocado.printStackTrace();
+        }
+        if(tablero.getEquipo1().esPerdedor()){
+            main.cambiarAEscenaGanador(tablero.getEquipo2());
+        }
+        else if(tablero.getEquipo2().esPerdedor()){
+            main.cambiarAEscenaGanador(tablero.getEquipo1());
         }
         try{
             tablero.llenarCeldas();

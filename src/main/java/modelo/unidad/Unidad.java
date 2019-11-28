@@ -1,5 +1,6 @@
 package modelo.unidad;
 
+import modelo.ErroresYExcepciones.CeldaNoTieneUnidad;
 import modelo.ErroresYExcepciones.RangoMuyCercano;
 import modelo.ErroresYExcepciones.RangoMuyLejano;
 import modelo.celda.Celda;
@@ -33,6 +34,12 @@ public abstract class Unidad {
     }
 
     public void recibirDanio(double danio){
+        if(this.estaMuerta()){
+            try {
+                celda.quitarUnidad();
+            } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
+            }
+        }
         vida -= danio;
     }
 
