@@ -175,9 +175,9 @@ public class MainApp extends Application {
         tablero.colocarHandlers(seleccionados);
 
         Button botonCambioDeEquipo = new Button("Confirmar");
-        botonCambioDeEquipo.setOnAction(new BotonCambiarDeEquipoColocar(this, this.tablero));
+        botonCambioDeEquipo.setOnAction(new BotonCambiarDeEquipoColocar(this, this.tablero, unidades, seleccionados));
 
-        unidades.getChildren().add(botonCambioDeEquipo);
+        unidadesCompleta.getChildren().add(botonCambioDeEquipo);
 
 
 
@@ -221,8 +221,8 @@ public class MainApp extends Application {
             vistaCeldaunica.setHandler(new ClickearCeldaColocarUnidad(seleccionados, this.getTablero(), vistaCeldaunica, tablero));
         }
         Button botonCambioDeEquipo = new Button("Confirmar");
-        botonCambioDeEquipo.setOnAction(new BotonCambiarAEscenaPrincipal(this));
-        unidades.getChildren().add(botonCambioDeEquipo);
+        botonCambioDeEquipo.setOnAction(new BotonCambiarAEscenaPrincipal(this, unidades, seleccionados));
+        unidadesCompleta.getChildren().add(botonCambioDeEquipo);
 
 
         HBox contenedorPrincipal = new HBox(tablero, unidadesCompleta, seleccionadosCompleta);
