@@ -51,6 +51,9 @@ public class MainApp extends Application {
 
     private Scene escenaInicial(){
 
+        Label titulo = new Label("AlgoChess");
+        titulo.setFont(Font.font("Glamor", 72));
+
 
         Label labelEquipo1 = new Label("Equipo 1");
         labelEquipo1.setFont(Font.font("Cambria", 32));
@@ -71,7 +74,7 @@ public class MainApp extends Application {
         botonEnviar.setText("Play");
         botonEnviar.setOnAction(new BotonConfirmarEquipoHandler(nombreEquipo1, nombreEquipo2, this));
 
-        VBox contenedorPrincipal = new VBox(boxEquipo1, boxEquipo2, botonEnviar);
+        VBox contenedorPrincipal = new VBox(titulo, boxEquipo1, boxEquipo2, botonEnviar);
         contenedorPrincipal.setSpacing(30);
         contenedorPrincipal.setPadding(new Insets(300));
 
