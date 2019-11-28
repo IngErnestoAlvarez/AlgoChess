@@ -206,4 +206,8 @@ public class Tablero {
         }
     }
 
+    public Equipo equipoQueJuega(){
+        return this.equipoActual;
+    }
+
 }

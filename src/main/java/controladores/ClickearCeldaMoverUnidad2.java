@@ -45,5 +45,6 @@ public class ClickearCeldaMoverUnidad2 implements EventHandler<ActionEvent> {
         }
         tablero.botones();
         tablero.getTablero().cambiarEquipo();
+        tablero.cambiarNombreEquipo();
     }
 }

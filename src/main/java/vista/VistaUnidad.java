@@ -38,7 +38,7 @@ public class VistaUnidad extends VBox {
         Hashtable<String, String> directorio = new Hashtable<>();
 
         directorio.put("Soldado", "./resources/imagenes/Soldado.png");
-        directorio.put("Jinete", "./resources/imagenes/Soldado.png");
+        directorio.put("Jinete", "./resources/imagenes/Jinete.jpg");
         directorio.put("Catapulta", "./resources/imagenes/Catapulta.png");
         directorio.put("Curandero", "./resources/imagenes/Curandero.png");
 

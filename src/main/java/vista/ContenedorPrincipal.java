@@ -3,8 +3,10 @@ package vista;
 import controladores.BotonCambiarTableroAModoAtaque;
 import controladores.BotonCambiarTableroAModoMovimiento;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import modelo.unidad.Unidad;
 
 public class ContenedorPrincipal extends HBox {
@@ -22,6 +24,8 @@ public class ContenedorPrincipal extends HBox {
     }
 
     private void botones() {
+        controles.getChildren().add(tablero.equipoQueJuega());
+
         Button botonMovimiento = new Button("Mover Unidad");
         botonMovimiento.setOnAction(new BotonCambiarTableroAModoMovimiento(tablero));
         this.controles.getChildren().add(botonMovimiento);
@@ -29,6 +33,8 @@ public class ContenedorPrincipal extends HBox {
         Button botonAtaque = new Button("Atacar Unidad");
         botonAtaque.setOnAction(new BotonCambiarTableroAModoAtaque(tablero));
         this.controles.getChildren().add(botonAtaque);
+
+        this.controles.setSpacing(30);
     }
 
     public void agregarUnidadTop(Unidad unidad){

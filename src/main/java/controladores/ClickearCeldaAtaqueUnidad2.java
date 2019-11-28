@@ -50,5 +50,6 @@ public class ClickearCeldaAtaqueUnidad2 implements EventHandler<ActionEvent> {
         }catch (Exception e){}
         tablero.botones();
         tablero.getTablero().cambiarEquipo();
+        tablero.cambiarNombreEquipo();
     }
 }

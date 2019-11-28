@@ -2,8 +2,10 @@ package vista;
 
 import controladores.*;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import modelo.ErroresYExcepciones.NoSeEncontroLaCelda;
 import modelo.celda.Posicion;
 import modelo.equipo.Equipo;
@@ -20,6 +22,7 @@ public class VistaTablero extends GridPane {
     private Equipo equipo2;
     private Tablero tablero;
     private MainApp main;
+    private Label equipoQueJuega;
     public VistaTablero(Equipo equipo1, Equipo equipo2, Tablero tablero, VBox unidadesIzquierda, MainApp main) throws NoSeEncontroLaCelda {
         super();
 
@@ -27,9 +30,11 @@ public class VistaTablero extends GridPane {
         this.equipo2 = equipo2;
         this.tablero = tablero;
         this.main = main;
+        equipoQueJuega = new Label("El equipo que juega es: " + equipo1.getNombre());
+        equipoQueJuega.setFont(Font.font("Cambria", 30));
+        equipoQueJuega.setStyle("-fx-background-color:POWDERBLUE");
 
         this.vistaCeldas = new ArrayList<>();
-
         this.setHeight(1280);
         this.setWidth(720);
         this.setVgap(5);
@@ -128,5 +133,13 @@ public class VistaTablero extends GridPane {
 
     public Equipo getEquipo2() {
         return equipo2;
+    }
+
+    public Label equipoQueJuega(){
+        return this.equipoQueJuega;
+    }
+
+    public void cambiarNombreEquipo(){
+        equipoQueJuega.setText("El equipo que juega es: " + tablero.equipoQueJuega().getNombre());
     }
 }
