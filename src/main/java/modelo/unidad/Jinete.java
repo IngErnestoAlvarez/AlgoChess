@@ -14,6 +14,8 @@ public class Jinete extends Unidad {
 
     private static final int precioJinete = 3;
     private static final double vidaJinete = 100;
+    private static final int danioLejano = 15;
+    private static final int danioCercano = 5;
 
     public Jinete(){
         precio = precioJinete;
@@ -28,11 +30,11 @@ public class Jinete extends Unidad {
     }
 
     public void usaAtaqueMedio(){
-        accion = new AtaqueMedio(15);
+        accion = new AtaqueMedio(danioLejano);
     }
 
     public void usaAtaqueCorto(){
-        accion = new AtaqueCercano(5);
+        accion = new AtaqueCercano(danioCercano);
     }
 
     @Override
