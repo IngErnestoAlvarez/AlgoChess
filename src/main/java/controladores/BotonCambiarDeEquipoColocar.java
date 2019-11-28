@@ -32,6 +32,8 @@ public class BotonCambiarDeEquipoColocar implements EventHandler<ActionEvent> {
                 this.tablero.cambiarSector();
             } catch (NoSeEncontroLaCelda noSeEncontroLaCelda) {
                 noSeEncontroLaCelda.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }

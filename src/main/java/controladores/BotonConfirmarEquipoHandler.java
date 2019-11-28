@@ -29,6 +29,10 @@ public class BotonConfirmarEquipoHandler implements EventHandler<ActionEvent> {
         main.setEquipo1(new Equipo(textoEquipo1.getText(), 20));
         main.setEquipo2(new Equipo(textoEquipo2.getText(), 20));
 
-        main.cambiarAEscenaDeCompra();
+        try {
+            main.cambiarAEscenaDeCompra();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

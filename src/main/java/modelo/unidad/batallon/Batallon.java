@@ -61,6 +61,7 @@ public class Batallon {
                         destino.colocarUnidad(unaUnidad);
                         seMovio.set(j, true);
                         origen.quitarUnidad();
+                        unaUnidad.setCelda(destino);
                     } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {}
                 }
 

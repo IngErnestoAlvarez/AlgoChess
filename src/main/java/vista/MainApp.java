@@ -48,7 +48,15 @@ public class MainApp extends Application {
 
 
 
-    private Scene escenaInicial(){
+    private Scene escenaInicial() throws Exception{
+
+        Image fondoImagen = new Image(new FileInputStream("./resources/imagenes/fondoantes.png"));
+
+        Background fondo = new Background(new BackgroundImage(fondoImagen,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(50, 50, false, false, false, false)));
 
         Label titulo = new Label("AlgoChess");
         titulo.setFont(Font.font("Glamor", 72));
@@ -75,18 +83,27 @@ public class MainApp extends Application {
 
         VBox contenedorPrincipal = new VBox(titulo, boxEquipo1, boxEquipo2, botonEnviar);
         contenedorPrincipal.setSpacing(30);
+        contenedorPrincipal.setBackground(fondo);
         contenedorPrincipal.setPadding(new Insets(300));
 
-        return new Scene(contenedorPrincipal, 1200, 800);
+        return new Scene(contenedorPrincipal, 1920, 1080);
     }
 
 
 
-    public void cambiarAEscenaDeCompra() {
+    public void cambiarAEscenaDeCompra() throws Exception {
         this.escenario.setScene(this.escenaDeCompra1());
     }
 
-    private Scene escenaDeCompra1() {
+    private Scene escenaDeCompra1() throws Exception{
+
+        Image fondoImagen = new Image(new FileInputStream("./resources/imagenes/fondoantes.png"));
+
+        Background fondo = new Background(new BackgroundImage(fondoImagen,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(50, 50, false, false, false, false)));
 
         Label nombreEquipo = new Label("Equipo: " + equipo1.getNombre());
         Label puntosResantes = new Label("Puntos restantes: " + equipo1.getPuntaje());
@@ -100,7 +117,8 @@ public class MainApp extends Application {
 
         VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo1, unidades, puntosResantes), botonera, unidades);
         contenedorPrincipal.setSpacing(30);
-        return new Scene(contenedorPrincipal, 1200, 800);
+        contenedorPrincipal.setBackground(fondo);
+        return new Scene(contenedorPrincipal, 1920, 1080);
     }
 
 
@@ -128,11 +146,20 @@ public class MainApp extends Application {
         return tablero;
     }
 
-    public void cambiarAEscenaDeCompra2() {
+    public void cambiarAEscenaDeCompra2() throws Exception {
         this.escenario.setScene(this.escenaDeCompra2());
     }
 
-    private Scene escenaDeCompra2() {
+    private Scene escenaDeCompra2() throws Exception{
+
+        Image fondoImagen = new Image(new FileInputStream("./resources/imagenes/fondoantes.png"));
+
+        Background fondo = new Background(new BackgroundImage(fondoImagen,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(50, 50, false, false, false, false)));
+
         Label nombreEquipo = new Label("Equipo: " + equipo2.getNombre());
         Label puntosResantes = new Label("Puntos restantes: " + equipo2.getPuntaje());
         Button botonDeTerminar = new Button("TerminarCompra");
@@ -145,13 +172,22 @@ public class MainApp extends Application {
 
         VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo2, unidades, puntosResantes), botonera, unidades);
         contenedorPrincipal.setSpacing(30);
-        return new Scene(contenedorPrincipal, 1200, 800);
+        contenedorPrincipal.setBackground(fondo);
+        return new Scene(contenedorPrincipal, 1920, 1080);
     }
-    public void cambiarAEscenaColocarUnidad1() throws NoSeEncontroLaCelda {
+    public void cambiarAEscenaColocarUnidad1() throws Exception {
         this.escenario.setScene(this.escenaColocarUnidad1());
     }
 
-    private Scene escenaColocarUnidad1() throws NoSeEncontroLaCelda {
+    private Scene escenaColocarUnidad1() throws Exception {
+
+        Image fondoImagen = new Image(new FileInputStream("./resources/imagenes/fondoantes.png"));
+
+        Background fondo = new Background(new BackgroundImage(fondoImagen,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(50, 50, false, false, false, false)));
 
         VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero(), null, this);
 
@@ -192,10 +228,20 @@ public class MainApp extends Application {
 
         HBox contenedorPrincipal = new HBox(tablero, unidadesCompleta, seleccionadosCompleta);
         contenedorPrincipal.setSpacing(30);
+        contenedorPrincipal.setBackground(fondo);
 
-        return new Scene(contenedorPrincipal, 1200, 800);
+        return new Scene(contenedorPrincipal, 1920, 1080);
     }
-    private Scene escenaColocarUnidad2() throws NoSeEncontroLaCelda {
+    private Scene escenaColocarUnidad2() throws Exception {
+
+        Image fondoImagen = new Image(new FileInputStream("./resources/imagenes/fondoantes.png"));
+
+        Background fondo = new Background(new BackgroundImage(fondoImagen,
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(50, 50, false, false, false, false)));
+
         VistaTablero tablero = new VistaTablero(this.equipo1, this.equipo2, this.getTablero(), null, this);
 
         VBox unidades = new VBox();
@@ -235,8 +281,9 @@ public class MainApp extends Application {
 
         HBox contenedorPrincipal = new HBox(tablero, unidadesCompleta, seleccionadosCompleta);
         contenedorPrincipal.setSpacing(30);
+        contenedorPrincipal.setBackground(fondo);
 
-        return new Scene(contenedorPrincipal, 1200, 800);
+        return new Scene(contenedorPrincipal, 1920, 1080);
     }
 
     public void cambiarAEscenaPrincipal() throws Exception {
@@ -245,11 +292,13 @@ public class MainApp extends Application {
 
     private Scene escenaTablero() throws Exception {
 
-        Background fondo = new Background(new BackgroundImage(new Image(new FileInputStream("./resources/imagenes/fondo.png")),
+        Image fondoImagen = new Image(new FileInputStream("./resources/imagenes/fondo.png"));
+
+        Background fondo = new Background(new BackgroundImage(fondoImagen,
                 BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT,
                 BackgroundPosition.CENTER,
-                new BackgroundSize(1200, 800, false, false, false, false)));
+                new BackgroundSize(80, 80, false, false, false, false)));
 
 
         VBox unidades = new VBox();
@@ -269,10 +318,10 @@ public class MainApp extends Application {
 
         contenedorPrincipal.setSpacing(20);
 
-        return new Scene(contenedorPrincipal, 1200, 800);
+        return new Scene(contenedorPrincipal, 1920, 1080);
     }
 
-    public void cambiarAEscenaColocarUnidad2() throws NoSeEncontroLaCelda {
+    public void cambiarAEscenaColocarUnidad2() throws Exception {
         this.escenario.setScene(this.escenaColocarUnidad2());
     }
 
@@ -293,10 +342,10 @@ public class MainApp extends Application {
         contenedorPrincipal.getChildren().add(botonJugarDeNuevo);
 
 
-        return new Scene(contenedorPrincipal, 1200, 800);
+        return new Scene(contenedorPrincipal, 1920, 1080);
     }
 
-    public void cambiarAEscenaInicial() {
+    public void cambiarAEscenaInicial() throws Exception{
         this.escenario.setScene(escenaInicial());
     }
 }

@@ -12,6 +12,10 @@ public class BotonIniciarJuegoDeVuetla implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        main.cambiarAEscenaInicial();
+
+        try {
+            main.cambiarAEscenaInicial();
+        } catch (Exception e) {
+        }
     }
 }

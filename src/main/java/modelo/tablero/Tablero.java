@@ -22,11 +22,16 @@ public class Tablero {
     private Sector sectorDeArriba;
     private Sector sectorActual;
     private Equipo equipoActual;
+    public int largo;
+    public int alto;
 
     public Tablero(int largo, int alto, Equipo equipoDeAbajo, Equipo equipoDeArriba) {
         this.equipoDeAbajo = equipoDeAbajo;
         this.equipoDeArriba = equipoDeArriba;
         this.equipoActual = equipoDeAbajo;
+
+        this.alto = alto;
+        this.largo = largo;
 
         this.sectorDeAbajo = new Sector();
         sectorDeAbajo.setEquipo(equipoDeAbajo);

@@ -20,7 +20,7 @@ public class BotonPasarAColocarUnidad implements EventHandler<ActionEvent> {
         main.setTablero(tablero);
         try {
             main.cambiarAEscenaColocarUnidad1();
-        } catch (NoSeEncontroLaCelda noSeEncontroLaCelda) {
+        } catch (Exception noSeEncontroLaCelda) {
             noSeEncontroLaCelda.printStackTrace();
         }
     }

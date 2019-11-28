@@ -14,6 +14,11 @@ public class BotonCambiarDeEquipoCompra implements EventHandler<ActionEvent> {
 
     @Override
     public void handle(ActionEvent actionEvent) {
-        main.cambiarAEscenaDeCompra2();
+        try {
+            main.cambiarAEscenaDeCompra2();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }

@@ -51,9 +51,9 @@ public class VistaTablero extends GridPane {
         int equipo;
         this.vistaCeldas.clear();
         this.getChildren().clear();
-        for (int fila = 1; fila <= 20; fila++) {
-            for (int col = 1; col <= 20; col++) {
-                if(col > 10){
+        for (int fila = 1; fila <= tablero.alto; fila++) {
+            for (int col = 1; col <= tablero.largo; col++) {
+                if(col > tablero.largo / 2){
                     equipo = 1;
                 }else{
                     equipo = 2;
