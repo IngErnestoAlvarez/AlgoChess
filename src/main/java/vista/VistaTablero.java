@@ -142,4 +142,24 @@ public class VistaTablero extends GridPane {
     public void cambiarNombreEquipo(){
         equipoQueJuega.setText("El equipo que juega es: " + tablero.equipoQueJuega().getNombre());
     }
+
+    public void modoMoverBatallon() {
+        try{
+            llenarCeldas();
+        }catch (Exception e){}
+        for (VistaCelda vistaCelda : this.vistaCeldas){
+            vistaCelda.setHandler(new ClickearCeldaMoverBatallon1(this, vistaCelda));
+        }
+
+    }
+    public void modoRecibirBatallon(VistaCelda celdaOrigen){
+        try{
+            llenarCeldas();
+        }catch(Exception e){}
+
+        for (VistaCelda vistaCelda : this.vistaCeldas) {
+            vistaCelda.setHandler(new ClickearCeldaMoverBatallon2(this, celdaOrigen, vistaCelda));
+
+        }
+    }
 }
