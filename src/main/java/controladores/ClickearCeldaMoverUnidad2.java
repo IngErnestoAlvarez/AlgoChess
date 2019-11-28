@@ -1,5 +1,8 @@
 package controladores;
 
+import Alertas.AlertaCeldaNoTieneUnidad;
+import Alertas.AlertaMoverUnidadACeldaOcupada;
+import Alertas.AlertaMovimientoInvalido;
 import Alertas.AlertaUnidadNoPerteneceAlEquipoQueJuega;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -23,19 +26,18 @@ public class ClickearCeldaMoverUnidad2 implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent){
         try {
             tablero.getTablero().moverUnidad(vistaCeldaOrigen.celda.verPosicion(), vistaCeldaDestino.celda.verPosicion());
+            tablero.getTablero().cambiarEquipo();
         } catch (NoSeEncontroLaCelda noSeEncontroLaCelda) {
-            tablero.getTablero().cambiarEquipo();
         } catch (CeldaNoTieneUnidad celdaNoTieneUnidad) {
-            tablero.getTablero().cambiarEquipo();
-            celdaNoTieneUnidad.printStackTrace();
+            Alert alertaNoHayUnaUnidad = new AlertaCeldaNoTieneUnidad();
+            alertaNoHayUnaUnidad.showAndWait();
         } catch (CeldaYaTieneUnidad celdaYaTieneUnidad) {
-            tablero.getTablero().cambiarEquipo();
-            celdaYaTieneUnidad.printStackTrace();
+            Alert alertaCeldaOcupada = new AlertaMoverUnidadACeldaOcupada();
+            alertaCeldaOcupada.showAndWait();
         } catch (MovimientoInvalido movimientoInvalido) {
-            tablero.getTablero().cambiarEquipo();
-            movimientoInvalido.printStackTrace();
+            Alert alertaMovimientoInvalido = new AlertaMovimientoInvalido();
+            alertaMovimientoInvalido.showAndWait();
         } catch (EquipoEquivocado equipoEquivocado) {
-            tablero.getTablero().cambiarEquipo();
             Alert alertaEquipoEquivocado = new AlertaUnidadNoPerteneceAlEquipoQueJuega();
             alertaEquipoEquivocado.showAndWait();
         }
@@ -44,7 +46,7 @@ public class ClickearCeldaMoverUnidad2 implements EventHandler<ActionEvent> {
         } catch (Exception e) {
         }
         tablero.botones();
-        tablero.getTablero().cambiarEquipo();
+
         tablero.cambiarNombreEquipo();
     }
 }

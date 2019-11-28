@@ -94,10 +94,12 @@ public class MainApp extends Application {
         botonDeTerminar.setOnAction(new BotonCambiarDeEquipoCompra(this));
 
         HBox botonera = new HBox(nombreEquipo, botonDeTerminar);
+        botonera.setSpacing(50);
 
         HBox unidades = new HBox();
 
         VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo1, unidades), botonera, unidades);
+        contenedorPrincipal.setSpacing(30);
         return new Scene(contenedorPrincipal, 1200, 800);
     }
 
@@ -136,10 +138,12 @@ public class MainApp extends Application {
         botonDeTerminar.setOnAction(new BotonPasarAColocarUnidad(this));
 
         HBox botonera = new HBox(nombreEquipo, botonDeTerminar);
+        botonera.setSpacing(50);
 
         HBox unidades = new HBox();
 
         VBox contenedorPrincipal = new VBox(new VistaComprarUnidades(this.equipo2, unidades), botonera, unidades);
+        contenedorPrincipal.setSpacing(30);
         return new Scene(contenedorPrincipal, 1200, 800);
     }
     public void cambiarAEscenaColocarUnidad1() throws NoSeEncontroLaCelda {
